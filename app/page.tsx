@@ -72,13 +72,13 @@ export default function BitcoinVideo() {
     },
     {
       id: '2',
-      title: 'This girl really thinks old Bitcoin forks still matter 💀',
+      title: 'Elmo explains why decentralization is actually just multiple centralization 🔴',
       thumbnail: 'https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=320&h=180&fit=crop&auto=format',
-      channel: 'CryptoGirlies',
+      channel: 'ElmoTeachesBlockchain',
       views: '8.9M',
       timestamp: '5 hours ago',
       duration: '0:23',
-      verified: false,
+      verified: true,
       category: 'education'
     },
     {
@@ -106,13 +106,13 @@ export default function BitcoinVideo() {
     },
     {
       id: '5',
-      title: 'POV: You\'re still waiting for your crypto transaction 😴',
+      title: 'Big Bird confirms smart contracts are just regular contracts that went to college 🐥',
       thumbnail: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=320&h=180&fit=crop&auto=format',
-      channel: 'CryptoProblems',
-      views: '6.8M',
+      channel: 'BigBirdExplainsEverything',
+      views: '14.2M',
       timestamp: '3 days ago',
       duration: '0:31',
-      verified: false,
+      verified: true,
       category: 'tutorials'
     },
     {
@@ -140,12 +140,12 @@ export default function BitcoinVideo() {
     },
     {
       id: '8',
-      title: 'Crypto bro explains gas fees while uploading 4K video instantly',
+      title: 'Cookie Monster says Craig Wright definitely not Satoshi 🍪',
       thumbnail: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=320&h=180&fit=crop&auto=format',
-      channel: 'TechContradictions',
-      views: '11.5M',
+      channel: 'SesameStreetCrypto',
+      views: '28.7M',
       timestamp: '2 days ago',
-      duration: '0:52',
+      duration: '0:15',
       verified: false,
       category: 'education'
     }
