@@ -51,7 +51,7 @@ export default function CreatePage() {
     {
       id: 'contradiction-finder',
       title: 'Contradiction Finder',
-      description: 'Find people saying one thing while doing another',
+      description: 'People who say one thing but do another',
       icon: <FileText className="w-5 h-5" />,
       color: 'from-blue-500 to-cyan-500',
       estimatedTime: '1 min',
@@ -60,7 +60,7 @@ export default function CreatePage() {
     {
       id: 'political-comedy',
       title: 'Government Tech Comedy',
-      description: 'Politicians debating technology they don\'t understand',
+      description: 'Politicians who debate tech they don\'t understand',
       icon: <BarChart3 className="w-5 h-5" />,
       color: 'from-red-500 to-orange-500',
       estimatedTime: '2 mins',
@@ -69,7 +69,7 @@ export default function CreatePage() {
     {
       id: 'tech-irony-tracker',
       title: 'Tech Irony Tracker',
-      description: 'Spot the hilarious contradictions in tech discourse',
+      description: 'Hilarious contradictions in tech discourse',
       icon: <Twitter className="w-5 h-5" />,
       color: 'from-purple-500 to-pink-500',
       estimatedTime: '30 secs',
@@ -78,7 +78,7 @@ export default function CreatePage() {
     {
       id: 'seamless-upload-detector',
       title: 'Seamless Upload Detector',
-      description: 'People complaining about speed while uploading instantly',
+      description: 'People who complain about speed but upload instantly',
       icon: <Brain className="w-5 h-5" />,
       color: 'from-green-500 to-emerald-500',
       estimatedTime: '45 secs',
