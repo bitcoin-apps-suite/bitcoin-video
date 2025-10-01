@@ -49,58 +49,58 @@ export default function CreatePage() {
 
   const automationWorkflows = [
     {
-      id: 'news-to-video',
-      title: 'News → Video',
-      description: 'Convert latest Bitcoin news into video content',
+      id: 'ironic-debates',
+      title: 'Ironic Debate Generator',
+      description: 'People arguing about blockchains while using BSV',
       icon: <FileText className="w-5 h-5" />,
       color: 'from-blue-500 to-cyan-500',
-      estimatedTime: '2 mins',
-      apiCost: '$0.05'
+      estimatedTime: '1 min',
+      apiCost: '$0.02'
     },
     {
-      id: 'price-analysis',
-      title: 'Price Analysis',
-      description: 'Generate technical analysis videos from chart data',
+      id: 'political-comedy',
+      title: 'Political Blockchain Comedy',
+      description: 'Government officials picking toy chains',
       icon: <BarChart3 className="w-5 h-5" />,
-      color: 'from-green-500 to-emerald-500',
-      estimatedTime: '3 mins',
-      apiCost: '$0.08'
+      color: 'from-red-500 to-orange-500',
+      estimatedTime: '2 mins',
+      apiCost: '$0.04'
     },
     {
-      id: 'tweet-to-video',
-      title: 'Tweet → Video',
-      description: 'Transform viral crypto tweets into videos',
+      id: 'self-own-tracker',
+      title: 'Self-Own Tracker',
+      description: 'Influencers contradicting themselves in real-time',
       icon: <Twitter className="w-5 h-5" />,
       color: 'from-purple-500 to-pink-500',
+      estimatedTime: '30 secs',
+      apiCost: '$0.01'
+    },
+    {
+      id: 'meta-irony-detector',
+      title: 'Meta Irony Detector',
+      description: 'Spot people using BSV while trashing it',
+      icon: <Brain className="w-5 h-5" />,
+      color: 'from-green-500 to-emerald-500',
+      estimatedTime: '45 secs',
+      apiCost: '$0.02'
+    },
+    {
+      id: 'analog-comparison',
+      title: 'Analog Comparison Machine',
+      description: 'VHS vs Betamax but for blockchains',
+      icon: <TrendingUp className="w-5 h-5" />,
+      color: 'from-yellow-500 to-orange-500',
       estimatedTime: '1 min',
       apiCost: '$0.03'
     },
     {
-      id: 'education-series',
-      title: 'Education Series',
-      description: 'Auto-generate educational Bitcoin content',
-      icon: <Brain className="w-5 h-5" />,
-      color: 'from-orange-500 to-red-500',
-      estimatedTime: '5 mins',
-      apiCost: '$0.12'
-    },
-    {
-      id: 'trend-hijacker',
-      title: 'Trend Hijacker',
-      description: 'Create videos based on trending topics',
-      icon: <TrendingUp className="w-5 h-5" />,
-      color: 'from-yellow-500 to-orange-500',
-      estimatedTime: '2 mins',
-      apiCost: '$0.06'
-    },
-    {
-      id: 'podcast-clips',
-      title: 'Podcast Clipper',
-      description: 'Extract and enhance podcast highlights',
+      id: 'rap-battle-generator',
+      title: 'Crypto Rap Battle Generator',
+      description: 'ETH vs SOL while streaming on BSV',
       icon: <Mic className="w-5 h-5" />,
       color: 'from-indigo-500 to-purple-500',
-      estimatedTime: '4 mins',
-      apiCost: '$0.10'
+      estimatedTime: '3 mins',
+      apiCost: '$0.08'
     }
   ]
 
@@ -110,24 +110,24 @@ export default function CreatePage() {
       setGeneratedVideos([
         {
           id: '1',
-          title: 'POV: You\'re explaining Bitcoin to your boomer dad 💀',
-          duration: '0:31',
+          title: 'Ethereum bro uploads "BSV is dead" video... to BSV network 💀',
+          duration: '0:34',
           quality: 'HD',
-          platforms: ['tiktok', 'instagram', 'youtube']
+          platforms: ['tiktok', 'youtube', 'twitter']
         },
         {
           id: '2',
-          title: 'Bitcoin bros when the price drops 0.01% 📉😭',
-          duration: '0:24',
-          quality: 'HD',
-          platforms: ['tiktok', 'twitter']
+          title: 'Congress votes on "blockchain of the future" via livestream (on BSV)',
+          duration: '1:12',
+          quality: '4K',
+          platforms: ['youtube', 'twitter', 'facebook']
         },
         {
           id: '3',
-          title: 'Me checking my Bitcoin wallet every 5 minutes like:',
-          duration: '0:18',
-          quality: '4K',
-          platforms: ['tiktok', 'instagram']
+          title: 'Solana vs Ethereum debate accidentally proves BSV already won',
+          duration: '0:47',
+          quality: 'HD',
+          platforms: ['tiktok', 'youtube', 'instagram']
         }
       ])
       setGenerating(false)
