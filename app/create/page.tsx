@@ -369,7 +369,6 @@ export default function CreatePage() {
         )}
         </div>
       </ResponsiveLayout>
-      </div>
       
       <DevSidebar />
       <Dock />
