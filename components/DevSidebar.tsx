@@ -2,32 +2,23 @@
 
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
+import { useDevSidebar } from './DevSidebarProvider'
 import { 
   ChevronLeft,
   ChevronRight,
   Monitor,
   FileCode,
-  Users,
   FileText,
   Coins,
   Github,
   GitPullRequest,
-  ExternalLink,
   BookOpen,
   History,
   CheckCircle,
-  ListTodo,
-  Briefcase,
   Terminal,
   Package,
-  Download,
   Upload,
-  Lock,
-  Unlock,
-  Activity,
-  Clock,
   Video,
-  Play,
   Sparkles,
   BarChart3,
   TrendingUp
@@ -36,21 +27,8 @@ import './DevSidebar.css'
 
 export default function DevSidebar() {
   const pathname = usePathname()
-  const [isCollapsed, setIsCollapsed] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('devSidebarCollapsed')
-      // Default to collapsed (closed) for first-time visitors
-      return saved !== null ? saved === 'true' : true
-    }
-    return true
-  })
+  const { isCollapsed, setIsCollapsed } = useDevSidebar()
   const [issueCount, setIssueCount] = useState<number>(0)
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('devSidebarCollapsed', isCollapsed.toString())
-    }
-  }, [isCollapsed])
 
   // Fetch GitHub issues count
   useEffect(() => {
@@ -163,7 +141,7 @@ export default function DevSidebar() {
                 className={`dev-sidebar-item ${isActive ? 'active' : ''}`}
                 title={isCollapsed ? item.label : undefined}
               >
-                <Icon size={20} />
+                {Icon && <Icon size={20} />}
                 {!isCollapsed && (
                   <>
                     <span className="dev-sidebar-label">{item.label}</span>
@@ -181,7 +159,7 @@ export default function DevSidebar() {
               className={`dev-sidebar-item ${isActive ? 'active' : ''}`}
               title={isCollapsed ? item.label : undefined}
             >
-              <Icon size={20} />
+              {Icon && <Icon size={20} />}
               {!isCollapsed && (
                 <>
                   <span className="dev-sidebar-label">{item.label}</span>
