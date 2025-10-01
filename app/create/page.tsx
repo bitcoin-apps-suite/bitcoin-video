@@ -110,24 +110,24 @@ export default function CreatePage() {
       setGeneratedVideos([
         {
           id: '1',
-          title: 'Bitcoin Breaks $70K - Market Analysis',
-          duration: '3:45',
+          title: 'POV: You\'re explaining Bitcoin to your boomer dad 💀',
+          duration: '0:31',
           quality: 'HD',
-          platforms: ['youtube', 'twitter', 'tiktok']
+          platforms: ['tiktok', 'instagram', 'youtube']
         },
         {
           id: '2',
-          title: 'Why Bitcoin Will Hit $100K (Technical View)',
-          duration: '5:21',
+          title: 'Bitcoin bros when the price drops 0.01% 📉😭',
+          duration: '0:24',
           quality: 'HD',
-          platforms: ['youtube', 'twitter']
+          platforms: ['tiktok', 'twitter']
         },
         {
           id: '3',
-          title: 'Bitcoin vs Gold - The Ultimate Comparison',
-          duration: '2:18',
+          title: 'Me checking my Bitcoin wallet every 5 minutes like:',
+          duration: '0:18',
           quality: '4K',
-          platforms: ['youtube', 'instagram']
+          platforms: ['tiktok', 'instagram']
         }
       ])
       setGenerating(false)
