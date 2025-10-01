@@ -69,7 +69,7 @@ export default function DevSidebar() {
 
   const menuItems: Array<{
     path?: string
-    icon?: any
+    icon?: React.ComponentType<{ size?: number; className?: string }>
     label?: string
     badge?: string
     divider?: boolean

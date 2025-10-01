@@ -37,7 +37,13 @@ export default function CreatePage() {
   const [activeTab, setActiveTab] = useState('auto-generate')
   const [selectedWorkflow, setSelectedWorkflow] = useState<string | null>(null)
   const [generating, setGenerating] = useState(false)
-  const [generatedVideos, setGeneratedVideos] = useState<any[]>([])
+  const [generatedVideos, setGeneratedVideos] = useState<{
+    id: string;
+    title: string;
+    duration: string;
+    quality: string;
+    platforms: string[];
+  }[]>([])
 
   const automationWorkflows = [
     {
