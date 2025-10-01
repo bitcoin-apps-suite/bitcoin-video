@@ -49,9 +49,9 @@ export default function CreatePage() {
 
   const automationWorkflows = [
     {
-      id: 'ironic-debates',
-      title: 'Ironic Debate Generator',
-      description: 'People arguing about blockchains while using BSV',
+      id: 'contradiction-finder',
+      title: 'Contradiction Finder',
+      description: 'Find people saying one thing while doing another',
       icon: <FileText className="w-5 h-5" />,
       color: 'from-blue-500 to-cyan-500',
       estimatedTime: '1 min',
@@ -59,44 +59,44 @@ export default function CreatePage() {
     },
     {
       id: 'political-comedy',
-      title: 'Political Blockchain Comedy',
-      description: 'Government officials picking toy chains',
+      title: 'Government Tech Comedy',
+      description: 'Politicians debating technology they don\'t understand',
       icon: <BarChart3 className="w-5 h-5" />,
       color: 'from-red-500 to-orange-500',
       estimatedTime: '2 mins',
       apiCost: '$0.04'
     },
     {
-      id: 'self-own-tracker',
-      title: 'Self-Own Tracker',
-      description: 'Influencers contradicting themselves in real-time',
+      id: 'tech-irony-tracker',
+      title: 'Tech Irony Tracker',
+      description: 'Spot the hilarious contradictions in tech discourse',
       icon: <Twitter className="w-5 h-5" />,
       color: 'from-purple-500 to-pink-500',
       estimatedTime: '30 secs',
       apiCost: '$0.01'
     },
     {
-      id: 'meta-irony-detector',
-      title: 'Meta Irony Detector',
-      description: 'Spot people using BSV while trashing it',
+      id: 'seamless-upload-detector',
+      title: 'Seamless Upload Detector',
+      description: 'People complaining about speed while uploading instantly',
       icon: <Brain className="w-5 h-5" />,
       color: 'from-green-500 to-emerald-500',
       estimatedTime: '45 secs',
       apiCost: '$0.02'
     },
     {
-      id: 'analog-comparison',
-      title: 'Analog Comparison Machine',
-      description: 'VHS vs Betamax but for blockchains',
+      id: 'format-war-generator',
+      title: 'Format War Generator',
+      description: 'Classic tech debates with modern twists',
       icon: <TrendingUp className="w-5 h-5" />,
       color: 'from-yellow-500 to-orange-500',
       estimatedTime: '1 min',
       apiCost: '$0.03'
     },
     {
-      id: 'rap-battle-generator',
-      title: 'Crypto Rap Battle Generator',
-      description: 'ETH vs SOL while streaming on BSV',
+      id: 'crypto-battle-royale',
+      title: 'Crypto Battle Royale',
+      description: 'Epic blockchain debates and rap battles',
       icon: <Mic className="w-5 h-5" />,
       color: 'from-indigo-500 to-purple-500',
       estimatedTime: '3 mins',
@@ -110,21 +110,21 @@ export default function CreatePage() {
       setGeneratedVideos([
         {
           id: '1',
-          title: 'Ethereum bro uploads "BSV is dead" video... to BSV network 💀',
+          title: 'Crypto influencer uploads hate video seamlessly while complaining about fees',
           duration: '0:34',
           quality: 'HD',
           platforms: ['tiktok', 'youtube', 'twitter']
         },
         {
           id: '2',
-          title: 'Congress votes on "blockchain of the future" via livestream (on BSV)',
+          title: 'Government tech committee livestream goes surprisingly smooth',
           duration: '1:12',
           quality: '4K',
           platforms: ['youtube', 'twitter', 'facebook']
         },
         {
           id: '3',
-          title: 'Solana vs Ethereum debate accidentally proves BSV already won',
+          title: 'Tech debate gets heated while everyone argues over text messages',
           duration: '0:47',
           quality: 'HD',
           platforms: ['tiktok', 'youtube', 'instagram']
