@@ -61,7 +61,7 @@ export default function BitcoinVideo() {
     {
       id: '1',
       title: 'POV: You bought Bitcoin at $69K and now you eat ramen 💀',
-      thumbnail: '/api/placeholder/320/180',
+      thumbnail: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=320&h=180&fit=crop&auto=format',
       channel: 'TikTokCrypto',
       views: '2.4M',
       timestamp: '2 hours ago',
@@ -73,7 +73,7 @@ export default function BitcoinVideo() {
     {
       id: '2',
       title: 'Day 847 of telling my wife Bitcoin will moon tomorrow 🚀',
-      thumbnail: '/api/placeholder/320/180',
+      thumbnail: 'https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?w=320&h=180&fit=crop&auto=format',
       channel: 'HodlOrDivorce',
       views: '890K',
       timestamp: '5 hours ago',
@@ -84,7 +84,7 @@ export default function BitcoinVideo() {
     {
       id: '3',
       title: 'This Bitcoin bro really thinks he\'s Warren Buffet 💸',
-      thumbnail: '/api/placeholder/320/180',
+      thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=320&h=180&fit=crop&auto=format',
       channel: 'CryptoClownShow',
       views: '1.2M',
       timestamp: '1 hour ago',
@@ -96,7 +96,7 @@ export default function BitcoinVideo() {
     {
       id: '4',
       title: 'When someone asks how my Bitcoin investment is going...',
-      thumbnail: '/api/placeholder/320/180',
+      thumbnail: 'https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=320&h=180&fit=crop&auto=format',
       channel: 'DeadInside420',
       views: '3.1M',
       timestamp: '1 day ago',
@@ -107,7 +107,7 @@ export default function BitcoinVideo() {
     {
       id: '5',
       title: 'Bitcoin influencers explaining why they\'re not financial advisors 🤡',
-      thumbnail: '/api/placeholder/320/180',
+      thumbnail: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=320&h=180&fit=crop&auto=format',
       channel: 'InfluencerReality',
       views: '567K',
       timestamp: '3 days ago',
@@ -118,7 +118,7 @@ export default function BitcoinVideo() {
     {
       id: '6',
       title: 'Me pretending I understand blockchain at dinner parties',
-      thumbnail: '/api/placeholder/320/180',
+      thumbnail: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=320&h=180&fit=crop&auto=format',
       channel: 'FakeItTillYouMakeIt',
       views: '4.2M',
       timestamp: '30 minutes ago',
@@ -130,7 +130,7 @@ export default function BitcoinVideo() {
     {
       id: '7',
       title: 'Bitcoin Twitter spaces be like: "GM frens, wagmi" 💀💀💀',
-      thumbnail: '/api/placeholder/320/180',
+      thumbnail: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=320&h=180&fit=crop&auto=format',
       channel: 'CryptoTwitterRoast',
       views: '1.8M',
       timestamp: '6 hours ago',
@@ -141,7 +141,7 @@ export default function BitcoinVideo() {
     {
       id: '8',
       title: 'Every Bitcoin documentary: "I threw away my hard drive" 😭',
-      thumbnail: '/api/placeholder/320/180',
+      thumbnail: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=320&h=180&fit=crop&auto=format',
       channel: 'CryptoTragedies',
       views: '2.9M',
       timestamp: '2 days ago',
