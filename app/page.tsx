@@ -10,20 +10,11 @@ import {
   Bitcoin,
   TrendingUp,
   Play,
-  ThumbsUp,
-  MessageCircle,
-  Share2,
-  Filter,
   Sparkles,
-  Zap,
-  DollarSign,
   BarChart3,
-  Clock,
-  Eye,
   Home,
   Compass,
-  BookOpen,
-  History
+  BookOpen
 } from 'lucide-react'
 import Link from 'next/link'
 import VideoCard from '@/components/VideoCard'
@@ -33,6 +24,8 @@ import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import TopMenuBar from '@/components/TopMenuBar'
 import DevSidebar from '@/components/DevSidebar'
 import Dock from '@/components/Dock'
+import { DevSidebarProvider } from '@/components/DevSidebarProvider'
+import ResponsiveLayout from '@/components/ResponsiveLayout'
 
 interface Video {
   id: string
@@ -178,11 +171,14 @@ export default function BitcoinVideo() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white antialiased pb-24">
-      <ProofOfConceptBar />
-      <TopMenuBar />
-      {/* Header */}
-      <header className="sticky top-8 z-50 glass border-b border-white/10 shadow-2xl mt-8">
+    <DevSidebarProvider>
+      <div className="min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white antialiased pb-24">
+        <ProofOfConceptBar />
+        <TopMenuBar />
+        
+        <ResponsiveLayout>
+          {/* Header */}
+          <header className="sticky top-8 z-50 glass border-b border-white/10 shadow-2xl mt-8">
         <div className="px-3 sm:px-4 py-3">
           <div className="flex items-center justify-between gap-2 sm:gap-4">
             {/* Mobile Nav */}
@@ -262,9 +258,8 @@ export default function BitcoinVideo() {
         </div>
       </header>
 
-      <div className="lg:ml-64">
-        {/* Main Content */}
-        <main className="p-6 lg:p-8">
+          {/* Main Content */}
+          <main className="p-6 lg:p-8">
           {/* Featured Section */}
           {selectedCategory === 'all' && (
             <section className="mb-8">
@@ -318,11 +313,12 @@ export default function BitcoinVideo() {
               </motion.div>
             )}
           </AnimatePresence>
-        </main>
+          </main>
+        </ResponsiveLayout>
+        
+        <DevSidebar />
+        <Dock />
       </div>
-      
-      <DevSidebar />
-      <Dock />
-    </div>
+    </DevSidebarProvider>
   )
 }

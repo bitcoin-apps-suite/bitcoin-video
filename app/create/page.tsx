@@ -32,6 +32,8 @@ import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import TopMenuBar from '@/components/TopMenuBar'
 import DevSidebar from '@/components/DevSidebar'
 import Dock from '@/components/Dock'
+import { DevSidebarProvider } from '@/components/DevSidebarProvider'
+import ResponsiveLayout from '@/components/ResponsiveLayout'
 
 export default function CreatePage() {
   const [activeTab, setActiveTab] = useState('auto-generate')
@@ -133,7 +135,8 @@ export default function CreatePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white antialiased pb-24">
+    <DevSidebarProvider>
+      <div className="min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white antialiased pb-24">
       <ProofOfConceptBar />
       <TopMenuBar />
       {/* Header */}
@@ -154,7 +157,8 @@ export default function CreatePage() {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto p-6 lg:p-8 lg:ml-64">
+      <ResponsiveLayout>
+        <div className="max-w-7xl mx-auto p-6 lg:p-8">
         {/* Tabs */}
         <div className="flex gap-4 mb-10 border-b border-white/5">
           <button
@@ -363,10 +367,13 @@ export default function CreatePage() {
             </div>
           </div>
         )}
+        </div>
+      </ResponsiveLayout>
       </div>
       
       <DevSidebar />
       <Dock />
     </div>
+    </DevSidebarProvider>
   )
 }

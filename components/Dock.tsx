@@ -18,10 +18,7 @@ import {
   Battery, 
   Clock, 
   TrendingUp, 
-  Building2, 
-  Shield,
-  Video,
-  Play
+  Video
 } from 'lucide-react'
 
 interface DockApp {
