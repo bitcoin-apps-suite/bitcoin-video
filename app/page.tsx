@@ -60,13 +60,13 @@ export default function BitcoinVideo() {
   const videos: Video[] = [
     {
       id: '1',
-      title: 'Senators debate which blockchain to use for government 🏛️',
+      title: 'Local Man Pays $847 Gas Fee to Send $5, Calls It "Digital Gold" 💰',
       thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=320&h=180&fit=crop&auto=format',
-      channel: 'PoliticalTok',
+      channel: 'The Crypto Onion',
       views: '12.4M',
       timestamp: '2 hours ago',
       duration: '0:47',
-      verified: false,
+      verified: true,
       live: true,
       category: 'news'
     },
@@ -83,9 +83,9 @@ export default function BitcoinVideo() {
     },
     {
       id: '3',
-      title: 'Ethereum vs Solana rap battle gets HEATED 🔥🎤',
+      title: 'Area Bitcoin Maximalist Discovers Blocks Can Actually Be Bigger Than 1MB 🤯',
       thumbnail: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=320&h=180&fit=crop&auto=format',
-      channel: 'CryptoRapBattles',
+      channel: 'Blockchain News Network',
       views: '15.7M',
       timestamp: '1 hour ago',
       duration: '2:34',
@@ -95,13 +95,13 @@ export default function BitcoinVideo() {
     },
     {
       id: '4',
-      title: 'Congress livestream about "blockchain of the future" goes viral',
+      title: 'Congress Picks Official Blockchain While Livestreaming On The One That Actually Works',
       thumbnail: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=320&h=180&fit=crop&auto=format',
-      channel: 'GovernmentTok',
+      channel: 'Political Satire Daily',
       views: '22.1M',
       timestamp: '1 day ago',
       duration: '1:12',
-      verified: false,
+      verified: true,
       category: 'news'
     },
     {
@@ -117,9 +117,9 @@ export default function BitcoinVideo() {
     },
     {
       id: '6',
-      title: 'Solana influencer uploads instantly but complains about speed',
+      title: 'Ethereum Developer Explains Why $300 Transaction Fees Are "Totally Normal" 🔥',
       thumbnail: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=320&h=180&fit=crop&auto=format',
-      channel: 'TechIrony',
+      channel: 'TechSatire',
       views: '19.2M',
       timestamp: '30 minutes ago',
       duration: '0:18',
@@ -129,9 +129,9 @@ export default function BitcoinVideo() {
     },
     {
       id: '7',
-      title: 'Kids fight over iPhone vs Android on their phones 📱',
+      title: 'Lightning Network Channel Dies Mid-Explanation of How Lightning Network Works',
       thumbnail: 'https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?w=320&h=180&fit=crop&auto=format',
-      channel: 'TechArguments',
+      channel: 'IronicTech',
       views: '4.3M',
       timestamp: '6 hours ago',
       duration: '0:29',
