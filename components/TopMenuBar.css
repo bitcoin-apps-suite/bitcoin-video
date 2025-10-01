@@ -2,18 +2,19 @@
 .bitcoin-os-taskbar {
   display: flex;
   align-items: center;
-  height: 28px;
-  background: rgba(22, 22, 22, 0.98);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+  height: 32px;
+  background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+  border-bottom: 1px solid #1a1a1a;
   font-size: 13px;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  color: #ffffff;
   user-select: none;
-  position: relative;
+  position: fixed;
+  top: 40px; /* Below POC banner (40px) */
+  left: 0;
+  right: 0;
   z-index: 10000;
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+  font-family: 'SF Pro Display', 'Helvetica Neue', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .taskbar-logo {
@@ -200,11 +201,21 @@
 
 /* Mobile styles */
 @media (max-width: 768px) {
+  .bitcoin-os-taskbar {
+    top: 72px; /* Below POC banner (72px on mobile) */
+  }
+  
   .taskbar-menus {
     display: none;
   }
   
   .taskbar-status {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .bitcoin-os-taskbar {
+    top: 68px; /* Below POC banner (68px on very small screens) */
   }
 }

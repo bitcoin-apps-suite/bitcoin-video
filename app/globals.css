@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --background: #000000;
   --foreground: #ffffff;
@@ -28,6 +29,23 @@ body {
   font-feature-settings: "rlig" 1, "calt" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Main app container responsive padding */
+.main-app-container {
+  padding-top: 72px; /* Desktop: POC banner (40px) + TopMenuBar (32px) */
+}
+
+@media (max-width: 768px) {
+  .main-app-container {
+    padding-top: 104px; /* Mobile: POC banner (72px) + TopMenuBar (32px) */
+  }
+}
+
+@media (max-width: 480px) {
+  .main-app-container {
+    padding-top: 100px; /* Small mobile: POC banner (68px) + TopMenuBar (32px) */
+  }
 }
 
 ::selection {

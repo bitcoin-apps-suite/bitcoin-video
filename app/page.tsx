@@ -61,7 +61,7 @@ export default function BitcoinVideo() {
     {
       id: '1',
       title: 'Craig Wright Finally Admits: He\'s Actually the Guy Who Invented Excel 📊',
-      thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=320&h=180&fit=crop&auto=format',
+      thumbnail: 'https://picsum.photos/320/180?random=1',
       channel: 'The Crypto Onion',
       views: '42.3M',
       timestamp: '2 hours ago',
@@ -73,7 +73,7 @@ export default function BitcoinVideo() {
     {
       id: '2',
       title: 'Cookie Monster Reveals Addiction: It Was Blocksize All Along 🍪',
-      thumbnail: 'https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=320&h=180&fit=crop&auto=format',
+      thumbnail: 'https://picsum.photos/320/180?random=2',
       channel: 'SesameStreetCrypto',
       views: '38.9M',
       timestamp: '5 hours ago',
@@ -84,7 +84,7 @@ export default function BitcoinVideo() {
     {
       id: '3',
       title: 'BSV Surpasses 7 Daily Users: Network in Crisis from Overload 💥',
-      thumbnail: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=320&h=180&fit=crop&auto=format',
+      thumbnail: 'https://picsum.photos/320/180?random=3',
       channel: 'Blockchain News Network',
       views: '15.7M',
       timestamp: '1 hour ago',
@@ -96,7 +96,7 @@ export default function BitcoinVideo() {
     {
       id: '4',
       title: 'Miners Demand Bigger Blocks, Core Suggests Smaller Brains 🧠',
-      thumbnail: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=320&h=180&fit=crop&auto=format',
+      thumbnail: 'https://picsum.photos/320/180?random=4',
       channel: 'Bitcoin Satirical Times',
       views: '22.1M',
       timestamp: '1 day ago',
@@ -107,7 +107,7 @@ export default function BitcoinVideo() {
     {
       id: '5',
       title: 'Lightning Devs Introduce New Feature: Pay $5 to Wait Faster ⚡',
-      thumbnail: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=320&h=180&fit=crop&auto=format',
+      thumbnail: 'https://picsum.photos/320/180?random=5',
       channel: 'TechSatire Today',
       views: '29.4M',
       timestamp: '3 days ago',
@@ -118,7 +118,7 @@ export default function BitcoinVideo() {
     {
       id: '6',
       title: 'Vitalik Explains ETH Merge in 47 Hours, Audience Still Waiting for Block Confirmation',
-      thumbnail: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=320&h=180&fit=crop&auto=format',
+      thumbnail: 'https://picsum.photos/320/180?random=6',
       channel: 'Ethereum Comedy Central',
       views: '19.2M',
       timestamp: '30 minutes ago',
@@ -130,7 +130,7 @@ export default function BitcoinVideo() {
     {
       id: '7',
       title: 'Wall Street Firm Buys Bitcoin, Accidentally Purchases Dogecoin Instead 🐕',
-      thumbnail: 'https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?w=320&h=180&fit=crop&auto=format',
+      thumbnail: 'https://picsum.photos/320/180?random=7',
       channel: 'Financial Comedy Hour',
       views: '34.8M',
       timestamp: '6 hours ago',
@@ -141,7 +141,7 @@ export default function BitcoinVideo() {
     {
       id: '8',
       title: 'Influencer Loses Keys, Blames Mercury Retrograde 🔮',
-      thumbnail: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=320&h=180&fit=crop&auto=format',
+      thumbnail: 'https://picsum.photos/320/180?random=8',
       channel: 'CryptoAstrology',
       views: '28.7M',
       timestamp: '2 days ago',
@@ -172,13 +172,13 @@ export default function BitcoinVideo() {
 
   return (
     <DevSidebarProvider>
-      <div className="min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white antialiased pb-24">
+      <div className="min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white antialiased pb-24 main-app-container">
         <ProofOfConceptBar />
         <TopMenuBar />
         
         <ResponsiveLayout>
           {/* Header */}
-          <header className="sticky top-8 z-50 glass border-b border-white/10 shadow-2xl mt-8">
+          <header className="sticky top-0 z-50 glass border-b border-white/10 shadow-2xl mt-8">
         <div className="px-3 sm:px-4 py-3">
           <div className="flex items-center justify-between gap-2 sm:gap-4">
             {/* Mobile Nav */}
@@ -187,8 +187,12 @@ export default function BitcoinVideo() {
             {/* Logo and Search */}
             <div className="flex items-center gap-2 sm:gap-4 flex-1">
               <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
-                <div className="p-2 sm:p-2.5 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg group-hover:shadow-orange-500/25 transition-all duration-300 group-hover:scale-110 animate-glow">
-                  <Bitcoin className="w-5 sm:w-6 h-5 sm:h-6 text-black group-hover:rotate-12 transition-transform" />
+                <div className="p-1 sm:p-1.5 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg group-hover:shadow-orange-500/25 transition-all duration-300 group-hover:scale-110 animate-glow">
+                  <img 
+                    src="/bitcoin-video.jpg" 
+                    alt="Bitcoin Video"
+                    className="w-6 sm:w-8 h-6 sm:h-8 object-cover rounded-lg group-hover:rotate-3 transition-transform"
+                  />
                 </div>
                 <span className="text-lg sm:text-xl font-bold hidden sm:block text-gradient">Bitcoin Video</span>
               </Link>
