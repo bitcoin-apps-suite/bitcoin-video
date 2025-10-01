@@ -117,7 +117,7 @@ export default function BitcoinVideo() {
     },
     {
       id: '6',
-      title: 'Solana influencer uploads seamlessly while complaining about speed',
+      title: 'Solana influencer uploads instantly but complains about speed',
       thumbnail: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=320&h=180&fit=crop&auto=format',
       channel: 'TechIrony',
       views: '19.2M',
@@ -129,7 +129,7 @@ export default function BitcoinVideo() {
     },
     {
       id: '7',
-      title: 'Kids arguing about phone brands while texting each other 📱',
+      title: 'Kids fight over iPhone vs Android on their phones 📱',
       thumbnail: 'https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?w=320&h=180&fit=crop&auto=format',
       channel: 'TechArguments',
       views: '4.3M',
