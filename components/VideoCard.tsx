@@ -26,7 +26,14 @@ export default function VideoCard({ video }: VideoCardProps) {
       className="group cursor-pointer"
     >
       <div className="relative aspect-video bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl overflow-hidden mb-3 shadow-lg">
-        {/* Thumbnail placeholder */}
+        {/* Thumbnail */}
+        <Image
+          src={video.thumbnail}
+          alt={video.title}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+        />
         <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-purple-500/10" />
         
         {/* Duration badge */}

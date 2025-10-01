@@ -10,20 +10,24 @@ interface DevSidebarContextType {
 const DevSidebarContext = createContext<DevSidebarContextType | undefined>(undefined)
 
 export function DevSidebarProvider({ children }: { children: React.ReactNode }) {
-  const [isCollapsed, setIsCollapsed] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('devSidebarCollapsed')
-      // Default to collapsed (closed) for first-time visitors
-      return saved !== null ? saved === 'true' : true
-    }
-    return true
-  })
+  const [isCollapsed, setIsCollapsed] = useState(true) // Always start collapsed to match server
+  const [isInitialized, setIsInitialized] = useState(false)
 
   useEffect(() => {
+    // Only run on client side after mount
     if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('devSidebarCollapsed')
+      const shouldBeCollapsed = saved !== null ? saved === 'true' : true
+      setIsCollapsed(shouldBeCollapsed)
+      setIsInitialized(true)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (isInitialized && typeof window !== 'undefined') {
       localStorage.setItem('devSidebarCollapsed', isCollapsed.toString())
     }
-  }, [isCollapsed])
+  }, [isCollapsed, isInitialized])
 
   return (
     <DevSidebarContext.Provider value={{ isCollapsed, setIsCollapsed }}>

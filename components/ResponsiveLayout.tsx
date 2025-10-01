@@ -10,13 +10,13 @@ interface ResponsiveLayoutProps {
 export default function ResponsiveLayout({ children, className = '' }: ResponsiveLayoutProps) {
   const { isCollapsed } = useDevSidebar()
   
-  // Responsive margin based on sidebar state
-  const marginClass = isCollapsed 
-    ? 'ml-0 lg:ml-16' // Collapsed sidebar width (60px = 3.75rem = ~16 in Tailwind)
-    : 'ml-0 lg:ml-64' // Expanded sidebar width (260px = 16rem = 64 in Tailwind)
+  // Simple responsive layout using Tailwind classes only
+  const layoutClasses = isCollapsed 
+    ? 'ml-0 lg:ml-16' // 60px = 4rem = 16 in Tailwind
+    : 'ml-0 lg:ml-64' // 260px = 16rem = 64 in Tailwind
   
   return (
-    <div className={`transition-all duration-300 ${marginClass} ${className}`}>
+    <div className={`transition-all duration-300 ${layoutClasses} ${className}`}>
       {children}
     </div>
   )
