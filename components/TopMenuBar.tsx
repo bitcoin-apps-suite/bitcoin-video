@@ -29,23 +29,30 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
   const menuRef = useRef<HTMLDivElement>(null)
 
   const bitcoinApps = [
-    { name: 'Bitcoin Video', color: '#f97316', url: '/' },
-    { name: 'Bitcoin Apps Store', color: '#f97316', url: 'https://www.bitcoinapps.store/' },
-    { name: 'Bitcoin Wallet', color: '#f59e0b', url: 'https://bitcoin-wallet-sable.vercel.app' },
-    { name: 'Bitcoin Email', color: '#06b6d4', url: 'https://bitcoin-email.vercel.app' },
-    { name: 'Bitcoin Music', color: '#8b5cf6', url: 'https://bitcoin-music.vercel.app' },
-    { name: 'Bitcoin Writer', color: '#ff9500', url: 'https://bitcoin-writer.vercel.app' },
-    { name: 'Bitcoin Drive', color: '#22c55e', url: 'https://bitcoin-drive.vercel.app' },
+    { name: 'Bitcoin Auth', color: '#ef4444', url: '#' },
     { name: 'Bitcoin Calendar', color: '#d946ef', url: 'https://bitcoin-calendar.vercel.app' },
+    { name: 'Bitcoin Chat', color: '#ff6500', url: '#' },
+    { name: 'Bitcoin Domains', color: '#eab308', url: '#' },
+    { name: 'Bitcoin Draw', color: '#10b981', url: '#' },
+    { name: 'Bitcoin Drive', color: '#22c55e', url: 'https://bitcoin-drive.vercel.app' },
+    { name: 'Bitcoin Email', color: '#06b6d4', url: 'https://bitcoin-email.vercel.app' },
     { name: 'Bitcoin Exchange', color: '#3b82f6', url: 'https://bitcoin-exchange.vercel.app' },
-    { name: 'Bitcoin Search', color: '#3b82f6', url: 'https://bitcoin-search.vercel.app' },
+    { name: 'Bitcoin Jobs', color: '#6b7280', url: '#' },
+    { name: 'Bitcoin Music', color: '#8b5cf6', url: 'https://bitcoin-music.vercel.app' },
+    { name: 'Bitcoin Paint', color: '#a855f7', url: '#' },
+    { name: 'Bitcoin Pics', color: '#ec4899', url: '#' },
+    { name: 'Bitcoin Registry', color: '#f43f5e', url: '#' },
+    { name: 'Bitcoin Search', color: '#6b7280', url: 'https://bitcoin-search.vercel.app' },
+    { name: 'Bitcoin Shares', color: '#f43f5e', url: 'https://bitcoin-shares.vercel.app' },
     { name: 'Bitcoin Spreadsheets', color: '#3b82f6', url: 'https://bitcoin-spreadsheet.vercel.app' },
-    { name: 'Bitcoin Jobs', color: '#6b7280', url: 'https://bitcoin-jobs.vercel.app/' }
+    { name: 'Bitcoin Video', color: '#65a30d', url: '/' },
+    { name: 'Bitcoin Wallet', color: '#f59e0b', url: 'https://bitcoin-wallet-sable.vercel.app' },
+    { name: 'Bitcoin Writer', color: '#ff9500', url: 'https://bitcoin-writer.vercel.app' }
   ]
 
   const menus: Menu[] = [
     {
-      label: 'Bitcoin Video',
+      label: 'Bitcoin Code',
       items: [
         { 
           label: 'Home', 
@@ -54,21 +61,21 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
         },
         { divider: true },
         { 
-          label: 'About Bitcoin Video', 
-          action: () => alert('Bitcoin Video v1.0\n\nThe YouTube of Bitcoin\n\n© 2025 The Bitcoin Corporation LTD')
+          label: 'About Bitcoin Code', 
+          action: () => alert('Bitcoin Code v1.0\n\nThe IDE of Bitcoin\n\n© 2025 The Bitcoin Corporation LTD')
         },
         { divider: true },
         { 
-          label: 'Create Video', 
+          label: 'New Project', 
           shortcut: '⌘N',
           action: () => window.location.href = '/create'
         },
         { 
-          label: 'Trending Videos', 
-          action: () => window.location.href = '/trending'
+          label: 'Browse Code', 
+          action: () => window.location.href = '/browse'
         },
         { 
-          label: 'AI Videos', 
+          label: 'AI Code', 
           action: () => window.location.href = '/automated'
         }
       ]
@@ -77,26 +84,26 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
       label: 'Create',
       items: [
         { 
-          label: 'New Video', 
+          label: 'New Project', 
           shortcut: '⌘N',
           action: () => window.location.href = '/create'
         },
         { 
-          label: 'Upload Video', 
-          action: () => window.location.href = '/create?tab=upload'
+          label: 'Import Repository', 
+          action: () => window.location.href = '/create?tab=import'
         },
         { divider: true },
         { 
-          label: 'AI Automation', 
+          label: 'AI Code Generator', 
           action: () => window.location.href = '/create?tab=ai'
         },
         { 
-          label: 'News → Video', 
-          action: () => console.log('News to Video')
+          label: 'Code → App', 
+          action: () => console.log('Code to App')
         },
         { 
-          label: 'Tweet → Video', 
-          action: () => console.log('Tweet to Video')
+          label: 'Idea → Code', 
+          action: () => console.log('Idea to Code')
         }
       ]
     },
@@ -104,11 +111,11 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
       label: 'View',
       items: [
         { 
-          label: 'Home Feed', 
+          label: 'Dashboard', 
           action: () => window.location.href = '/'
         },
         { 
-          label: 'Trending', 
+          label: 'Trending Code', 
           action: () => window.location.href = '/trending'
         },
         { 
@@ -117,7 +124,7 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
         },
         { divider: true },
         { 
-          label: 'Search Videos', 
+          label: 'Search Code', 
           shortcut: '⌘F',
           action: () => document.getElementById('search-input')?.focus()
         },
@@ -137,21 +144,21 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
           action: () => window.open('https://www.bitcoinapps.store/', '_blank')
         },
         { 
-          label: 'Video Analytics', 
-          action: () => console.log('Video Analytics')
+          label: 'Code Analytics', 
+          action: () => console.log('Code Analytics')
         },
         { divider: true },
         { 
-          label: 'Creator Studio', 
-          action: () => console.log('Creator Studio')
+          label: 'Developer Studio', 
+          action: () => console.log('Developer Studio')
         },
         { 
-          label: 'Monetization', 
-          action: () => console.log('Monetization')
+          label: 'Code Monetization', 
+          action: () => console.log('Code Monetization')
         },
         { 
-          label: 'Copyright Center', 
-          action: () => console.log('Copyright Center')
+          label: 'License Center', 
+          action: () => console.log('License Center')
         }
       ]
     },
@@ -159,17 +166,17 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
       label: 'Help',
       items: [
         { 
-          label: 'Bitcoin Video Help', 
+          label: 'Bitcoin Code Help', 
           shortcut: '⌘?',
-          action: () => alert('Bitcoin Video v1.0\n\nThe YouTube of Bitcoin\n\nBuilt for Bitcoin content creators')
+          action: () => alert('Bitcoin Code v1.0\n\nThe IDE of Bitcoin\n\nBuilt for Bitcoin developers')
         },
         { 
-          label: 'Creator Guidelines', 
-          action: () => console.log('Creator Guidelines')
+          label: 'Developer Guidelines', 
+          action: () => console.log('Developer Guidelines')
         },
         { 
-          label: 'Community Standards', 
-          action: () => console.log('Community Standards')
+          label: 'Coding Standards', 
+          action: () => console.log('Coding Standards')
         },
         { divider: true },
         { 
@@ -183,12 +190,12 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
         { divider: true },
         { 
           label: 'GitHub Repository', 
-          href: 'https://github.com/bitcoin-apps-suite/bitcoin-video',
+          href: 'https://github.com/bitcoin-apps-suite/bitcoin-code',
           external: true
         },
         { 
           label: 'Report an Issue', 
-          href: 'https://github.com/bitcoin-apps-suite/bitcoin-video/issues',
+          href: 'https://github.com/bitcoin-apps-suite/bitcoin-code/issues',
           external: true
         }
       ]
@@ -232,14 +239,14 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
           onDoubleClick={() => window.location.href = '/'}
           title="Click for apps • Double-click to go home"
           style={{ 
-            background: showBAppsMenu ? 'rgba(255, 255, 255, 0.05)' : 'transparent',
+            background: showBAppsMenu ? '#0058d1' : 'transparent',
             border: 'none',
-            cursor: 'pointer',
-            padding: '0 12px',
+            cursor: 'default',
+            padding: '0 8px',
             display: 'flex',
             alignItems: 'center',
             height: '100%',
-            transition: 'background 0.15s ease'
+            transition: 'background 0.05s ease'
           }}
         >
           <span className="bitcoin-symbol">₿</span>
@@ -249,24 +256,28 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
         {showBAppsMenu && (
           <div style={{
             position: 'absolute',
-            top: '28px',
+            top: '22px',
             left: 0,
-            minWidth: '220px',
-            background: '#1a1a1a',
-            backdropFilter: 'blur(16px)',
-            border: '1px solid rgba(255, 255, 255, 0.15)',
-            borderRadius: '8px',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.8)',
-            padding: '8px 0',
+            minWidth: '200px',
+            background: 'rgba(36, 36, 36, 0.98)',
+            backdropFilter: 'blur(10px)',
+            WebkitBackdropFilter: 'blur(10px)',
+            border: '0.5px solid rgba(255, 255, 255, 0.1)',
+            borderRadius: '5px',
+            boxShadow: '0 5px 20px rgba(0, 0, 0, 0.4)',
+            padding: '3px 0',
             zIndex: 1000
           }}>
             <div style={{
-              padding: '8px 16px',
-              fontSize: '12px',
-              color: '#f97316',
-              fontWeight: '600',
-              borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-              marginBottom: '4px'
+              padding: '0 12px',
+              height: '19px',
+              fontSize: '11px',
+              color: 'rgba(255, 255, 255, 0.85)',
+              fontWeight: '400',
+              borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
+              marginBottom: '3px',
+              display: 'flex',
+              alignItems: 'center'
             }}>
               Bitcoin Apps
             </div>
@@ -278,13 +289,19 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  padding: '6px 16px',
-                  color: '#ffffff',
+                  width: '100%',
+                  height: '19px',
+                  padding: '0 12px',
+                  margin: '0',
                   background: 'transparent',
+                  color: 'rgba(255, 255, 255, 0.85)',
                   textDecoration: 'none',
-                  fontSize: '13px',
-                  transition: 'background 0.15s ease',
-                  cursor: 'pointer'
+                  fontSize: '11px',
+                  lineHeight: '19px',
+                  fontWeight: '400',
+                  cursor: 'default',
+                  transition: 'none',
+                  position: 'relative'
                 }}
                 onClick={(e) => {
                   if (app.url === '#') {
@@ -295,15 +312,21 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
                   }
                   setShowBAppsMenu(false)
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'}
-                onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#0058d1'
+                  e.currentTarget.style.color = '#ffffff'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'transparent'
+                  e.currentTarget.style.color = 'rgba(255, 255, 255, 0.85)'
+                }}
               >
                 <span 
                   style={{ 
                     color: app.color,
-                    marginRight: '12px',
-                    fontSize: '16px',
-                    fontWeight: 'bold'
+                    marginRight: '8px',
+                    fontSize: '11px',
+                    fontWeight: '400'
                   }}
                 >
                   ₿
