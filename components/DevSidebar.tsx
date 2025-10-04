@@ -21,7 +21,11 @@ import {
   Video,
   Sparkles,
   BarChart3,
-  TrendingUp
+  TrendingUp,
+  Search,
+  Briefcase,
+  Users,
+  Store
 } from 'lucide-react'
 import './DevSidebar.css'
 
@@ -54,46 +58,49 @@ export default function DevSidebar() {
     section?: string
     external?: boolean
   }> = [
-    // Video Platform Features
-    { path: '/', icon: Video, label: 'Home Feed' },
-    { path: '/create', icon: Upload, label: 'Create Video', badge: 'NEW' },
-    { path: '/trending', icon: TrendingUp, label: 'Trending Videos' },
-    { path: '/automated', icon: Sparkles, label: 'AI Videos', badge: 'BETA' },
+    // Token & Rewards at top
+    { path: '/token', icon: Coins, label: '$BVIDEO', badge: 'NEW' },
+    { path: '/rewards', icon: TrendingUp, label: 'Creator Rewards' },
+    { path: '/commissions', icon: Video, label: 'Commission Hub', badge: 'BETA' },
     
-    // Analytics & Tools
+    // Video Creators Section
     { divider: true },
-    { section: 'ANALYTICS' },
-    { path: '/analytics', icon: BarChart3, label: 'Video Analytics' },
+    { section: 'CREATORS' },
     { path: '/studio', icon: Monitor, label: 'Video Studio' },
-    { path: '/monetization', icon: Coins, label: 'Monetization' },
+    { path: '/create', icon: Upload, label: 'Upload & Edit', badge: 'NEW' },
+    { path: '/creator/offers', icon: FileText, label: 'Create Content Offer' },
+    { path: '/publisher/requests', icon: Search, label: 'Find Sponsors', badge: '8' },
+    { path: '/docs/creator-guide', icon: BookOpen, label: 'Creator Guide' },
     
-    // Development
+    // Publishers Section
     { divider: true },
-    { section: 'DEVELOPMENT' },
+    { section: 'PUBLISHERS' },
+    { path: '/publisher/offer', icon: Briefcase, label: 'Commission Videos' },
+    { path: '/creator/marketplace', icon: Users, label: 'Find Creators', badge: '24' },
+    { path: '/analytics', icon: BarChart3, label: 'Campaign Analytics' },
+    { path: '/enterprise', icon: Store, label: 'Enterprise Plan' },
+    
+    // Developers Section
+    { divider: true },
+    { section: 'DEVELOPERS' },
+    { path: '/developer/offer', icon: Sparkles, label: 'Create Dev Offer' },
+    { path: '/contracts', icon: Terminal, label: 'Find Work', badge: issueCount > 0 ? String(issueCount) : '0' },
+    { path: '/contributions', icon: Users, label: 'Contributors', badge: '3' },
     { path: '/api', icon: Package, label: 'API Reference' },
-    { path: 'https://github.com/bitcoin-apps-suite/bitcoin-video', icon: Github, label: 'GitHub Repository', external: true },
-    { path: 'https://github.com/bitcoin-apps-suite/bitcoin-video/issues', icon: FileCode, label: 'Issues', badge: issueCount > 0 ? String(issueCount) : '0', external: true },
-    { path: 'https://github.com/bitcoin-apps-suite/bitcoin-video/pulls', icon: GitPullRequest, label: 'Pull Requests', external: true },
     
-    // Documentation
+    // System
     { divider: true },
-    { section: 'DOCS' },
-    { path: '/docs', icon: BookOpen, label: 'Documentation' },
-    { path: '/docs/creator-guide', icon: FileText, label: 'Creator Guide' },
-    { path: '/docs/api', icon: Terminal, label: 'API Docs' },
-    
-    // System Status
-    { divider: true },
+    { path: 'https://github.com/bitcoin-apps-suite/bitcoin-video', icon: Github, label: 'GitHub', external: true },
     { path: '/changelog', icon: History, label: 'Changelog' },
-    { path: '/status', icon: CheckCircle, label: 'System Status', badge: 'OK' }
+    { path: '/status', icon: CheckCircle, label: 'Status', badge: 'OK' }
   ]
 
   const stats = {
-    totalVideos: '1,234',
+    totalRewards: '₿2.5',
     activeCreators: '156',
-    totalViews: '89.2K',
-    openIssues: issueCount || 0,
-    uptime: '99.9%'
+    totalCommissions: '₿12.8',
+    openContracts: issueCount || 0,
+    platformShare: '95%'
   }
 
   return (
@@ -101,8 +108,8 @@ export default function DevSidebar() {
       <div className="dev-sidebar-header">
         {!isCollapsed && (
           <div className="dev-sidebar-title">
-            <Video className="dev-sidebar-logo" />
-            <span>Bitcoin Video</span>
+            <Sparkles className="dev-sidebar-logo" />
+            <span>Creator Hub</span>
           </div>
         )}
         <button 
@@ -174,26 +181,26 @@ export default function DevSidebar() {
       {/* Stats section */}
       {!isCollapsed && (
         <div className="dev-sidebar-stats">
-          <h4>Platform Stats</h4>
+          <h4>Creator Economy</h4>
           <div className="dev-stat">
-            <span className="dev-stat-label">Total Videos</span>
-            <span className="dev-stat-value">{stats.totalVideos}</span>
+            <span className="dev-stat-label">Total Rewards</span>
+            <span className="dev-stat-value">{stats.totalRewards}</span>
           </div>
           <div className="dev-stat">
             <span className="dev-stat-label">Active Creators</span>
             <span className="dev-stat-value">{stats.activeCreators}</span>
           </div>
           <div className="dev-stat">
-            <span className="dev-stat-label">Total Views</span>
-            <span className="dev-stat-value">{stats.totalViews}</span>
+            <span className="dev-stat-label">Total Commissions</span>
+            <span className="dev-stat-value">{stats.totalCommissions}</span>
           </div>
           <div className="dev-stat">
-            <span className="dev-stat-label">Open Issues</span>
-            <span className="dev-stat-value">{stats.openIssues}</span>
+            <span className="dev-stat-label">Open Contracts</span>
+            <span className="dev-stat-value">{stats.openContracts}</span>
           </div>
           <div className="dev-stat">
-            <span className="dev-stat-label">Uptime</span>
-            <span className="dev-stat-value">{stats.uptime}</span>
+            <span className="dev-stat-label">Creator Share</span>
+            <span className="dev-stat-value">{stats.platformShare}</span>
           </div>
         </div>
       )}
@@ -202,14 +209,12 @@ export default function DevSidebar() {
       {!isCollapsed && (
         <div className="dev-sidebar-footer">
           <div className="dev-sidebar-cta">
-            <p>Join Development</p>
+            <p>Start Earning Bitcoin</p>
             <a 
-              href="https://github.com/bitcoin-apps-suite/bitcoin-video" 
-              target="_blank" 
-              rel="noopener noreferrer"
+              href="/studio" 
               className="dev-sidebar-cta-button"
             >
-              Start Contributing
+              Create Your First Video
             </a>
           </div>
         </div>
