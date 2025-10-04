@@ -1,340 +1,325 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { 
-  Search, 
-  Bell, 
-  Upload, 
-  User,
   Bitcoin,
-  TrendingUp,
+  Upload,
+  FileVideo,
+  Folder,
+  Clock,
+  Star,
+  MoreHorizontal,
+  Plus,
   Play,
-  Sparkles,
-  BarChart3,
-  Home,
-  Compass,
-  BookOpen,
-  Video
+  ToggleLeft,
+  ToggleRight
 } from 'lucide-react'
 import Link from 'next/link'
-import VideoCard from '@/components/VideoCard'
-import VideoSkeleton from '@/components/VideoSkeleton'
-import MobileNav from '@/components/MobileNav'
-import ProofOfConceptBar from '@/components/ProofOfConceptBar'
-import TopMenuBar from '@/components/TopMenuBar'
-import DevSidebar from '@/components/DevSidebar'
-import Dock from '@/components/Dock'
-import { DevSidebarProvider } from '@/components/DevSidebarProvider'
-import ResponsiveLayout from '@/components/ResponsiveLayout'
+import BitcoinVideoStudio from '@/components/BitcoinVideoStudio'
 
-interface Video {
+interface Project {
   id: string
-  title: string
+  name: string
   thumbnail: string
-  channel: string
-  views: string
-  timestamp: string
   duration: string
-  verified: boolean
-  live?: boolean
-  automated?: boolean
-  category: string
+  lastModified: string
+  status: 'draft' | 'published' | 'processing'
 }
 
-export default function BitcoinVideo() {
-  const [searchQuery, setSearchQuery] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState('all')
-  const [btcPrice, setBtcPrice] = useState('67,432')
-  const [priceChange, setPriceChange] = useState('+2.4%')
-  const [isLoading, setIsLoading] = useState(true)
+export default function HomePage() {
+  const [view, setView] = useState<'projects' | 'editor'>('projects')
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null)
 
-  const categories = [
-    { id: 'all', name: 'All', icon: <Home className="w-4 h-4" /> },
-    { id: 'education', name: 'Education', icon: <BookOpen className="w-4 h-4" /> },
-    { id: 'news', name: 'News', icon: <TrendingUp className="w-4 h-4" /> },
-    { id: 'analysis', name: 'Analysis', icon: <BarChart3 className="w-4 h-4" /> },
-    { id: 'tutorials', name: 'Tutorials', icon: <Compass className="w-4 h-4" /> },
-    { id: 'automated', name: 'AI Generated', icon: <Sparkles className="w-4 h-4" /> },
-  ]
-
-  const videos: Video[] = [
+  const projects: Project[] = [
     {
       id: '1',
-      title: 'Craig Wright Finally Admits: He\'s Actually the Guy Who Invented Excel 📊',
-      thumbnail: 'https://picsum.photos/320/180?random=1',
-      channel: 'The Crypto Onion',
-      views: '42.3M',
-      timestamp: '2 hours ago',
-      duration: '0:47',
-      verified: true,
-      live: true,
-      category: 'news'
+      name: 'Bitcoin Halving Analysis',
+      thumbnail: 'https://picsum.photos/320/180?random=10',
+      duration: '3:24',
+      lastModified: '2 hours ago',
+      status: 'draft'
     },
     {
-      id: '2',
-      title: 'Cookie Monster Reveals Addiction: It Was Blocksize All Along 🍪',
-      thumbnail: 'https://picsum.photos/320/180?random=2',
-      channel: 'SesameStreetCrypto',
-      views: '38.9M',
-      timestamp: '5 hours ago',
-      duration: '0:23',
-      verified: true,
-      category: 'education'
+      id: '2', 
+      name: 'Lightning Network Tutorial',
+      thumbnail: 'https://picsum.photos/320/180?random=11',
+      duration: '8:45',
+      lastModified: '1 day ago', 
+      status: 'published'
     },
     {
       id: '3',
-      title: 'BSV Surpasses 7 Daily Users: Network in Crisis from Overload 💥',
-      thumbnail: 'https://picsum.photos/320/180?random=3',
-      channel: 'Blockchain News Network',
-      views: '15.7M',
-      timestamp: '1 hour ago',
-      duration: '2:34',
-      verified: true,
-      automated: true,
-      category: 'automated'
-    },
-    {
-      id: '4',
-      title: 'Miners Demand Bigger Blocks, Core Suggests Smaller Brains 🧠',
-      thumbnail: 'https://picsum.photos/320/180?random=4',
-      channel: 'Bitcoin Satirical Times',
-      views: '22.1M',
-      timestamp: '1 day ago',
-      duration: '1:12',
-      verified: true,
-      category: 'news'
-    },
-    {
-      id: '5',
-      title: 'Lightning Devs Introduce New Feature: Pay $5 to Wait Faster ⚡',
-      thumbnail: 'https://picsum.photos/320/180?random=5',
-      channel: 'TechSatire Today',
-      views: '29.4M',
-      timestamp: '3 days ago',
-      duration: '0:31',
-      verified: true,
-      category: 'tutorials'
-    },
-    {
-      id: '6',
-      title: 'Vitalik Explains ETH Merge in 47 Hours, Audience Still Waiting for Block Confirmation',
-      thumbnail: 'https://picsum.photos/320/180?random=6',
-      channel: 'Ethereum Comedy Central',
-      views: '19.2M',
-      timestamp: '30 minutes ago',
-      duration: '47:03',
-      verified: false,
-      automated: true,
-      category: 'automated'
-    },
-    {
-      id: '7',
-      title: 'Wall Street Firm Buys Bitcoin, Accidentally Purchases Dogecoin Instead 🐕',
-      thumbnail: 'https://picsum.photos/320/180?random=7',
-      channel: 'Financial Comedy Hour',
-      views: '34.8M',
-      timestamp: '6 hours ago',
-      duration: '0:29',
-      verified: false,
-      category: 'analysis'
-    },
-    {
-      id: '8',
-      title: 'Influencer Loses Keys, Blames Mercury Retrograde 🔮',
-      thumbnail: 'https://picsum.photos/320/180?random=8',
-      channel: 'CryptoAstrology',
-      views: '28.7M',
-      timestamp: '2 days ago',
-      duration: '0:15',
-      verified: false,
-      category: 'education'
+      name: 'Market Analysis Oct 2024',
+      thumbnail: 'https://picsum.photos/320/180?random=12',
+      duration: '5:12',
+      lastModified: '3 days ago',
+      status: 'processing'
     }
   ]
 
-  const filteredVideos = selectedCategory === 'all' 
-    ? videos 
-    : videos.filter(v => v.category === selectedCategory)
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      setUploadedFile(file)
+      setView('editor')
+    }
+  }
 
-  useEffect(() => {
-    // Simulate loading
-    setTimeout(() => setIsLoading(false), 1500)
-    
-    const interval = setInterval(() => {
-      const change = (Math.random() - 0.5) * 5
-      setBtcPrice((prev) => {
-        const newPrice = parseFloat(prev.replace(',', '')) + change
-        return newPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })
-      })
-      setPriceChange(change > 0 ? `+${change.toFixed(1)}%` : `${change.toFixed(1)}%`)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
+  const openProject = (project: Project) => {
+    setSelectedProject(project)
+    setView('editor')
+  }
 
-  return (
-    <DevSidebarProvider>
-      <div className="min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white antialiased pb-24 main-app-container">
-        <ProofOfConceptBar />
-        <TopMenuBar />
-        
-        <ResponsiveLayout>
-          {/* Header */}
-          <header className="sticky top-0 z-50 glass border-b border-white/10 shadow-2xl mt-8">
-        <div className="px-3 sm:px-4 py-3">
-          <div className="flex items-center justify-between gap-2 sm:gap-4">
-            {/* Mobile Nav */}
-            <MobileNav />
-            
-            {/* Logo and Search */}
-            <div className="flex items-center gap-2 sm:gap-4 flex-1">
-              <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
-                <div className="p-1 sm:p-1.5 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg group-hover:shadow-orange-500/25 transition-all duration-300 group-hover:scale-110 animate-glow">
-                  <img 
-                    src="/bitcoin-video.jpg" 
-                    alt="Bitcoin Video"
-                    className="w-6 sm:w-8 h-6 sm:h-8 object-cover rounded-lg group-hover:rotate-3 transition-transform"
-                  />
-                </div>
-                <span className="text-lg sm:text-xl font-bold hidden sm:block text-gradient">Bitcoin Video</span>
-              </Link>
-              
-              <div className="flex-1 max-w-2xl hidden sm:block">
-                <div className="relative">
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search Bitcoin content..."
-                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 pl-9 sm:pl-10 glass rounded-full focus:outline-none focus:border-orange-500 focus:bg-white/10 transition-all duration-300 placeholder-gray-500 focus:shadow-lg focus:shadow-orange-500/20 text-sm sm:text-base"
-                  />
-                  <Search className="absolute left-3 top-2 sm:top-2.5 w-4 sm:w-5 h-4 sm:h-5 text-gray-400" />
-                </div>
-              </div>
-            </div>
+  const createNewProject = () => {
+    setSelectedProject(null)
+    setUploadedFile(null)
+    setView('editor')
+  }
 
-            {/* Right Side Actions */}
-            <div className="flex items-center gap-2 sm:gap-4">
-              {/* BTC Price Ticker */}
-              <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-500/10 to-yellow-500/10 rounded-xl border border-orange-500/20 shadow-lg">
-                <Bitcoin className="w-4 h-4 text-orange-500" />
-                <span className="font-mono font-bold">${btcPrice}</span>
-                <span className={`text-sm ${priceChange.startsWith('+') ? 'text-green-400' : 'text-red-400'}`}>
-                  {priceChange}
-                </span>
-              </div>
-
+  if (view === 'editor') {
+    return (
+      <div className="h-screen bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white">
+        {/* Studio Header */}
+        <div className="border-b border-white/10 bg-black/80 backdrop-blur-xl p-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setView('projects')}
+                className="p-2.5 hover:bg-white/10 rounded-xl transition-all duration-200 group"
+              >
+                <Folder className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+              </button>
               <div className="flex items-center gap-2">
-                <Link
-                  href="/create"
-                  className="px-3 sm:px-4 py-2 sm:py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg sm:rounded-xl font-medium sm:font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-orange-500/25 flex items-center gap-1 sm:gap-2 text-sm sm:text-base"
-                >
-                  <Upload className="w-4 sm:w-5 h-4 sm:h-5" />
-                  <span className="hidden sm:block">Create</span>
-                </Link>
-                
-                <Link
-                  href="/studio"
-                  className="px-2 sm:px-3 py-2 sm:py-2.5 bg-white/10 backdrop-blur-sm rounded-lg sm:rounded-xl font-medium hover:bg-white/20 transition-all duration-300 border border-white/10 hover:border-white/20 flex items-center gap-1 text-sm sm:text-base"
-                  title="Video Studio"
-                >
-                  <Video className="w-4 sm:w-5 h-4 sm:h-5" />
-                  <span className="hidden lg:block">Studio</span>
-                </Link>
+                <div className="p-1.5 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg">
+                  <Bitcoin className="w-5 h-5" />
+                </div>
+                <span className="font-bold text-lg">Bitcoin Video Studio</span>
+                {selectedProject && (
+                  <>
+                    <span className="text-gray-400">/</span>
+                    <span className="text-gray-300">{selectedProject.name}</span>
+                  </>
+                )}
               </div>
-              
-              <button className="p-2 sm:p-2.5 glass-hover rounded-lg sm:rounded-xl transition-all duration-200 hover:shadow-lg hidden sm:block">
-                <Bell className="w-4 sm:w-5 h-4 sm:h-5" />
-              </button>
-              
-              <button className="p-2 sm:p-2.5 glass-hover rounded-lg sm:rounded-xl transition-all duration-200 hover:shadow-lg">
-                <User className="w-4 sm:w-5 h-4 sm:h-5" />
-              </button>
             </div>
           </div>
         </div>
 
-        {/* Categories */}
-        <div className="px-3 sm:px-4 pb-3">
-          <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl whitespace-nowrap transition-all duration-300 font-medium ${
-                  selectedCategory === category.id
-                    ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg shadow-orange-500/25'
-                    : 'bg-white/5 hover:bg-white/10 border border-white/10'
-                }`}
+        {/* Full Screen Editor */}
+        <div className="h-[calc(100vh-73px)]">
+          <BitcoinVideoStudio 
+            initialVideoFile={uploadedFile}
+            onSave={(blob) => {
+              console.log('Project saved:', blob)
+              // Here you would save to your backend/blockchain
+            }}
+            onExport={(blob, format) => {
+              console.log(`Project exported as ${format}:`, blob)
+              // Here you would handle the export
+            }}
+          />
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white">
+      {/* Header */}
+      <header className="border-b border-white/10 bg-black/80 backdrop-blur-xl">
+        <div className="px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
+                <div className="p-1.5 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg">
+                  <Bitcoin className="w-6 h-6" />
+                </div>
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+                  Bitcoin Video Studio
+                </h1>
+              </div>
+              
+              {/* View Toggle */}
+              <Link 
+                href="/feed"
+                className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-xl font-medium hover:bg-white/20 transition-all duration-300 border border-white/10 hover:border-white/20"
+                title="Switch to Feed View"
               >
-                {category.icon}
-                <span className="text-sm font-medium">{category.name}</span>
+                <Play className="w-4 h-4" />
+                <span className="hidden sm:block">Watch Feed</span>
+                <ToggleLeft className="w-5 h-5 text-gray-400" />
+              </Link>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <input
+                type="file"
+                accept="video/*"
+                className="hidden"
+                id="studio-upload"
+                onChange={handleFileUpload}
+              />
+              <label
+                htmlFor="studio-upload"
+                className="px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg font-medium cursor-pointer hover:from-orange-600 hover:to-orange-700 transition-all duration-300 flex items-center gap-2 shadow-lg"
+              >
+                <Upload className="w-4 h-4" />
+                Import Video
+              </label>
+              
+              <button
+                onClick={createNewProject}
+                className="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg font-medium transition-colors flex items-center gap-2"
+              >
+                <Plus className="w-4 h-4" />
+                New Project
               </button>
-            ))}
+            </div>
           </div>
         </div>
       </header>
 
-          {/* Main Content */}
-          <main className="p-6 lg:p-8">
-          {/* Featured Section */}
-          {selectedCategory === 'all' && (
-            <section className="mb-8">
-              <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-orange-500/20 via-orange-600/10 to-yellow-500/20 p-10 border border-orange-500/20 backdrop-blur-sm shadow-2xl">
-                <div className="absolute top-4 right-4">
-                  <span className="px-3 py-1.5 bg-red-600 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-lg animate-pulse">
-                    <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-                    LIVE
-                  </span>
-                </div>
-                <h2 className="text-4xl font-bold mb-3 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Bitcoin Halving Countdown</h2>
-                <p className="text-gray-300 mb-6 text-lg">Next halving in 142 days - Watch live analysis and predictions</p>
-                <div className="flex gap-4">
-                  <button className="px-8 py-3.5 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-orange-500/25 transform hover:scale-105">
-                    <Play className="w-5 h-5" />
-                    Watch Live
-                  </button>
-                  <button className="px-8 py-3.5 bg-white/10 backdrop-blur-sm rounded-xl font-medium hover:bg-white/20 transition-all duration-300 border border-white/10 hover:border-white/20">
-                    Set Reminder
-                  </button>
-                </div>
-              </div>
-            </section>
-          )}
-
-          {/* Video Grid */}
-          <AnimatePresence mode="wait">
-            {isLoading ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {[...Array(8)].map((_, index) => (
-                  <VideoSkeleton key={index} />
-                ))}
-              </div>
-            ) : (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+      <div className="max-w-7xl mx-auto p-6 lg:p-8">
+        {/* Welcome Section */}
+        <div className="mb-8">
+          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-orange-500/20 via-orange-600/10 to-yellow-500/20 p-8 border border-orange-500/20 backdrop-blur-sm shadow-2xl">
+            <h2 className="text-3xl font-bold mb-3 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              Professional Video Studio
+            </h2>
+            <p className="text-gray-300 mb-6 text-lg">
+              Create, edit, and publish Bitcoin content with professional tools - all in your browser
+            </p>
+            <div className="flex gap-4">
+              <button
+                onClick={createNewProject}
+                className="px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-orange-500/25 transform hover:scale-105"
               >
-                {filteredVideos.map((video, index) => (
-                  <motion.div
-                    key={video.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                  >
-                    <VideoCard video={video} />
-                  </motion.div>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
-          </main>
-        </ResponsiveLayout>
-        
-        <DevSidebar />
-        <Dock />
+                <Plus className="w-5 h-5" />
+                Start Creating
+              </button>
+              <label
+                htmlFor="studio-upload"
+                className="px-6 py-3 bg-white/10 backdrop-blur-sm rounded-xl font-medium hover:bg-white/20 transition-all duration-300 border border-white/10 hover:border-white/20 cursor-pointer flex items-center gap-2"
+              >
+                <Upload className="w-5 h-5" />
+                Import Existing
+              </label>
+            </div>
+          </div>
+        </div>
+
+        {/* Projects Grid */}
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-xl font-bold">Your Projects</h3>
+            <div className="flex items-center gap-2">
+              <button className="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                <Folder className="w-5 h-5" />
+              </button>
+              <button className="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                <MoreHorizontal className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+          {projects.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {projects.map((project) => (
+                <motion.div
+                  key={project.id}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => openProject(project)}
+                  className="bg-white/5 rounded-xl border border-white/10 overflow-hidden cursor-pointer hover:border-orange-500/30 transition-all duration-300 group"
+                >
+                  <div className="aspect-video relative">
+                    <img 
+                      src={project.thumbnail} 
+                      alt={project.name}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <div className="p-3 bg-black/50 rounded-full backdrop-blur-sm">
+                        <FileVideo className="w-6 h-6" />
+                      </div>
+                    </div>
+                    <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/70 rounded text-xs font-mono">
+                      {project.duration}
+                    </div>
+                    <div className={`absolute top-2 left-2 px-2 py-1 rounded text-xs font-medium ${
+                      project.status === 'published' ? 'bg-green-600' :
+                      project.status === 'processing' ? 'bg-yellow-600' :
+                      'bg-gray-600'
+                    }`}>
+                      {project.status}
+                    </div>
+                  </div>
+                  
+                  <div className="p-4">
+                    <h4 className="font-semibold mb-2 group-hover:text-orange-400 transition-colors">
+                      {project.name}
+                    </h4>
+                    <div className="flex items-center gap-2 text-sm text-gray-400">
+                      <Clock className="w-3 h-3" />
+                      <span>{project.lastModified}</span>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <FileVideo className="w-16 h-16 mx-auto mb-4 text-gray-400" />
+              <h3 className="text-lg font-semibold mb-2">No projects yet</h3>
+              <p className="text-gray-400 mb-6">
+                Start creating your first Bitcoin video project
+              </p>
+              <button
+                onClick={createNewProject}
+                className="px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg font-medium hover:from-orange-600 hover:to-orange-700 transition-all duration-300 flex items-center gap-2 mx-auto"
+              >
+                <Plus className="w-5 h-5" />
+                Create First Project
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Quick Actions */}
+        <div className="grid md:grid-cols-3 gap-4">
+          <div className="p-6 bg-gradient-to-br from-blue-500/10 to-blue-600/10 rounded-xl border border-blue-500/20">
+            <Star className="w-8 h-8 text-blue-400 mb-3" />
+            <h4 className="font-semibold mb-2">Templates</h4>
+            <p className="text-sm text-gray-400 mb-4">Start with professional Bitcoin video templates</p>
+            <button className="text-blue-400 text-sm font-medium hover:text-blue-300 transition-colors">
+              Browse Templates →
+            </button>
+          </div>
+
+          <div className="p-6 bg-gradient-to-br from-green-500/10 to-green-600/10 rounded-xl border border-green-500/20">
+            <FileVideo className="w-8 h-8 text-green-400 mb-3" />
+            <h4 className="font-semibold mb-2">Screen Recording</h4>
+            <p className="text-sm text-gray-400 mb-4">Record your screen for tutorials and demos</p>
+            <button className="text-green-400 text-sm font-medium hover:text-green-300 transition-colors">
+              Start Recording →
+            </button>
+          </div>
+
+          <div className="p-6 bg-gradient-to-br from-purple-500/10 to-purple-600/10 rounded-xl border border-purple-500/20">
+            <Bitcoin className="w-8 h-8 text-purple-400 mb-3" />
+            <h4 className="font-semibold mb-2">AI Generation</h4>
+            <p className="text-sm text-gray-400 mb-4">Generate videos with Bitcoin-focused AI</p>
+            <Link 
+              href="/create"
+              className="text-purple-400 text-sm font-medium hover:text-purple-300 transition-colors"
+            >
+              Try AI Tools →
+            </Link>
+          </div>
+        </div>
       </div>
-    </DevSidebarProvider>
+    </div>
   )
 }

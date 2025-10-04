@@ -143,7 +143,7 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
         { divider: true },
         { 
           label: 'Video Studio', 
-          action: () => window.location.href = '/studio'
+          action: () => window.location.href = '/'
         },
         { 
           label: 'Monetization', 
