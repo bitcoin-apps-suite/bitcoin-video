@@ -360,16 +360,32 @@ export default function CreatePage() {
           </>
         ) : activeTab === 'browser-editor' ? (
           /* Browser Editor Section */
-          <div className="h-[80vh]">
-            <BitcoinVideoStudio 
-              initialVideoFile={uploadedFile}
-              onSave={(blob) => {
-                console.log('Video saved:', blob)
-              }}
-              onExport={(blob, format) => {
-                console.log(`Video exported as ${format}:`, blob)
-              }}
-            />
+          <div className="space-y-4">
+            <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-xl p-4 flex items-center justify-between">
+              <div>
+                <h3 className="font-semibold text-blue-400 mb-1">Professional Video Studio Available</h3>
+                <p className="text-sm text-gray-400">For advanced editing features, try our full-screen studio experience</p>
+              </div>
+              <Link 
+                href="/studio"
+                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition-colors flex items-center gap-2"
+              >
+                <Video className="w-4 h-4" />
+                Open Studio
+              </Link>
+            </div>
+            
+            <div className="h-[70vh]">
+              <BitcoinVideoStudio 
+                initialVideoFile={uploadedFile}
+                onSave={(blob) => {
+                  console.log('Video saved:', blob)
+                }}
+                onExport={(blob, format) => {
+                  console.log(`Video exported as ${format}:`, blob)
+                }}
+              />
+            </div>
           </div>
         ) : (
           /* Manual Upload Section */

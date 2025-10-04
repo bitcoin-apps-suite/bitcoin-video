@@ -142,8 +142,8 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
         },
         { divider: true },
         { 
-          label: 'Creator Studio', 
-          action: () => console.log('Creator Studio')
+          label: 'Video Studio', 
+          action: () => window.location.href = '/studio'
         },
         { 
           label: 'Monetization', 

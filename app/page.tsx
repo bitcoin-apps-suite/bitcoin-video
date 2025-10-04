@@ -14,7 +14,8 @@ import {
   BarChart3,
   Home,
   Compass,
-  BookOpen
+  BookOpen,
+  Video
 } from 'lucide-react'
 import Link from 'next/link'
 import VideoCard from '@/components/VideoCard'
@@ -222,13 +223,24 @@ export default function BitcoinVideo() {
                 </span>
               </div>
 
-              <Link
-                href="/create"
-                className="px-3 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg sm:rounded-xl font-medium sm:font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-orange-500/25 flex items-center gap-1 sm:gap-2 text-sm sm:text-base"
-              >
-                <Upload className="w-4 sm:w-5 h-4 sm:h-5" />
-                <span className="hidden sm:block">Upload</span>
-              </Link>
+              <div className="flex items-center gap-2">
+                <Link
+                  href="/create"
+                  className="px-3 sm:px-4 py-2 sm:py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg sm:rounded-xl font-medium sm:font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-orange-500/25 flex items-center gap-1 sm:gap-2 text-sm sm:text-base"
+                >
+                  <Upload className="w-4 sm:w-5 h-4 sm:h-5" />
+                  <span className="hidden sm:block">Create</span>
+                </Link>
+                
+                <Link
+                  href="/studio"
+                  className="px-2 sm:px-3 py-2 sm:py-2.5 bg-white/10 backdrop-blur-sm rounded-lg sm:rounded-xl font-medium hover:bg-white/20 transition-all duration-300 border border-white/10 hover:border-white/20 flex items-center gap-1 text-sm sm:text-base"
+                  title="Video Studio"
+                >
+                  <Video className="w-4 sm:w-5 h-4 sm:h-5" />
+                  <span className="hidden lg:block">Studio</span>
+                </Link>
+              </div>
               
               <button className="p-2 sm:p-2.5 glass-hover rounded-lg sm:rounded-xl transition-all duration-200 hover:shadow-lg hidden sm:block">
                 <Bell className="w-4 sm:w-5 h-4 sm:h-5" />
