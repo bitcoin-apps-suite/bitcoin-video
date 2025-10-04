@@ -25,7 +25,9 @@ import {
   Search,
   Briefcase,
   Users,
-  Store
+  Store,
+  Play,
+  Handshake
 } from 'lucide-react'
 import './DevSidebar.css'
 
@@ -61,13 +63,14 @@ export default function DevSidebar() {
     // Token & Rewards at top
     { path: '/token', icon: Coins, label: '$BVIDEO', badge: 'NEW' },
     { path: '/rewards', icon: TrendingUp, label: 'Creator Rewards' },
-    { path: '/commissions', icon: Video, label: 'Commission Hub', badge: 'BETA' },
+    { path: '/commissions', icon: Handshake, label: 'Commission Hub', badge: 'BETA' },
     
     // Video Creators Section
     { divider: true },
     { section: 'CREATORS' },
-    { path: '/studio', icon: Monitor, label: 'Video Studio' },
+    { path: '/', icon: Monitor, label: 'Video Studio' },
     { path: '/create', icon: Upload, label: 'Upload & Edit', badge: 'NEW' },
+    { path: '/feed', icon: Play, label: 'Watch Feed' },
     { path: '/creator/offers', icon: FileText, label: 'Create Content Offer' },
     { path: '/publisher/requests', icon: Search, label: 'Find Sponsors', badge: '8' },
     { path: '/docs/creator-guide', icon: BookOpen, label: 'Creator Guide' },
