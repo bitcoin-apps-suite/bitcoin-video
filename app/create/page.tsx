@@ -25,7 +25,8 @@ import {
   DollarSign,
   Hash,
   Link2,
-  RefreshCw
+  RefreshCw,
+  Scissors
 } from 'lucide-react'
 import Link from 'next/link'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
@@ -34,11 +35,13 @@ import DevSidebar from '@/components/DevSidebar'
 import Dock from '@/components/Dock'
 import { DevSidebarProvider } from '@/components/DevSidebarProvider'
 import ResponsiveLayout from '@/components/ResponsiveLayout'
+import BitcoinVideoStudio from '@/components/BitcoinVideoStudio'
 
 export default function CreatePage() {
   const [activeTab, setActiveTab] = useState('auto-generate')
   const [selectedWorkflow, setSelectedWorkflow] = useState<string | null>(null)
   const [generating, setGenerating] = useState(false)
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null)
   const [generatedVideos, setGeneratedVideos] = useState<{
     id: string;
     title: string;
@@ -174,6 +177,22 @@ export default function CreatePage() {
               AI Automation
             </span>
             {activeTab === 'auto-generate' && (
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-500" />
+            )}
+          </button>
+          <button
+            onClick={() => setActiveTab('browser-editor')}
+            className={`px-6 py-4 font-semibold transition-all duration-300 relative ${
+              activeTab === 'browser-editor' 
+                ? 'text-orange-400' 
+                : 'text-gray-500 hover:text-gray-300'
+            }`}
+          >
+            <span className="flex items-center gap-2">
+              <Scissors className="w-4 h-4" />
+              Browser Editor
+            </span>
+            {activeTab === 'browser-editor' && (
               <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-500" />
             )}
           </button>
@@ -339,6 +358,19 @@ export default function CreatePage() {
               </motion.div>
             )}
           </>
+        ) : activeTab === 'browser-editor' ? (
+          /* Browser Editor Section */
+          <div className="h-[80vh]">
+            <BitcoinVideoStudio 
+              initialVideoFile={uploadedFile}
+              onSave={(blob) => {
+                console.log('Video saved:', blob)
+              }}
+              onExport={(blob, format) => {
+                console.log(`Video exported as ${format}:`, blob)
+              }}
+            />
+          </div>
         ) : (
           /* Manual Upload Section */
           <div className="max-w-3xl mx-auto">
@@ -353,6 +385,13 @@ export default function CreatePage() {
                 accept="video/*"
                 className="hidden"
                 id="video-upload"
+                onChange={(e) => {
+                  const file = e.target.files?.[0]
+                  if (file) {
+                    setUploadedFile(file)
+                    setActiveTab('browser-editor')
+                  }
+                }}
               />
               <label
                 htmlFor="video-upload"
