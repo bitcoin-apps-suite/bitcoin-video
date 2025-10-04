@@ -64,7 +64,7 @@ export default function DevSidebar() {
     { divider: true },
     { section: 'ANALYTICS' },
     { path: '/analytics', icon: BarChart3, label: 'Video Analytics' },
-    { path: '/creator-studio', icon: Monitor, label: 'Creator Studio' },
+    { path: '/studio', icon: Monitor, label: 'Video Studio' },
     { path: '/monetization', icon: Coins, label: 'Monetization' },
     
     // Development
