@@ -19,8 +19,10 @@ import {
   Redo,
   Save,
   Bitcoin,
-  Sparkles
+  Sparkles,
+  Coins
 } from 'lucide-react'
+import TokenizeModal, { TokenizationOptions } from './TokenizeModal'
 
 interface BitcoinVideoStudioProps {
   initialVideoFile?: File | null
@@ -39,6 +41,13 @@ export default function BitcoinVideoStudio({
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
   const [selectedTool, setSelectedTool] = useState<string>('select')
+  const [showTokenizeModal, setShowTokenizeModal] = useState(false)
+  const [videoMetadata, setVideoMetadata] = useState({
+    title: 'Untitled Video',
+    duration: 0,
+    size: 0,
+    url: ''
+  })
   const videoRef = useRef<HTMLVideoElement>(null)
   const studioRef = useRef<HTMLDivElement>(null)
 
@@ -78,9 +87,29 @@ export default function BitcoinVideoStudio({
       const url = URL.createObjectURL(initialVideoFile)
       videoRef.current.src = url
       
+      // Update video metadata
+      videoRef.current.onloadedmetadata = () => {
+        setVideoMetadata({
+          title: initialVideoFile.name.replace(/\.[^/.]+$/, ''), // Remove file extension
+          duration: videoRef.current?.duration || 0,
+          size: initialVideoFile.size,
+          url: url
+        })
+        setDuration(videoRef.current?.duration || 0)
+      }
+      
       return () => URL.revokeObjectURL(url)
     }
   }, [initialVideoFile])
+
+  // Handle tokenization
+  const handleTokenize = (protocol: string, options: TokenizationOptions) => {
+    console.log('Tokenizing video with protocol:', protocol, options)
+    // Here we would integrate with the blockchain tokenization service
+    // For now, we'll just show a success message
+    alert(`Video "${videoMetadata.title}" will be tokenized using ${protocol} protocol!`)
+    setShowTokenizeModal(false)
+  }
 
   const handlePlayPause = () => {
     if (videoRef.current) {
@@ -190,6 +219,16 @@ export default function BitcoinVideoStudio({
                   {format.name}
                 </button>
               ))}
+              
+              {/* Tokenize Button */}
+              <button
+                onClick={() => setShowTokenizeModal(true)}
+                className="px-4 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 rounded-lg flex items-center gap-2 transition-all text-sm font-semibold"
+                title="Create NFT and shares for this video"
+              >
+                <Coins className="w-4 h-4" />
+                Tokenize Video
+              </button>
             </div>
           </div>
         </div>
@@ -358,6 +397,17 @@ export default function BitcoinVideoStudio({
       <div ref={studioRef} className="hidden">
         {/* Video editing canvas and advanced tools will be implemented here */}
       </div>
+
+      {/* Tokenize Modal */}
+      <TokenizeModal
+        isOpen={showTokenizeModal}
+        onClose={() => setShowTokenizeModal(false)}
+        onTokenize={handleTokenize}
+        videoTitle={videoMetadata.title}
+        videoDuration={videoMetadata.duration}
+        videoSize={videoMetadata.size}
+        videoUrl={videoMetadata.url}
+      />
     </div>
   )
 }

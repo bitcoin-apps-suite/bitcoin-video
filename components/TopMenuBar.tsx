@@ -179,6 +179,10 @@ export default function TopMenuBar({ onOpenApp, onNewProject, onSaveProject }: T
           action: () => window.location.href = '/?mode=studio'
         },
         { 
+          label: 'Video Exchange', 
+          action: () => window.location.href = '/exchange'
+        },
+        { 
           label: 'Upload Video', 
           action: () => window.location.href = '/create?tab=upload'
         },
