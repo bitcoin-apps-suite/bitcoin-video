@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import { Github, BookOpen } from 'lucide-react'
 import './TopMenuBar.css'
 
-interface MenuItem {
+interface DropdownItem {
   label?: string
   action?: () => void
   href?: string
@@ -14,36 +14,48 @@ interface MenuItem {
   external?: boolean
 }
 
-interface Menu {
+interface DropdownMenu {
   label: string
-  items: MenuItem[]
+  items: DropdownItem[]
 }
 
 interface TopMenuBarProps {
   onOpenApp?: (appName: string) => void
+  onNewProject?: () => void
+  onSaveProject?: () => void
 }
 
-export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
+export default function TopMenuBar({ onOpenApp, onNewProject, onSaveProject }: TopMenuBarProps) {
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
   const [showBAppsMenu, setShowBAppsMenu] = useState(false)
+  const [showMobileMenu, setShowMobileMenu] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
 
   const bitcoinApps = [
-    { name: 'Bitcoin Video', color: '#f97316', url: '/' },
     { name: 'Bitcoin Apps Store', color: '#f97316', url: 'https://www.bitcoinapps.store/' },
-    { name: 'Bitcoin Wallet', color: '#f59e0b', url: 'https://bitcoin-wallet-sable.vercel.app' },
-    { name: 'Bitcoin Email', color: '#06b6d4', url: 'https://bitcoin-email.vercel.app' },
-    { name: 'Bitcoin Music', color: '#8b5cf6', url: 'https://bitcoin-music.vercel.app' },
-    { name: 'Bitcoin Writer', color: '#ff9500', url: 'https://bitcoin-writer.vercel.app' },
-    { name: 'Bitcoin Drive', color: '#22c55e', url: 'https://bitcoin-drive.vercel.app' },
+    { name: 'Bitcoin Auth', color: '#ef4444', url: '#', disabled: true },
     { name: 'Bitcoin Calendar', color: '#d946ef', url: 'https://bitcoin-calendar.vercel.app' },
-    { name: 'Bitcoin Exchange', color: '#3b82f6', url: 'https://bitcoin-exchange.vercel.app' },
-    { name: 'Bitcoin Search', color: '#3b82f6', url: 'https://bitcoin-search.vercel.app' },
+    { name: 'Bitcoin Chat', color: '#ff6500', url: '#', disabled: true },
+    { name: 'Bitcoin Code', color: '#06b6d4', url: 'https://bitcoin-code.vercel.app/' },
+    { name: 'Bitcoin Domains', color: '#eab308', url: '#', disabled: true },
+    { name: 'Bitcoin Draw', color: '#10b981', url: '#', disabled: true },
+    { name: 'Bitcoin Drive', color: '#22c55e', url: 'https://bitcoin-drive.vercel.app' },
+    { name: 'Bitcoin Email', color: '#06b6d4', url: 'https://bitcoin-email.vercel.app' },
+    { name: 'Bitcoin Exchange', color: '#10b981', url: 'https://bitcoin-exchange.vercel.app' },
+    { name: 'Bitcoin Jobs', color: '#6b7280', url: 'https://bitcoin-jobs.vercel.app/' },
+    { name: 'Bitcoin Music', color: '#8b5cf6', url: 'https://bitcoin-music.vercel.app' },
+    { name: 'Bitcoin Paint', color: '#a855f7', url: 'https://bitcoin-paint.vercel.app' },
+    { name: 'Bitcoin Pics', color: '#ec4899', url: '#', disabled: true },
+    { name: 'Bitcoin Registry', color: '#f43f5e', url: '#', disabled: true },
+    { name: 'Bitcoin Search', color: '#6b7280', url: 'https://bitcoin-search.vercel.app' },
+    { name: 'Bitcoin Shares', color: '#f43f5e', url: 'https://bitcoin-shares.vercel.app' },
     { name: 'Bitcoin Spreadsheets', color: '#3b82f6', url: 'https://bitcoin-spreadsheet.vercel.app' },
-    { name: 'Bitcoin Jobs', color: '#6b7280', url: 'https://bitcoin-jobs.vercel.app/' }
+    { name: 'Bitcoin Video', color: '#65a30d', url: '#', current: true },
+    { name: 'Bitcoin Wallet', color: '#f59e0b', url: 'https://bitcoin-wallet-sable.vercel.app' },
+    { name: 'Bitcoin Writer', color: '#ff9500', url: 'https://bitcoin-writer.vercel.app' }
   ]
 
-  const menus: Menu[] = [
+  const menus: DropdownMenu[] = [
     {
       label: 'Bitcoin Video',
       items: [
@@ -55,31 +67,116 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
         { divider: true },
         { 
           label: 'About Bitcoin Video', 
-          action: () => alert('Bitcoin Video v1.0\n\nThe YouTube of Bitcoin\n\n© 2025 The Bitcoin Corporation LTD')
+          action: () => alert('Bitcoin Video v1.0\n\nThe YouTube of Bitcoin\n\n© 2025 The Bitcoin Corporation LTD\nRegistered in England and Wales • Company No. 16735102')
         },
         { divider: true },
         { 
-          label: 'Create Video', 
-          shortcut: '⌘N',
-          action: () => window.location.href = '/create'
+          label: 'Preferences...', 
+          shortcut: '⌘,', 
+          action: () => console.log('Preferences') 
+        },
+        { divider: true },
+        { 
+          label: 'Hide Bitcoin Video', 
+          shortcut: '⌘H', 
+          action: () => console.log('Hide') 
         },
         { 
-          label: 'Trending Videos', 
-          action: () => window.location.href = '/trending'
-        },
-        { 
-          label: 'AI Videos', 
-          action: () => window.location.href = '/automated'
+          label: 'Hide Others', 
+          shortcut: '⌥⌘H', 
+          action: () => console.log('Hide Others') 
         }
       ]
     },
     {
-      label: 'Create',
+      label: 'File',
       items: [
         { 
-          label: 'New Video', 
-          shortcut: '⌘N',
-          action: () => window.location.href = '/create'
+          label: 'New Project', 
+          shortcut: '⌘N', 
+          action: onNewProject 
+        },
+        { 
+          label: 'Open...', 
+          shortcut: '⌘O', 
+          action: () => alert('Open functionality coming soon') 
+        },
+        { divider: true },
+        { 
+          label: 'Save', 
+          shortcut: '⌘S', 
+          action: onSaveProject 
+        },
+        { 
+          label: 'Save As...', 
+          shortcut: '⇧⌘S', 
+          action: () => alert('Save As functionality coming soon') 
+        },
+        { divider: true },
+        { 
+          label: 'Export as MP4', 
+          action: () => console.log('Export MP4') 
+        },
+        { 
+          label: 'Export as MOV', 
+          action: () => console.log('Export MOV') 
+        },
+        { divider: true },
+        { 
+          label: 'Close', 
+          shortcut: '⌘W', 
+          action: () => console.log('Close') 
+        }
+      ]
+    },
+    {
+      label: 'Edit',
+      items: [
+        { 
+          label: 'Undo', 
+          shortcut: '⌘Z', 
+          action: () => document.execCommand('undo') 
+        },
+        { 
+          label: 'Redo', 
+          shortcut: '⇧⌘Z', 
+          action: () => document.execCommand('redo') 
+        },
+        { divider: true },
+        { 
+          label: 'Cut', 
+          shortcut: '⌘X', 
+          action: () => document.execCommand('cut') 
+        },
+        { 
+          label: 'Copy', 
+          shortcut: '⌘C', 
+          action: () => document.execCommand('copy') 
+        },
+        { 
+          label: 'Paste', 
+          shortcut: '⌘V', 
+          action: () => document.execCommand('paste') 
+        },
+        { divider: true },
+        { 
+          label: 'Select All', 
+          shortcut: '⌘A', 
+          action: () => document.execCommand('selectAll') 
+        },
+        { 
+          label: 'Find...', 
+          shortcut: '⌘F', 
+          action: () => console.log('Find') 
+        }
+      ]
+    },
+    {
+      label: 'Tools',
+      items: [
+        { 
+          label: 'Video Studio', 
+          action: () => window.location.href = '/?mode=studio'
         },
         { 
           label: 'Upload Video', 
@@ -97,12 +194,27 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
         { 
           label: 'Tweet → Video', 
           action: () => console.log('Tweet to Video')
+        },
+        { divider: true },
+        { 
+          label: 'Video Analytics', 
+          action: () => console.log('Video Analytics')
+        },
+        { 
+          label: 'Monetization', 
+          action: () => console.log('Monetization')
         }
       ]
     },
     {
       label: 'View',
       items: [
+        { 
+          label: 'Enter Full Screen', 
+          shortcut: '⌃⌘F',
+          action: () => document.documentElement.requestFullscreen()
+        },
+        { divider: true },
         { 
           label: 'Home Feed', 
           action: () => window.location.href = '/'
@@ -123,35 +235,38 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
         },
         { divider: true },
         { 
-          label: 'Full Screen', 
-          shortcut: '⌃⌘F',
-          action: () => document.documentElement.requestFullscreen()
+          label: 'Actual Size', 
+          shortcut: '⌘0', 
+          action: () => (document.body.style as any).zoom = '100%' 
+        },
+        { 
+          label: 'Zoom In', 
+          shortcut: '⌘+', 
+          action: () => (document.body.style as any).zoom = '110%' 
+        },
+        { 
+          label: 'Zoom Out', 
+          shortcut: '⌘-', 
+          action: () => (document.body.style as any).zoom = '90%' 
         }
       ]
     },
     {
-      label: 'Tools',
+      label: 'Window',
       items: [
         { 
-          label: 'Bitcoin Apps Store', 
-          action: () => window.open('https://www.bitcoinapps.store/', '_blank')
+          label: 'Minimize', 
+          shortcut: '⌘M', 
+          action: () => console.log('Minimize') 
         },
         { 
-          label: 'Video Analytics', 
-          action: () => console.log('Video Analytics')
+          label: 'Zoom', 
+          action: () => console.log('Zoom') 
         },
         { divider: true },
         { 
-          label: 'Video Studio', 
-          action: () => window.location.href = '/'
-        },
-        { 
-          label: 'Monetization', 
-          action: () => console.log('Monetization')
-        },
-        { 
-          label: 'Copyright Center', 
-          action: () => console.log('Copyright Center')
+          label: 'Bring All to Front', 
+          action: () => console.log('Bring to front') 
         }
       ]
     },
@@ -163,6 +278,7 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
           shortcut: '⌘?',
           action: () => alert('Bitcoin Video v1.0\n\nThe YouTube of Bitcoin\n\nBuilt for Bitcoin content creators')
         },
+        { divider: true },
         { 
           label: 'Creator Guidelines', 
           action: () => console.log('Creator Guidelines')
@@ -182,11 +298,6 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
         },
         { divider: true },
         { 
-          label: 'GitHub Repository', 
-          href: 'https://github.com/bitcoin-apps-suite/bitcoin-video',
-          external: true
-        },
-        { 
           label: 'Report an Issue', 
           href: 'https://github.com/bitcoin-apps-suite/bitcoin-video/issues',
           external: true
@@ -200,6 +311,7 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setActiveMenu(null)
         setShowBAppsMenu(false)
+        setShowMobileMenu(false)
       }
     }
 
@@ -207,6 +319,7 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
       if (event.key === 'Escape') {
         setActiveMenu(null)
         setShowBAppsMenu(false)
+        setShowMobileMenu(false)
       }
     }
 
@@ -220,102 +333,65 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
   }, [])
 
   return (
-    <div ref={menuRef} className="bitcoin-os-taskbar">
-      {/* Bitcoin Logo with BApps Menu */}
-      <div style={{ position: 'relative' }}>
-        <button 
-          className={`taskbar-logo ${showBAppsMenu ? 'menu-open' : ''}`}
-          onClick={() => {
-            setShowBAppsMenu(!showBAppsMenu)
-            setActiveMenu(null)
-          }}
-          onDoubleClick={() => window.location.href = '/'}
-          title="Click for apps • Double-click to go home"
-          style={{ 
-            background: showBAppsMenu ? 'rgba(255, 255, 255, 0.05)' : 'transparent',
-            border: 'none',
-            cursor: 'pointer',
-            padding: '0 12px',
-            display: 'flex',
-            alignItems: 'center',
-            height: '100%',
-            transition: 'background 0.15s ease'
-          }}
-        >
-          <span className="bitcoin-symbol">₿</span>
-        </button>
-        
-        {/* BApps Dropdown */}
-        {showBAppsMenu && (
-          <div style={{
-            position: 'absolute',
-            top: '28px',
-            left: 0,
-            minWidth: '220px',
-            background: '#1a1a1a',
-            backdropFilter: 'blur(16px)',
-            border: '1px solid rgba(255, 255, 255, 0.15)',
-            borderRadius: '8px',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.8)',
-            padding: '8px 0',
-            zIndex: 1000
-          }}>
-            <div style={{
-              padding: '8px 16px',
-              fontSize: '12px',
-              color: '#f97316',
-              fontWeight: '600',
-              borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-              marginBottom: '4px'
-            }}>
-              Bitcoin Apps
-            </div>
-            
-            {bitcoinApps.map((app) => (
-              <a
-                key={app.name}
-                href={app.url}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  padding: '6px 16px',
-                  color: '#ffffff',
-                  background: 'transparent',
-                  textDecoration: 'none',
-                  fontSize: '13px',
-                  transition: 'background 0.15s ease',
-                  cursor: 'pointer'
-                }}
-                onClick={(e) => {
-                  if (app.url === '#') {
-                    e.preventDefault()
-                  } else {
-                    e.preventDefault()
-                    window.location.href = app.url
-                  }
-                  setShowBAppsMenu(false)
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'}
-                onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
-              >
-                <span 
-                  style={{ 
-                    color: app.color,
-                    marginRight: '12px',
-                    fontSize: '16px',
-                    fontWeight: 'bold'
-                  }}
-                >
-                  ₿
-                </span>
-                <span>
-                  {app.name}
-                </span>
-              </a>
-            ))}
+    <div ref={menuRef} className="bitcoin-video-taskbar">
+      {/* bApps Menu Button */}
+      <button
+        className="bapps-menu-btn"
+        onClick={() => {
+          setShowBAppsMenu(!showBAppsMenu)
+          setActiveMenu(null)
+        }}
+        title="Bitcoin Apps"
+      >
+        <span className="bitcoin-logo">B</span>
+      </button>
+
+      {/* bApps Dropdown */}
+      {showBAppsMenu && (
+        <div className="bapps-menu-dropdown">
+          <div className="bapps-menu-header">
+            Bitcoin Apps Suite
           </div>
-        )}
+          {bitcoinApps.map((app) => (
+            <div
+              key={app.name}
+              className={`bapps-menu-item ${app.current ? 'current' : ''} ${app.disabled ? 'disabled' : ''}`}
+              onClick={() => {
+                if (!app.disabled && !app.current && app.url !== '#') {
+                  window.location.href = app.url
+                }
+                setShowBAppsMenu(false)
+              }}
+            >
+              <span className="bapps-menu-icon" style={{ color: app.color }}>₿</span>
+              <span className="bapps-menu-name">{app.name}</span>
+              {app.current && <span className="bapps-menu-badge">Current</span>}
+              {app.disabled && <span className="bapps-menu-badge">Soon</span>}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Bitcoin Logo */}
+      <div 
+        className="taskbar-logo"
+        onDoubleClick={() => window.location.href = '/'}
+        title="Double-click to go home"
+      >
+        <span className="bitcoin-symbol">₿</span>
       </div>
+
+      {/* Mobile: Center title */}
+      <button 
+        className="mobile-title"
+        onClick={() => {
+          window.location.href = '/'
+        }}
+        title="Bitcoin Video - Tap to go home"
+      >
+        <span className="bitcoin-symbol">₿</span>
+        <span>Bitcoin Video</span>
+      </button>
 
       {/* Menu Items */}
       <div className="taskbar-menus">
@@ -339,8 +415,8 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
                     <a
                       key={index}
                       href={item.href}
-                      target={item.external ? "_blank" : undefined}
-                      rel={item.external ? "noopener noreferrer" : undefined}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="menu-item"
                       onClick={() => setActiveMenu(null)}
                     >
@@ -377,25 +453,83 @@ export default function TopMenuBar({ onOpenApp }: TopMenuBarProps) {
         ))}
       </div>
 
-      {/* Right side - Status */}
+      {/* Right side - Status items */}
       <div className="taskbar-status">
+        <span className="status-text">Connected</span>
+        <span className="status-indicator connected">●</span>
         <a 
-          href="https://github.com/bitcoin-apps-suite/bitcoin-video" 
+          href="https://x.com/bitcoin_video" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="taskbar-link"
-          title="GitHub"
+          className="twitter-link"
+          aria-label="Follow on X"
         >
-          <Github className="taskbar-link-icon" />
-        </a>
-        <a 
-          href="/docs" 
-          className="taskbar-link"
-          title="Documentation"
-        >
-          <BookOpen className="taskbar-link-icon" />
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
         </a>
       </div>
+
+      {/* Mobile Menu Button */}
+      <button
+        className="mobile-menu-button"
+        onClick={() => setShowMobileMenu(!showMobileMenu)}
+        aria-label="Toggle menu"
+      >
+        {showMobileMenu ? '✕' : '☰'}
+      </button>
+
+      {/* Mobile Menu Overlay */}
+      {showMobileMenu && (
+        <div className="mobile-menu-overlay">
+          <div className="mobile-menu-content">
+            {/* Menu Sections */}
+            {menus.map((menu) => (
+              <div key={menu.label} className="mobile-menu-section">
+                <div className="mobile-menu-header">
+                  {menu.label}
+                </div>
+                <div style={{ padding: '8px' }}>
+                  {menu.items.map((item, index) => (
+                    item.divider ? (
+                      <div 
+                        key={index}
+                        style={{
+                          height: '1px',
+                          background: 'rgba(255, 255, 255, 0.1)',
+                          margin: '8px 0'
+                        }}
+                      />
+                    ) : item.href ? (
+                      <a
+                        key={index}
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mobile-menu-item"
+                        onClick={() => setShowMobileMenu(false)}
+                      >
+                        {item.label}
+                      </a>
+                    ) : (
+                      <button
+                        key={index}
+                        className="mobile-menu-item"
+                        onClick={() => {
+                          item.action?.()
+                          setShowMobileMenu(false)
+                        }}
+                      >
+                        {item.label}
+                      </button>
+                    )
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
