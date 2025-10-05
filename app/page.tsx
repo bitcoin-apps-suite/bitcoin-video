@@ -68,7 +68,6 @@ export default function BitcoinVideo() {
   const [btcPrice, setBtcPrice] = useState('67,432')
   const [priceChange, setPriceChange] = useState('+2.4%')
   const [isLoading, setIsLoading] = useState(true)
-  const [isStudioMode, setIsStudioMode] = useState(false)
   const [studioView, setStudioView] = useState<'projects' | 'editor'>('projects')
   const [uploadedFile, setUploadedFile] = useState<File | null>(null)
   const [selectedProject, setSelectedProject] = useState<VideoProject | null>(null)
@@ -214,7 +213,6 @@ export default function BitcoinVideo() {
     if (file) {
       setUploadedFile(file)
       setStudioView('editor')
-      setIsStudioMode(true)
     }
   }
 
@@ -222,13 +220,11 @@ export default function BitcoinVideo() {
     setSelectedProject(null)
     setUploadedFile(null)
     setStudioView('editor')
-    setIsStudioMode(true)
   }
 
   const handleProjectSelect = (project: VideoProject) => {
     setSelectedProject(project)
     setStudioView('editor')
-    setIsStudioMode(true)
   }
 
   const handleNewProject = () => {
@@ -281,23 +277,14 @@ export default function BitcoinVideo() {
                 <span className="text-lg sm:text-xl font-bold hidden sm:block text-gradient">Bitcoin Video</span>
               </Link>
               
-              {/* View Toggle */}
-              <button 
-                onClick={() => setIsStudioMode(!isStudioMode)}
-                className={`flex items-center gap-2 px-3 py-2 backdrop-blur-sm rounded-xl font-medium transition-all duration-300 border text-sm ${
-                  isStudioMode 
-                    ? 'bg-orange-500/20 border-orange-500/30 text-orange-400' 
-                    : 'bg-white/10 border-white/10 hover:bg-white/20 hover:border-white/20'
-                }`}
-                title={isStudioMode ? "Switch to Watch Mode" : "Switch to Studio Mode"}
-              >
-                {isStudioMode ? <Monitor className="w-4 h-4" /> : <Settings className="w-4 h-4" />}
-                <span className="hidden sm:block">{isStudioMode ? 'Studio Mode' : 'Creator Mode'}</span>
-                {isStudioMode ? 
-                  <ToggleRight className="w-5 h-5 text-orange-400" /> : 
-                  <ToggleRight className="w-5 h-5 text-gray-400" />
-                }
-              </button>
+              {/* Mode Indicator */}
+              <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-orange-500/20 to-blue-500/20 border border-white/20 backdrop-blur-sm rounded-xl font-medium text-sm">
+                <Monitor className="w-4 h-4 text-orange-400" />
+                <span className="hidden sm:block text-orange-400">Studio</span>
+                <span className="text-gray-400">+</span>
+                <Settings className="w-4 h-4 text-blue-400" />
+                <span className="hidden sm:block text-blue-400">Watch</span>
+              </div>
               
               <div className="flex-1 max-w-2xl hidden sm:block">
                 <div className="relative">
@@ -375,131 +362,147 @@ export default function BitcoinVideo() {
         </div>
       </header>
 
-          {/* Main Content */}
+          {/* Main Content - Split View */}
           <main className="p-6 lg:p-8">
-            {isStudioMode ? (
-              <div className="flex h-[calc(100vh-200px)] bg-gradient-to-b from-gray-950 via-black to-gray-950 rounded-xl overflow-hidden border border-white/10">
-                {/* Video Projects Sidebar */}
-                <div className="w-[280px] flex-shrink-0">
-                  <VideoProjectSidebar
-                    onProjectSelect={handleProjectSelect}
-                    onNewProject={handleNewProject}
-                    currentProjectId={selectedProject?.id}
-                    refreshTrigger={projectSidebarRefresh}
-                    uploadedFile={uploadedFile}
-                  />
+            <div className="flex gap-6 h-[calc(100vh-200px)]">
+              {/* Left Side - Studio Mode */}
+              <div className="flex-1 min-w-0">
+                <div className="mb-4">
+                  <h2 className="text-xl font-bold text-orange-400 mb-2">🎬 Studio Mode</h2>
+                  <p className="text-gray-400 text-sm">Professional video creation and editing tools</p>
                 </div>
-                
-                {/* Main Studio Content */}
-                <div className="flex-1 overflow-hidden">
-                {studioView === 'editor' ? (
-                  /* Studio Editor View */
-                  <div className="h-full">
-                    <BitcoinVideoStudio 
-                      initialVideoFile={uploadedFile}
-                      onSave={(blob) => {
-                        console.log('Video saved:', blob)
-                        setProjectSidebarRefresh(prev => prev + 1)
-                      }}
-                      onExport={(blob, format) => {
-                        console.log(`Video exported as ${format}:`, blob)
-                      }}
+                <div className="flex h-full bg-gradient-to-b from-gray-950 via-black to-gray-950 rounded-xl overflow-hidden border border-orange-500/30">
+                  {/* Video Projects Sidebar */}
+                  <div className="w-[280px] flex-shrink-0">
+                    <VideoProjectSidebar
+                      onProjectSelect={handleProjectSelect}
+                      onNewProject={handleNewProject}
+                      currentProjectId={selectedProject?.id}
+                      refreshTrigger={projectSidebarRefresh}
+                      uploadedFile={uploadedFile}
                     />
                   </div>
-                ) : (
-                  /* Studio Welcome/Dashboard View */
-                  <div className="p-8 h-full flex items-center justify-center">
-                    <div className="text-center max-w-2xl">
-                      <div className="p-6 bg-gradient-to-br from-orange-500/20 via-orange-600/10 to-yellow-500/20 rounded-3xl border border-orange-500/20 backdrop-blur-sm shadow-2xl">
-                        <FileVideo className="w-16 h-16 mx-auto mb-4 text-orange-400" />
-                        <h2 className="text-3xl font-bold mb-3 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                          Bitcoin Video Studio
-                        </h2>
-                        <p className="text-gray-300 mb-6 text-lg">
-                          Create, edit, and publish professional Bitcoin content - all in your browser
-                        </p>
-                        <div className="flex gap-4 justify-center">
-                          <button
-                            onClick={createNewProject}
-                            className="px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-orange-500/25 transform hover:scale-105"
-                          >
-                            <Plus className="w-5 h-5" />
-                            Start Creating
-                          </button>
-                          <label className="px-6 py-3 bg-white/10 backdrop-blur-sm rounded-xl font-medium hover:bg-white/20 transition-all duration-300 border border-white/10 hover:border-white/20 cursor-pointer flex items-center gap-2">
-                            <input
-                              type="file"
-                              accept="video/*"
-                              className="hidden"
-                              onChange={handleFileUpload}
-                            />
-                            <Upload className="w-5 h-5" />
-                            Import Video
-                          </label>
+                  
+                  {/* Main Studio Content */}
+                  <div className="flex-1 overflow-hidden">
+                    {studioView === 'editor' ? (
+                      /* Studio Editor View */
+                      <div className="h-full">
+                        <BitcoinVideoStudio 
+                          initialVideoFile={uploadedFile}
+                          onSave={(blob) => {
+                            console.log('Video saved:', blob)
+                            setProjectSidebarRefresh(prev => prev + 1)
+                          }}
+                          onExport={(blob, format) => {
+                            console.log(`Video exported as ${format}:`, blob)
+                          }}
+                        />
+                      </div>
+                    ) : (
+                      /* Studio Welcome/Dashboard View */
+                      <div className="p-8 h-full flex items-center justify-center">
+                        <div className="text-center max-w-xl">
+                          <div className="p-6 bg-gradient-to-br from-orange-500/20 via-orange-600/10 to-yellow-500/20 rounded-3xl border border-orange-500/20 backdrop-blur-sm shadow-2xl">
+                            <FileVideo className="w-12 h-12 mx-auto mb-4 text-orange-400" />
+                            <h3 className="text-2xl font-bold mb-3 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                              Bitcoin Video Studio
+                            </h3>
+                            <p className="text-gray-300 mb-6 text-sm">
+                              Create, edit, and publish professional Bitcoin content
+                            </p>
+                            <div className="flex gap-3 justify-center">
+                              <button
+                                onClick={createNewProject}
+                                className="px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-orange-500/25 transform hover:scale-105 text-sm"
+                              >
+                                <Plus className="w-4 h-4" />
+                                Start Creating
+                              </button>
+                              <label className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-xl font-medium hover:bg-white/20 transition-all duration-300 border border-white/10 hover:border-white/20 cursor-pointer flex items-center gap-2 text-sm">
+                                <input
+                                  type="file"
+                                  accept="video/*"
+                                  className="hidden"
+                                  onChange={handleFileUpload}
+                                />
+                                <Upload className="w-4 h-4" />
+                                Import Video
+                              </label>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    )}
                   </div>
-                )}
                 </div>
               </div>
-            ) : (
-              <>
-                {/* Featured Section */}
-                {selectedCategory === 'all' && (
-                  <section className="mb-8">
-                    <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-orange-500/20 via-orange-600/10 to-yellow-500/20 p-10 border border-orange-500/20 backdrop-blur-sm shadow-2xl">
-                      <div className="absolute top-4 right-4">
-                        <span className="px-3 py-1.5 bg-red-600 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-lg animate-pulse">
-                          <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-                          LIVE
-                        </span>
-                      </div>
-                      <h2 className="text-4xl font-bold mb-3 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Bitcoin Halving Countdown</h2>
-                      <p className="text-gray-300 mb-6 text-lg">Next halving in 142 days - Watch live analysis and predictions</p>
-                      <div className="flex gap-4">
-                        <button className="px-8 py-3.5 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-orange-500/25 transform hover:scale-105">
-                          <Play className="w-5 h-5" />
-                          Watch Live
-                        </button>
-                        <button className="px-8 py-3.5 bg-white/10 backdrop-blur-sm rounded-xl font-medium hover:bg-white/20 transition-all duration-300 border border-white/10 hover:border-white/20">
-                          Set Reminder
-                        </button>
-                      </div>
-                    </div>
-                  </section>
-                )}
 
-                {/* Video Grid */}
-                <AnimatePresence mode="wait">
-                  {isLoading ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                      {[...Array(8)].map((_, index) => (
-                        <VideoSkeleton key={index} />
-                      ))}
-                    </div>
-                  ) : (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.5 }}
-                      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-                    >
-                      {filteredVideos.map((video, index) => (
+              {/* Right Side - Watch Mode */}
+              <div className="flex-1 min-w-0">
+                <div className="mb-4">
+                  <h2 className="text-xl font-bold text-blue-400 mb-2">📺 Watch Mode</h2>
+                  <p className="text-gray-400 text-sm">YouTube-style video feed and discovery</p>
+                </div>
+                <div className="h-full bg-gradient-to-b from-gray-950 via-black to-gray-950 rounded-xl overflow-hidden border border-blue-500/30 p-4">
+                  <div className="h-full overflow-y-auto">
+                    {/* Featured Section */}
+                    {selectedCategory === 'all' && (
+                      <section className="mb-6">
+                        <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-orange-500/20 via-orange-600/10 to-yellow-500/20 p-6 border border-orange-500/20 backdrop-blur-sm shadow-xl">
+                          <div className="absolute top-3 right-3">
+                            <span className="px-2 py-1 bg-red-600 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg animate-pulse">
+                              <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
+                              LIVE
+                            </span>
+                          </div>
+                          <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Bitcoin Halving Countdown</h3>
+                          <p className="text-gray-300 mb-4 text-sm">Next halving in 142 days - Watch live analysis</p>
+                          <div className="flex gap-3">
+                            <button className="px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 flex items-center gap-2 shadow-lg text-sm">
+                              <Play className="w-4 h-4" />
+                              Watch Live
+                            </button>
+                            <button className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-lg font-medium hover:bg-white/20 transition-all duration-300 border border-white/10 text-sm">
+                              Set Reminder
+                            </button>
+                          </div>
+                        </div>
+                      </section>
+                    )}
+
+                    {/* Video Grid */}
+                    <AnimatePresence mode="wait">
+                      {isLoading ? (
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                          {[...Array(6)].map((_, index) => (
+                            <VideoSkeleton key={index} />
+                          ))}
+                        </div>
+                      ) : (
                         <motion.div
-                          key={video.id}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: index * 0.05 }}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.5 }}
+                          className="grid grid-cols-1 lg:grid-cols-2 gap-4"
                         >
-                          <VideoCard video={video} />
+                          {filteredVideos.slice(0, 6).map((video, index) => (
+                            <motion.div
+                              key={video.id}
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: index * 0.05 }}
+                            >
+                              <VideoCard video={video} />
+                            </motion.div>
+                          ))}
                         </motion.div>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </>
-            )}
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
+              </div>
+            </div>
           </main>
         </ResponsiveLayout>
         
