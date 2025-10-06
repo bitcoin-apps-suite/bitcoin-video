@@ -60,9 +60,9 @@ export default function DevSidebar() {
     section?: string
     external?: boolean
   }> = [
-    // Token & Rewards at top
+    // Token & Equity at top
     { path: '/token', icon: Coins, label: '$BVIDEO', badge: 'NEW' },
-    { path: '/rewards', icon: TrendingUp, label: 'Creator Rewards' },
+    { path: '/grants', icon: TrendingUp, label: 'GRANTS' },
     { path: '/commissions', icon: Handshake, label: 'Commission Hub', badge: 'BETA' },
     
     // Video Creators Section
@@ -99,11 +99,10 @@ export default function DevSidebar() {
   ]
 
   const stats = {
-    totalRewards: '₿2.5',
-    activeCreators: '156',
-    totalCommissions: '₿12.8',
-    openContracts: issueCount || 0,
-    platformShare: '95%'
+    totalTokens: '1,000,000,000',
+    forDevelopers: 'Substantial',
+    contributors: '3',
+    openTasks: issueCount || 12
   }
 
   return (
@@ -112,7 +111,7 @@ export default function DevSidebar() {
         {!isCollapsed && (
           <div className="dev-sidebar-title">
             <Sparkles className="dev-sidebar-logo" />
-            <span>Creator Hub</span>
+            <span>Contracts Hub</span>
           </div>
         )}
         <button 
@@ -184,26 +183,22 @@ export default function DevSidebar() {
       {/* Stats section */}
       {!isCollapsed && (
         <div className="dev-sidebar-stats">
-          <h4>Creator Economy</h4>
+          <h4>$BVIDEO Token Pool</h4>
           <div className="dev-stat">
-            <span className="dev-stat-label">Total Rewards</span>
-            <span className="dev-stat-value">{stats.totalRewards}</span>
+            <span className="dev-stat-label">Total Tokens</span>
+            <span className="dev-stat-value">{stats.totalTokens}</span>
           </div>
           <div className="dev-stat">
-            <span className="dev-stat-label">Active Creators</span>
-            <span className="dev-stat-value">{stats.activeCreators}</span>
+            <span className="dev-stat-label">For Developers</span>
+            <span className="dev-stat-value">{stats.forDevelopers}</span>
           </div>
           <div className="dev-stat">
-            <span className="dev-stat-label">Total Commissions</span>
-            <span className="dev-stat-value">{stats.totalCommissions}</span>
+            <span className="dev-stat-label">Contributors</span>
+            <span className="dev-stat-value">{stats.contributors}</span>
           </div>
           <div className="dev-stat">
             <span className="dev-stat-label">Open Contracts</span>
-            <span className="dev-stat-value">{stats.openContracts}</span>
-          </div>
-          <div className="dev-stat">
-            <span className="dev-stat-label">Creator Share</span>
-            <span className="dev-stat-value">{stats.platformShare}</span>
+            <span className="dev-stat-value">{stats.openTasks}</span>
           </div>
         </div>
       )}
@@ -212,12 +207,12 @@ export default function DevSidebar() {
       {!isCollapsed && (
         <div className="dev-sidebar-footer">
           <div className="dev-sidebar-cta">
-            <p>Start Earning Bitcoin</p>
+            <p>Earn $BVIDEO Tokens</p>
             <a 
-              href="/studio" 
+              href="/contracts" 
               className="dev-sidebar-cta-button"
             >
-              Create Your First Video
+              Browse Dev Contracts
             </a>
           </div>
         </div>

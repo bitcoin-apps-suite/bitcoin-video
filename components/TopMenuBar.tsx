@@ -32,7 +32,6 @@ export default function TopMenuBar({ onOpenApp, onNewProject, onSaveProject }: T
   const menuRef = useRef<HTMLDivElement>(null)
 
   const bitcoinApps = [
-    { name: 'Bitcoin Apps Store', color: '#f97316', url: 'https://www.bitcoinapps.store/' },
     { name: 'Bitcoin Auth', color: '#ef4444', url: '#', disabled: true },
     { name: 'Bitcoin Calendar', color: '#d946ef', url: 'https://bitcoin-calendar.vercel.app' },
     { name: 'Bitcoin Chat', color: '#ff6500', url: '#', disabled: true },
