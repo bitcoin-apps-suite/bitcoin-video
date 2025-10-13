@@ -3,17 +3,15 @@
 import React from 'react'
 import { Coins, Code, Video, Users, TrendingUp, Zap, ChevronRight, Github, ExternalLink, PieChart, BarChart3 } from 'lucide-react'
 import DevSidebar from '@/components/DevSidebar'
-import { DevSidebarProvider } from '@/components/DevSidebarProvider'
 import ResponsiveLayout from '@/components/ResponsiveLayout'
-import Dock from '@/components/Dock'
+import MinimalDock from '@/components/MinimalDock'
 import TopMenuBar from '@/components/TopMenuBar'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import './token.css'
 
 export default function TokenPage() {
   return (
-    <DevSidebarProvider>
-      <div className="token-page">
+    <div className="token-page">
         <ProofOfConceptBar />
         <TopMenuBar 
           onNewProject={() => console.log('New project')}
@@ -311,8 +309,7 @@ export default function TokenPage() {
         </ResponsiveLayout>
         
         <DevSidebar />
-        <Dock />
+        <MinimalDock />
       </div>
-    </DevSidebarProvider>
   );
 }

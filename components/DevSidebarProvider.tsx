@@ -11,23 +11,25 @@ const DevSidebarContext = createContext<DevSidebarContextType | undefined>(undef
 
 export function DevSidebarProvider({ children }: { children: React.ReactNode }) {
   const [isCollapsed, setIsCollapsed] = useState(true) // Always start collapsed to match server
-  const [isInitialized, setIsInitialized] = useState(false)
+  const [isHydrated, setIsHydrated] = useState(false)
 
   useEffect(() => {
-    // Only run on client side after mount
+    // After hydration, check localStorage and update state if needed
+    setIsHydrated(true)
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('devSidebarCollapsed')
-      const shouldBeCollapsed = saved !== null ? saved === 'true' : true
-      setIsCollapsed(shouldBeCollapsed)
-      setIsInitialized(true)
+      if (saved !== null) {
+        setIsCollapsed(saved === 'true')
+      }
     }
   }, [])
 
   useEffect(() => {
-    if (isInitialized && typeof window !== 'undefined') {
+    // Save to localStorage whenever state changes (but only after hydration)
+    if (isHydrated && typeof window !== 'undefined') {
       localStorage.setItem('devSidebarCollapsed', isCollapsed.toString())
     }
-  }, [isCollapsed, isInitialized])
+  }, [isCollapsed, isHydrated])
 
   return (
     <DevSidebarContext.Provider value={{ isCollapsed, setIsCollapsed }}>

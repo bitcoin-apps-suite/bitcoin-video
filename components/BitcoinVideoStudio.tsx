@@ -169,7 +169,7 @@ export default function BitcoinVideoStudio({
     return (
       <div className="h-full bg-gradient-to-b from-gray-950 via-black to-gray-950 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-red-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <h3 className="text-xl font-bold text-white mb-2">Initializing Bitcoin Video Studio</h3>
           <p className="text-gray-400">Loading professional editing tools...</p>
         </div>
@@ -184,7 +184,7 @@ export default function BitcoinVideoStudio({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
-              <div className="p-1.5 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg">
+              <div className="p-1.5 bg-gradient-to-br from-red-600 to-yellow-500 rounded-lg">
                 <Bitcoin className="w-5 h-5" />
               </div>
               <span className="font-bold text-lg">Bitcoin Video Studio</span>
@@ -213,7 +213,7 @@ export default function BitcoinVideoStudio({
                 <button
                   key={format.id}
                   onClick={() => handleExport(format.id)}
-                  className="px-4 py-2 bg-orange-600 hover:bg-orange-700 rounded-lg flex items-center gap-2 transition-colors text-sm"
+                  className="px-4 py-2 bg-red-700 hover:bg-red-700 rounded-lg flex items-center gap-2 transition-colors text-sm"
                 >
                   <Download className="w-4 h-4" />
                   {format.name}
@@ -223,7 +223,7 @@ export default function BitcoinVideoStudio({
               {/* Tokenize Button */}
               <button
                 onClick={() => setShowTokenizeModal(true)}
-                className="px-4 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 rounded-lg flex items-center gap-2 transition-all text-sm font-semibold"
+                className="px-4 py-2 bg-gradient-to-r from-yellow-500 to-red-600 hover:from-yellow-600 hover:to-yellow-500 rounded-lg flex items-center gap-2 transition-all text-sm font-semibold"
                 title="Create NFT and shares for this video"
               >
                 <Coins className="w-4 h-4" />
@@ -245,7 +245,7 @@ export default function BitcoinVideoStudio({
                 onClick={() => setSelectedTool(tool.id)}
                 className={`w-12 h-12 rounded-lg flex items-center justify-center transition-all duration-200 ${
                   selectedTool === tool.id
-                    ? 'bg-orange-600 text-white shadow-lg'
+                    ? 'bg-red-700 text-white shadow-lg'
                     : 'bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white'
                 }`}
                 title={tool.name}
@@ -340,8 +340,8 @@ export default function BitcoinVideoStudio({
 
             {/* Timeline Track */}
             <div className="h-24 bg-gradient-to-r from-gray-900 to-gray-800 rounded-lg border border-white/10 p-2">
-              <div className="h-full bg-gradient-to-r from-orange-500/20 to-orange-600/20 rounded border border-orange-500/30 flex items-center justify-center">
-                <span className="text-xs text-orange-400 font-medium">Video Track</span>
+              <div className="h-full bg-gradient-to-r from-red-600/20 to-yellow-500/20 rounded border border-red-600/30 flex items-center justify-center">
+                <span className="text-xs text-red-400 font-medium">Video Track</span>
               </div>
             </div>
           </div>
@@ -351,14 +351,14 @@ export default function BitcoinVideoStudio({
         <div className="w-80 border-l border-white/10 bg-black/50 backdrop-blur-sm">
           <div className="p-4">
             <h3 className="font-bold mb-4 flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-orange-500" />
+              <Sparkles className="w-4 h-4 text-red-600" />
               Properties
             </h3>
             
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium mb-2">Resolution</label>
-                <select className="w-full px-3 py-2 bg-black/50 border border-white/20 rounded-lg focus:outline-none focus:border-orange-500">
+                <select className="w-full px-3 py-2 bg-black/50 border border-white/20 rounded-lg focus:outline-none focus:border-red-600">
                   <option>1920x1080 (HD)</option>
                   <option>3840x2160 (4K)</option>
                   <option>1280x720 (720p)</option>
@@ -367,7 +367,7 @@ export default function BitcoinVideoStudio({
               
               <div>
                 <label className="block text-sm font-medium mb-2">Frame Rate</label>
-                <select className="w-full px-3 py-2 bg-black/50 border border-white/20 rounded-lg focus:outline-none focus:border-orange-500">
+                <select className="w-full px-3 py-2 bg-black/50 border border-white/20 rounded-lg focus:outline-none focus:border-red-600">
                   <option>30 fps</option>
                   <option>60 fps</option>
                   <option>24 fps</option>

@@ -27,7 +27,7 @@ export default function DeveloperBar() {
       {isVisible && (
         <div className="fixed bottom-16 right-4 z-[99998] bg-gray-900/95 backdrop-blur-sm border border-gray-700 rounded-lg p-4 shadow-xl text-white text-sm">
           <div className="flex items-center gap-2 mb-3">
-            <Bug className="w-4 h-4 text-orange-500" />
+            <Bug className="w-4 h-4 text-red-600" />
             <span className="font-semibold">Developer Tools</span>
           </div>
           
@@ -46,7 +46,7 @@ export default function DeveloperBar() {
                       key={item.id}
                       onClick={() => setViewport(item.id)}
                       className={`p-1 rounded text-xs flex items-center gap-1 ${
-                        viewport === item.id ? 'bg-orange-500 text-black' : 'bg-gray-800 hover:bg-gray-700'
+                        viewport === item.id ? 'bg-red-600 text-black' : 'bg-gray-800 hover:bg-gray-700'
                       }`}
                     >
                       <Icon className="w-3 h-3" />
@@ -60,7 +60,7 @@ export default function DeveloperBar() {
             <div className="pt-2 border-t border-gray-700">
               <button
                 onClick={() => window.location.reload()}
-                className="flex items-center gap-1 text-xs hover:text-orange-400 transition-colors"
+                className="flex items-center gap-1 text-xs hover:text-red-400 transition-colors"
               >
                 <RefreshCw className="w-3 h-3" />
                 Reload

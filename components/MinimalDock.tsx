@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Wallet, Mail, Music, FileText, HardDrive, Calendar, Search, Table, Share2, Briefcase, Store, Wifi, Volume2, Battery, Clock, TrendingUp, Building2, Shield, Video, Code2, Camera, MapPin, MessageCircle, Users, Gamepad2, BookOpen, Globe, Box } from 'lucide-react';
-import './Dock.css';
+import { Store, FileText, Clock, Wifi, Battery, Wallet, Mail, Music, HardDrive, Calendar, Search, Table, Share2, Briefcase, TrendingUp, Building2, Shield, Video, Code2, Camera, MapPin, MessageCircle, Users, Gamepad2, BookOpen, Globe, Box } from 'lucide-react';
+import './MinimalDock.css';
 
 interface DockApp {
   id?: string;
@@ -13,7 +13,7 @@ interface DockApp {
   isImage?: boolean;
 }
 
-const Dock: React.FC = () => {
+const MinimalDock: React.FC = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [mounted, setMounted] = useState(false);
 
@@ -27,18 +27,8 @@ const Dock: React.FC = () => {
 
   const getRainbowColor = (index: number): string => {
     const rainbowColors = [
-      '#ff0000', // Red
-      '#ff8000', // Orange  
-      '#ffff00', // Yellow
-      '#80ff00', // Lime
-      '#00ff00', // Green
-      '#00ff80', // Spring Green
-      '#00ffff', // Cyan
-      '#0080ff', // Blue
-      '#0000ff', // Deep Blue
-      '#8000ff', // Purple
-      '#ff00ff', // Magenta
-      '#ff0080'  // Rose
+      '#ff0000', '#ff8000', '#ffff00', '#80ff00', '#00ff00', '#00ff80',
+      '#00ffff', '#0080ff', '#0000ff', '#8000ff', '#ff00ff', '#ff0080'
     ];
     return rainbowColors[index % rainbowColors.length];
   };
@@ -49,20 +39,13 @@ const Dock: React.FC = () => {
     }
     
     const colorMap: { [key: string]: string } = {
-      'text-orange-500': '#f97316',
-      'text-bitcoin-orange': '#f7931a',
-      'text-yellow-500': '#eab308',
-      'text-red-500': '#ef4444',
-      'text-purple-500': '#a855f7',
-      'text-fuchsia-500': '#d946ef',
-      'text-pink-500': '#ec4899',
-      'text-green-500': '#22c55e',
-      'text-blue-500': '#3b82f6',
-      'text-gray-500': '#6b7280',
-      'text-sky-400': '#38bdf8',
-      'text-cyan-500': '#06b6d4',
-      'text-cyan-400': '#22d3ee',
-      'text-emerald-500': '#10b981',
+      'text-red-600': '#f97316', 'text-bitcoin-orange': '#f7931a',
+      'text-yellow-500': '#eab308', 'text-red-500': '#ef4444',
+      'text-purple-500': '#a855f7', 'text-fuchsia-500': '#d946ef',
+      'text-pink-500': '#ec4899', 'text-green-500': '#22c55e',
+      'text-blue-500': '#3b82f6', 'text-gray-500': '#6b7280',
+      'text-sky-400': '#38bdf8', 'text-cyan-500': '#06b6d4',
+      'text-cyan-400': '#22d3ee', 'text-emerald-500': '#10b981',
       'text-blue-600': '#2563eb'
     };
     return colorMap[colorClass] || '#ffffff';
@@ -99,62 +82,40 @@ const Dock: React.FC = () => {
   };
 
   return (
-    <div className="bitcoin-dock">
-      <div className="dock-container">
-        {/* App icons on the left */}
-        <div className="dock-apps">
+    <div className="minimal-dock">
+      <div className="minimal-dock-container">
+        <div className="minimal-dock-apps">
           {dockApps.map((app, index) => {
-          const Icon = app.icon;
-          return (
-            <button
-              key={app.name}
-              className={`dock-app ${app.current ? 'active' : ''} ${app.disabled ? 'disabled' : ''}`}
-              onClick={() => handleAppClick(app)}
-              title={app.name}
-              disabled={app.disabled}
-            >
-              {app.id === 'bapps-store' ? (
-                <div className="dock-app-icon">
-                  <img src="/bapps-icon.jpg" alt="BAPPS" className="dock-app-image" />
-                </div>
-              ) : (
-                <Icon className="dock-app-icon" style={{ color: getIconColor(app.color, index) }} />
-              )}
-              {app.current && <span className="dock-indicator" />}
-            </button>
-          );
-        })}
+            const Icon = app.icon;
+            return (
+              <button
+                key={app.name}
+                className={`minimal-dock-app ${app.current ? 'active' : ''} ${app.disabled ? 'disabled' : ''}`}
+                onClick={() => handleAppClick(app)}
+                title={app.name}
+                disabled={app.disabled}
+              >
+                {app.id === 'bapps-store' ? (
+                  <img src="/bapps-icon.jpg" alt="BAPPS" className="minimal-dock-icon-image" />
+                ) : (
+                  <Icon className="minimal-dock-icon" style={{ color: getIconColor(app.color, index) }} />
+                )}
+                {app.current && <span className="minimal-dock-indicator" />}
+              </button>
+            );
+          })}
         </div>
         
-        {/* Status icons on the right */}
-        <div className="dock-status">
-          <div className="dock-divider" />
-          <button 
-            className="status-button" 
-            title="Bitcoin Corporation"
-            onClick={() => window.location.href = 'https://bitcoin-corp.vercel.app/'}
-          >
-            <Building2 className="status-icon" style={{ color: '#f7931a' }} />
-          </button>
-          <button 
-            className="status-button" 
-            title="Trust"
-            onClick={() => window.location.href = 'https://bitcoin-corp.vercel.app/trust'}
-          >
-            <Shield className="status-icon" style={{ color: '#3b82f6' }} />
-          </button>
-          <button className="status-button" title="Connected">
-            <Wifi className="status-icon connected" />
-          </button>
-          <button className="status-button" title="Volume">
-            <Volume2 className="status-icon" />
-          </button>
-          <button className="status-button" title="Battery: 100%">
-            <Battery className="status-icon connected" />
-          </button>
-          <div className="status-time" title={mounted ? currentTime.toLocaleDateString() : ''}>
-            <Clock className="status-icon" />
-            <span>{mounted ? currentTime.toLocaleTimeString() : '12:00:00 AM'}</span>
+        <div className="minimal-dock-status">
+          <div className="minimal-status-item" title="Connected">
+            <Wifi className="minimal-status-icon connected" />
+          </div>
+          <div className="minimal-status-item" title="Battery: 100%">
+            <Battery className="minimal-status-icon connected" />
+          </div>
+          <div className="minimal-status-time" title={mounted ? currentTime.toLocaleDateString() : ''}>
+            <Clock className="minimal-status-icon" />
+            <span>{mounted ? currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '12:00'}</span>
           </div>
         </div>
       </div>
@@ -162,4 +123,4 @@ const Dock: React.FC = () => {
   );
 };
 
-export default Dock;
+export default MinimalDock;

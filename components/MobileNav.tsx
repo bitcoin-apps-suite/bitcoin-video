@@ -46,7 +46,7 @@ export default function MobileNav() {
             >
               <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg">
+                  <div className="p-2 bg-gradient-to-br from-red-600 to-yellow-500 rounded-xl shadow-lg">
                     <Bitcoin className="w-5 h-5 text-black" />
                   </div>
                   <span className="font-bold text-gradient">Bitcoin Video</span>
@@ -100,9 +100,9 @@ export default function MobileNav() {
                   <Link
                     href="/create"
                     onClick={() => setIsOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-orange-500/10 to-yellow-500/10 hover:from-orange-500/20 hover:to-yellow-500/20 border border-orange-500/20 transition-all duration-300"
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-red-600/10 to-yellow-500/10 hover:from-red-600/20 hover:to-yellow-500/20 border border-red-600/20 transition-all duration-300"
                   >
-                    <Zap className="w-5 h-5 text-orange-400" />
+                    <Zap className="w-5 h-5 text-red-400" />
                     <div>
                       <span className="block text-sm font-medium">Auto Creator</span>
                       <span className="text-xs text-gray-400">Generate videos</span>

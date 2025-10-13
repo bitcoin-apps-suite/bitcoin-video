@@ -31,8 +31,7 @@ import MobileNav from '@/components/MobileNav'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import TopMenuBar from '@/components/TopMenuBar'
 import DevSidebar from '@/components/DevSidebar'
-import Dock from '@/components/Dock'
-import { DevSidebarProvider } from '@/components/DevSidebarProvider'
+import MinimalDock from '@/components/MinimalDock'
 import ResponsiveLayout from '@/components/ResponsiveLayout'
 import BitcoinVideoStudio from '@/components/BitcoinVideoStudio'
 import VideoProjectSidebar from '@/components/VideoProjectSidebar'
@@ -262,8 +261,7 @@ export default function BitcoinVideo() {
   }, [])
 
   return (
-    <DevSidebarProvider>
-      <div className="min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white antialiased pb-24 main-app-container">
+    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white antialiased pb-24 main-app-container">
         <ProofOfConceptBar />
         <TopMenuBar 
           onNewProject={createNewProject}
@@ -281,7 +279,7 @@ export default function BitcoinVideo() {
             {/* Logo and Search */}
             <div className="flex items-center gap-2 sm:gap-4 flex-1">
               <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
-                <div className="p-1 sm:p-1.5 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg group-hover:shadow-orange-500/25 transition-all duration-300 group-hover:scale-110 animate-glow">
+                <div className="p-1 sm:p-1.5 bg-gradient-to-br from-red-600 to-yellow-500 rounded-xl shadow-lg group-hover:shadow-red-600/25 transition-all duration-300 group-hover:scale-110 animate-glow">
                   <img 
                     src="/bitcoin-video.jpg" 
                     alt="Bitcoin Video"
@@ -297,7 +295,7 @@ export default function BitcoinVideo() {
                   onClick={() => setViewMode('studio')}
                   className={`flex items-center gap-2 px-3 py-2 rounded-lg font-medium transition-all duration-300 text-sm ${
                     viewMode === 'studio' 
-                      ? 'bg-orange-500/20 border border-orange-500/30 text-orange-400' 
+                      ? 'bg-red-600/20 border border-red-600/30 text-red-400' 
                       : 'hover:bg-white/10 text-gray-400 hover:text-white'
                   }`}
                 >
@@ -308,7 +306,7 @@ export default function BitcoinVideo() {
                   onClick={() => setViewMode('split')}
                   className={`flex items-center gap-2 px-3 py-2 rounded-lg font-medium transition-all duration-300 text-sm ${
                     viewMode === 'split' 
-                      ? 'bg-gradient-to-r from-orange-500/20 to-blue-500/20 border border-white/20 text-white' 
+                      ? 'bg-gradient-to-r from-red-600/20 to-blue-500/20 border border-white/20 text-white' 
                       : 'hover:bg-white/10 text-gray-400 hover:text-white'
                   }`}
                 >
@@ -335,7 +333,7 @@ export default function BitcoinVideo() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search Bitcoin content..."
-                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 pl-9 sm:pl-10 glass rounded-full focus:outline-none focus:border-orange-500 focus:bg-white/10 transition-all duration-300 placeholder-gray-500 focus:shadow-lg focus:shadow-orange-500/20 text-sm sm:text-base"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 pl-9 sm:pl-10 glass rounded-full focus:outline-none focus:border-red-600 focus:bg-white/10 transition-all duration-300 placeholder-gray-500 focus:shadow-lg focus:shadow-red-600/20 text-sm sm:text-base"
                   />
                   <Search className="absolute left-3 top-2 sm:top-2.5 w-4 sm:w-5 h-4 sm:h-5 text-gray-400" />
                 </div>
@@ -345,8 +343,8 @@ export default function BitcoinVideo() {
             {/* Right Side Actions */}
             <div className="flex items-center gap-2 sm:gap-4">
               {/* BTC Price Ticker */}
-              <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-500/10 to-yellow-500/10 rounded-xl border border-orange-500/20 shadow-lg">
-                <Bitcoin className="w-4 h-4 text-orange-500" />
+              <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-600/10 to-yellow-500/10 rounded-xl border border-red-600/20 shadow-lg">
+                <Bitcoin className="w-4 h-4 text-red-600" />
                 <span className="font-mono font-bold">${btcPrice}</span>
                 <span className={`text-sm ${priceChange.startsWith('+') ? 'text-green-400' : 'text-red-400'}`}>
                   {priceChange}
@@ -356,7 +354,7 @@ export default function BitcoinVideo() {
               <div className="flex items-center gap-2">
                 <Link
                   href="/create"
-                  className="px-3 sm:px-4 py-2 sm:py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg sm:rounded-xl font-medium sm:font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-orange-500/25 flex items-center gap-1 sm:gap-2 text-sm sm:text-base"
+                  className="px-3 sm:px-4 py-2 sm:py-2.5 bg-gradient-to-r from-red-600 to-yellow-500 rounded-lg sm:rounded-xl font-medium sm:font-semibold hover:from-red-700 hover:to-yellow-500 transition-all duration-300 shadow-lg hover:shadow-red-600/25 flex items-center gap-1 sm:gap-2 text-sm sm:text-base"
                 >
                   <Upload className="w-4 sm:w-5 h-4 sm:h-5" />
                   <span className="hidden sm:block">Create</span>
@@ -392,7 +390,7 @@ export default function BitcoinVideo() {
                 onClick={() => setSelectedCategory(category.id)}
                 className={`flex items-center gap-2 px-5 py-2.5 rounded-xl whitespace-nowrap transition-all duration-300 font-medium ${
                   selectedCategory === category.id
-                    ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg shadow-orange-500/25'
+                    ? 'bg-gradient-to-r from-red-600 to-yellow-500 text-white shadow-lg shadow-red-600/25'
                     : 'bg-white/5 hover:bg-white/10 border border-white/10'
                 }`}
               >
@@ -412,10 +410,10 @@ export default function BitcoinVideo() {
                 {/* Left Side - Studio Mode */}
                 <div className="flex-1 min-w-0">
                   <div className="mb-4">
-                    <h2 className="text-xl font-bold text-orange-400 mb-2">🎬 Studio Mode</h2>
+                    <h2 className="text-xl font-bold text-red-400 mb-2">🎬 Studio Mode</h2>
                     <p className="text-gray-400 text-sm">Professional video creation and editing tools</p>
                   </div>
-                  <div className="flex h-full bg-gradient-to-b from-gray-950 via-black to-gray-950 rounded-xl overflow-hidden border border-orange-500/30">
+                  <div className="flex h-full bg-gradient-to-b from-gray-950 via-black to-gray-950 rounded-xl overflow-hidden border border-red-600/30">
                     {/* Video Projects Sidebar */}
                     <div className="w-[280px] flex-shrink-0">
                       <VideoProjectSidebar
@@ -447,8 +445,8 @@ export default function BitcoinVideo() {
                         /* Studio Welcome/Dashboard View */
                         <div className="p-8 h-full flex items-center justify-center">
                           <div className="text-center max-w-xl">
-                            <div className="p-6 bg-gradient-to-br from-orange-500/20 via-orange-600/10 to-yellow-500/20 rounded-3xl border border-orange-500/20 backdrop-blur-sm shadow-2xl">
-                              <FileVideo className="w-12 h-12 mx-auto mb-4 text-orange-400" />
+                            <div className="p-6 bg-gradient-to-br from-red-600/20 via-yellow-500/10 to-yellow-500/20 rounded-3xl border border-red-600/20 backdrop-blur-sm shadow-2xl">
+                              <FileVideo className="w-12 h-12 mx-auto mb-4 text-red-400" />
                               <h3 className="text-2xl font-bold mb-3 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                                 Bitcoin Video Studio
                               </h3>
@@ -458,7 +456,7 @@ export default function BitcoinVideo() {
                               <div className="flex gap-3 justify-center">
                                 <button
                                   onClick={createNewProject}
-                                  className="px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-orange-500/25 transform hover:scale-105 text-sm"
+                                  className="px-4 py-2 bg-gradient-to-r from-red-600 to-yellow-500 rounded-xl font-semibold hover:from-red-700 hover:to-yellow-500 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-red-600/25 transform hover:scale-105 text-sm"
                                 >
                                   <Plus className="w-4 h-4" />
                                   Start Creating
@@ -493,7 +491,7 @@ export default function BitcoinVideo() {
                       {/* Featured Section */}
                       {selectedCategory === 'all' && (
                         <section className="mb-6">
-                          <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-orange-500/20 via-orange-600/10 to-yellow-500/20 p-6 border border-orange-500/20 backdrop-blur-sm shadow-xl">
+                          <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-red-600/20 via-yellow-500/10 to-yellow-500/20 p-6 border border-red-600/20 backdrop-blur-sm shadow-xl">
                             <div className="absolute top-3 right-3">
                               <span className="px-2 py-1 bg-red-600 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg animate-pulse">
                                 <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
@@ -505,7 +503,7 @@ export default function BitcoinVideo() {
                             <div className="flex gap-3">
                               <button 
                                 onClick={() => handleVideoClick({ id: 'live', title: 'Bitcoin Halving Countdown', thumbnail: '', channel: 'Live', views: '', timestamp: '', duration: '', verified: true, live: true, category: 'news' })}
-                                className="px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 flex items-center gap-2 shadow-lg text-sm"
+                                className="px-4 py-2 bg-gradient-to-r from-red-600 to-yellow-500 rounded-lg font-semibold hover:from-red-700 hover:to-yellow-500 transition-all duration-300 flex items-center gap-2 shadow-lg text-sm"
                               >
                                 <Play className="w-4 h-4" />
                                 Watch Live
@@ -554,7 +552,7 @@ export default function BitcoinVideo() {
               </div>
             ) : viewMode === 'studio' ? (
               /* Full Studio Mode */
-              <div className="h-[calc(100vh-200px)] bg-gradient-to-b from-gray-950 via-black to-gray-950 rounded-xl overflow-hidden border border-orange-500/30">
+              <div className="h-[calc(100vh-200px)] bg-gradient-to-b from-gray-950 via-black to-gray-950 rounded-xl overflow-hidden border border-red-600/30">
                 <div className="flex h-full">
                   {/* Video Projects Sidebar */}
                   <div className="w-[280px] flex-shrink-0">
@@ -587,8 +585,8 @@ export default function BitcoinVideo() {
                       /* Studio Welcome/Dashboard View */
                       <div className="p-8 h-full flex items-center justify-center">
                         <div className="text-center max-w-2xl">
-                          <div className="p-8 bg-gradient-to-br from-orange-500/20 via-orange-600/10 to-yellow-500/20 rounded-3xl border border-orange-500/20 backdrop-blur-sm shadow-2xl">
-                            <FileVideo className="w-16 h-16 mx-auto mb-6 text-orange-400" />
+                          <div className="p-8 bg-gradient-to-br from-red-600/20 via-yellow-500/10 to-yellow-500/20 rounded-3xl border border-red-600/20 backdrop-blur-sm shadow-2xl">
+                            <FileVideo className="w-16 h-16 mx-auto mb-6 text-red-400" />
                             <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                               Bitcoin Video Studio
                             </h2>
@@ -598,7 +596,7 @@ export default function BitcoinVideo() {
                             <div className="flex gap-4 justify-center">
                               <button
                                 onClick={createNewProject}
-                                className="px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-orange-500/25 transform hover:scale-105"
+                                className="px-6 py-3 bg-gradient-to-r from-red-600 to-yellow-500 rounded-xl font-semibold hover:from-red-700 hover:to-yellow-500 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-red-600/25 transform hover:scale-105"
                               >
                                 <Plus className="w-5 h-5" />
                                 Start Creating
@@ -627,7 +625,7 @@ export default function BitcoinVideo() {
                 {/* Featured Section */}
                 {selectedCategory === 'all' && (
                   <section className="mb-8">
-                    <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-orange-500/20 via-orange-600/10 to-yellow-500/20 p-10 border border-orange-500/20 backdrop-blur-sm shadow-2xl">
+                    <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-red-600/20 via-yellow-500/10 to-yellow-500/20 p-10 border border-red-600/20 backdrop-blur-sm shadow-2xl">
                       <div className="absolute top-4 right-4">
                         <span className="px-3 py-1.5 bg-red-600 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-lg animate-pulse">
                           <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
@@ -639,7 +637,7 @@ export default function BitcoinVideo() {
                       <div className="flex gap-4">
                         <button 
                           onClick={() => handleVideoClick({ id: 'live', title: 'Bitcoin Halving Countdown', thumbnail: '', channel: 'Live', views: '', timestamp: '', duration: '', verified: true, live: true, category: 'news' })}
-                          className="px-8 py-3.5 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-orange-500/25 transform hover:scale-105"
+                          className="px-8 py-3.5 bg-gradient-to-r from-red-600 to-yellow-500 rounded-xl font-semibold hover:from-red-700 hover:to-yellow-500 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-red-600/25 transform hover:scale-105"
                         >
                           <Play className="w-5 h-5" />
                           Watch Live
@@ -688,8 +686,7 @@ export default function BitcoinVideo() {
         </ResponsiveLayout>
         
         <DevSidebar />
-        <Dock />
+        <MinimalDock />
       </div>
-    </DevSidebarProvider>
   )
 }

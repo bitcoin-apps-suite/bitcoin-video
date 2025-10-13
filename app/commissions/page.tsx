@@ -3,16 +3,16 @@
 import React from 'react'
 import { Video, Users, Zap, ChevronRight, ExternalLink, DollarSign, Calendar, FileText, Briefcase } from 'lucide-react'
 import DevSidebar from '@/components/DevSidebar'
-import { DevSidebarProvider } from '@/components/DevSidebarProvider'
+
 import ResponsiveLayout from '@/components/ResponsiveLayout'
-import Dock from '@/components/Dock'
+import MinimalDock from '@/components/MinimalDock'
 import TopMenuBar from '@/components/TopMenuBar'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import './commissions.css'
 
 export default function CommissionsPage() {
   return (
-    <DevSidebarProvider>
+    
       <div className="commissions-page">
         <ProofOfConceptBar />
         <TopMenuBar 
@@ -227,8 +227,8 @@ export default function CommissionsPage() {
         </ResponsiveLayout>
         
         <DevSidebar />
-        <Dock />
+        <MinimalDock />
       </div>
-    </DevSidebarProvider>
+    
   );
 }

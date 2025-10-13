@@ -25,20 +25,13 @@
   text-align: center;
   margin-bottom: 40px;
   background: #000000;
-  /* Full viewport width - properly centered */
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
-  margin-top: -24px;
-  width: 100vw;
-  position: relative;
-  left: 0;
-  right: 0;
+  width: 100%;
 }
 
 .commissions-badge {
   display: inline-block;
   padding: 8px 20px;
-  background: linear-gradient(90deg, #f97316, #ea580c);
+  background: linear-gradient(90deg, #dc2626, #f59e0b);
   border-radius: 100px;
   font-size: 14px;
   font-weight: 500;
@@ -46,7 +39,7 @@
   text-transform: uppercase;
   margin-top: 20px;
   color: #fff;
-  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
 }
 
 .commissions-hero h1 {
@@ -76,7 +69,7 @@
   font-weight: 100;
   margin-bottom: 40px;
   text-align: center;
-  color: #f97316;
+  color: #dc2626;
 }
 
 .steps-grid {
@@ -97,7 +90,7 @@
 }
 
 .step-number {
-  background: linear-gradient(135deg, #f97316, #ea580c);
+  background: linear-gradient(135deg, #dc2626, #f59e0b);
   color: #fff;
   width: 40px;
   height: 40px;
@@ -135,7 +128,7 @@
   font-weight: 100;
   margin-bottom: 40px;
   text-align: center;
-  color: #f97316;
+  color: #dc2626;
 }
 
 .commission-types-grid {
@@ -155,19 +148,19 @@
 }
 
 .commission-type.featured {
-  border-color: #f97316;
-  background: rgba(249, 115, 22, 0.05);
+  border-color: #dc2626;
+  background: rgba(220, 38, 38, 0.05);
 }
 
 .commission-type:hover {
   background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(249, 115, 22, 0.3);
+  border-color: rgba(220, 38, 38, 0.3);
 }
 
 .commission-icon {
   width: 48px;
   height: 48px;
-  color: #f97316;
+  color: #dc2626;
   margin-bottom: 20px;
 }
 
@@ -188,7 +181,7 @@
 .price-range {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #f97316;
+  color: #dc2626;
 }
 
 /* Creator Benefits Section */
@@ -202,7 +195,7 @@
   font-weight: 100;
   margin-bottom: 40px;
   text-align: center;
-  color: #f97316;
+  color: #dc2626;
 }
 
 .benefits-grid {
@@ -223,7 +216,7 @@
   font-size: 1.25rem;
   font-weight: 500;
   margin: 0 0 15px 0;
-  color: #f97316;
+  color: #dc2626;
 }
 
 .benefit p {
@@ -244,7 +237,7 @@
   font-weight: 100;
   margin-bottom: 40px;
   text-align: center;
-  color: #f97316;
+  color: #dc2626;
 }
 
 .pricing-grid {
@@ -263,8 +256,8 @@
 }
 
 .pricing-tier.featured {
-  border-color: #f97316;
-  background: rgba(249, 115, 22, 0.05);
+  border-color: #dc2626;
+  background: rgba(220, 38, 38, 0.05);
   transform: scale(1.05);
 }
 
@@ -278,7 +271,7 @@
 .price {
   font-size: 2rem;
   font-weight: 600;
-  color: #f97316;
+  color: #dc2626;
   margin: 0 0 30px 0;
 }
 
@@ -311,7 +304,7 @@
   font-weight: 100;
   margin-bottom: 40px;
   text-align: center;
-  color: #f97316;
+  color: #dc2626;
 }
 
 .commissions-list {
@@ -331,7 +324,7 @@
 
 .commission-item:hover {
   background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(249, 115, 22, 0.3);
+  border-color: rgba(220, 38, 38, 0.3);
 }
 
 .commission-header {
@@ -351,7 +344,7 @@
 .commission-budget {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #f97316;
+  color: #dc2626;
 }
 
 .commission-item p {
@@ -402,24 +395,24 @@
 }
 
 .cta-btn.primary {
-  background: linear-gradient(135deg, #f97316, #ea580c);
+  background: linear-gradient(135deg, #dc2626, #f59e0b);
   color: #fff;
 }
 
 .cta-btn.primary:hover {
-  background: linear-gradient(135deg, #ea580c, #c2410c);
+  background: linear-gradient(135deg, #f59e0b, #c2410c);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
+  box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
 }
 
 .cta-btn.secondary {
   background: transparent;
-  color: #f97316;
-  border-color: #f97316;
+  color: #dc2626;
+  border-color: #dc2626;
 }
 
 .cta-btn.secondary:hover {
-  background: rgba(249, 115, 22, 0.1);
+  background: rgba(220, 38, 38, 0.1);
   transform: translateY(-2px);
 }
 

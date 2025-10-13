@@ -2,6 +2,12 @@
 
 import { useState } from 'react'
 import { Flower2, DollarSign, Users, Code, Video, Zap, CheckCircle, Clock, TrendingUp, Github } from 'lucide-react'
+import DevSidebar from '@/components/DevSidebar'
+import ResponsiveLayout from '@/components/ResponsiveLayout'
+import MinimalDock from '@/components/MinimalDock'
+import TopMenuBar from '@/components/TopMenuBar'
+import ProofOfConceptBar from '@/components/ProofOfConceptBar'
+import './grants.css'
 
 export default function GrantsPage() {
   const [activeTab, setActiveTab] = useState('available')
@@ -100,74 +106,57 @@ export default function GrantsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
-      <div className="container mx-auto px-6 py-12">
+    <div className="grants-page">
+        <ProofOfConceptBar />
+        <TopMenuBar 
+          onNewProject={() => console.log('New project')}
+          onSaveProject={() => console.log('Save project')}
+        />
+        
+        <ResponsiveLayout>
+          <div className="grants-container">
         {/* Hero Section */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full mb-6">
-            <Flower2 className="w-10 h-10 text-white" />
-          </div>
-          <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-pink-400 to-purple-500 bg-clip-text text-transparent">
-            Developer Grants
-          </h1>
-          <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            Large-scale development grants for building core platform features. 
-            Earn significant $BVIDEO tokens plus platform equity.
+        <section className="grants-hero">
+          <h1><span style={{color: '#ffffff'}}>Developer</span> <span style={{color: '#f97316'}}>Grants</span> <span style={{color: '#ffffff'}}>Program</span></h1>
+          <p className="grants-tagline">
+            Large-scale development grants for building core platform features
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-lg px-6 py-4">
-              <div className="text-2xl font-bold text-pink-400">Large</div>
-              <div className="text-gray-400 text-sm">Token Rewards</div>
-            </div>
-            <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-lg px-6 py-4">
-              <div className="text-2xl font-bold text-purple-400">Up to 5%</div>
-              <div className="text-gray-400 text-sm">Platform Equity</div>
-            </div>
-            <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-lg px-6 py-4">
-              <div className="text-2xl font-bold text-blue-400">6-12 Months</div>
-              <div className="text-gray-400 text-sm">Project Timeline</div>
-            </div>
-          </div>
-        </div>
+          <div className="grants-badge">Major Funding</div>
+        </section>
 
         {/* Grant Benefits */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-center mb-8">Grant Benefits</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-lg p-6 text-center">
-              <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <DollarSign className="w-6 h-6 text-green-400" />
+        <section className="benefits-section">
+          <h2>Grant Benefits & Rewards</h2>
+          <div className="benefits-content">
+            <p className="intro">
+              Our developer grant program offers substantial rewards for building core platform features. 
+              Contributors receive significant $BVIDEO token allocations plus potential platform equity.
+            </p>
+            <div className="benefits-points">
+              <div className="point">
+                <h3>Large Token Rewards</h3>
+                <p>Substantial $BVIDEO tokens per completed grant</p>
               </div>
-              <h3 className="text-lg font-semibold mb-2">Large Token Rewards</h3>
-              <p className="text-gray-400 text-sm">Substantial $BVIDEO tokens per grant</p>
-            </div>
-            <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-lg p-6 text-center">
-              <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <TrendingUp className="w-6 h-6 text-purple-400" />
+              <div className="point">
+                <h3>Platform Equity</h3>
+                <p>1.5% - 5% ownership participation for major contributors</p>
               </div>
-              <h3 className="text-lg font-semibold mb-2">Platform Equity</h3>
-              <p className="text-gray-400 text-sm">1.5% - 5% ownership in the platform</p>
-            </div>
-            <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-lg p-6 text-center">
-              <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <Users className="w-6 h-6 text-blue-400" />
+              <div className="point">
+                <h3>Technical Support</h3>
+                <p>Direct mentorship and guidance from core team</p>
               </div>
-              <h3 className="text-lg font-semibold mb-2">Team Support</h3>
-              <p className="text-gray-400 text-sm">Technical mentorship and guidance</p>
-            </div>
-            <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-lg p-6 text-center">
-              <div className="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <Zap className="w-6 h-6 text-orange-400" />
+              <div className="point">
+                <h3>Milestone Payments</h3>
+                <p>Progressive token distribution as you complete deliverables</p>
               </div>
-              <h3 className="text-lg font-semibold mb-2">Milestone Payments</h3>
-              <p className="text-gray-400 text-sm">Progressive payments as you complete milestones</p>
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* Filter Tabs */}
-        <div className="flex justify-center mb-12">
-          <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-lg p-1">
+        {/* Grant Filter Section */}
+        <section className="filter-section">
+          <h2>Available Grants</h2>
+          <div className="filter-tabs">
             {[
               { id: 'available', label: 'Available', icon: Zap },
               { id: 'in_progress', label: 'In Progress', icon: Clock },
@@ -179,10 +168,8 @@ export default function GrantsPage() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-md transition-all ${
-                    activeTab === tab.id
-                      ? 'bg-pink-500 text-white'
-                      : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
+                  className={`filter-tab ${
+                    activeTab === tab.id ? 'active' : ''
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -191,151 +178,140 @@ export default function GrantsPage() {
               )
             })}
           </div>
-        </div>
+        </section>
 
-        {/* Grants Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          {filteredGrants.map(grant => (
-            <div key={grant.id} className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-lg p-6 hover:border-pink-500/50 transition-all">
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs px-2 py-1 bg-gray-700 text-gray-300 rounded">{grant.category}</span>
-                    <span className={`flex items-center gap-1 text-xs px-2 py-1 text-white rounded ${getStatusColor(grant.status)}`}>
+        {/* Grants Listing */}
+        <section className="grants-section">
+          <div className="grants-grid">
+            {filteredGrants.map(grant => (
+              <div key={grant.id} className="grant-card">
+                <div className="grant-header">
+                  <div className="grant-meta">
+                    <span className="category-badge">{grant.category}</span>
+                    <span className={`status-badge status-${grant.status}`}>
                       {getStatusIcon(grant.status)}
                       {grant.status.replace('_', ' ').toUpperCase()}
                     </span>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2">{grant.title}</h3>
+                  <h3 className="grant-title">{grant.title}</h3>
+                </div>
+                
+                <p className="grant-description">{grant.description}</p>
+                
+                <div className="grant-stats">
+                  <div className="stat">
+                    <span className="stat-label">Token Reward</span>
+                    <span className="stat-value">{grant.reward}</span>
+                  </div>
+                  <div className="stat">
+                    <span className="stat-label">Equity</span>
+                    <span className="stat-value">{grant.equity}</span>
+                  </div>
+                  <div className="stat">
+                    <span className="stat-label">Timeline</span>
+                    <span className="stat-value">{grant.timeline}</span>
+                  </div>
+                </div>
+                
+                <div className="grant-requirements">
+                  <span className="requirements-label">Required Skills</span>
+                  <div className="requirements-tags">
+                    {grant.requirements.map((req, index) => (
+                      <span key={index} className="requirement-tag">
+                        {req}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="grant-milestones">
+                  <span className="milestones-label">Key Milestones</span>
+                  <ul className="milestones-list">
+                    {grant.milestones.slice(0, 3).map((milestone, index) => (
+                      <li key={index}>
+                        <span className="milestone-bullet">•</span>
+                        {milestone}
+                      </li>
+                    ))}
+                    {grant.milestones.length > 3 && (
+                      <li className="milestone-more">...and {grant.milestones.length - 3} more</li>
+                    )}
+                  </ul>
+                </div>
+                
+                <div className="grant-actions">
+                  <button 
+                    className={`apply-btn ${
+                      grant.status === 'available' ? 'active' : 'disabled'
+                    }`}
+                    disabled={grant.status !== 'available'}
+                  >
+                    {grant.status === 'available' ? 'Apply for Grant' : 'Not Available'}
+                  </button>
                 </div>
               </div>
-              
-              <p className="text-gray-300 mb-4">{grant.description}</p>
-              
-              <div className="grid grid-cols-3 gap-4 mb-4">
-                <div>
-                  <div className="text-sm text-gray-400">Token Reward</div>
-                  <div className="font-bold text-green-400">{grant.reward}</div>
-                </div>
-                <div>
-                  <div className="text-sm text-gray-400">Equity</div>
-                  <div className="font-bold text-purple-400">{grant.equity}</div>
-                </div>
-                <div>
-                  <div className="text-sm text-gray-400">Timeline</div>
-                  <div className="font-bold text-blue-400">{grant.timeline}</div>
-                </div>
-              </div>
-              
-              <div className="mb-4">
-                <div className="text-sm text-gray-400 mb-2">Required Skills</div>
-                <div className="flex flex-wrap gap-2">
-                  {grant.requirements.map((req, index) => (
-                    <span key={index} className="px-2 py-1 bg-gray-700 text-gray-300 rounded text-xs">
-                      {req}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              
-              <div className="mb-6">
-                <div className="text-sm text-gray-400 mb-2">Key Milestones</div>
-                <ul className="text-sm text-gray-300 space-y-1">
-                  {grant.milestones.slice(0, 3).map((milestone, index) => (
-                    <li key={index} className="flex items-start gap-2">
-                      <span className="text-pink-400 mt-1">•</span>
-                      {milestone}
-                    </li>
-                  ))}
-                  {grant.milestones.length > 3 && (
-                    <li className="text-gray-400">...and {grant.milestones.length - 3} more</li>
-                  )}
-                </ul>
-              </div>
-              
-              <div className="flex gap-3">
-                <button 
-                  className={`flex-1 px-4 py-2 rounded font-semibold transition-colors ${
-                    grant.status === 'available' 
-                      ? 'bg-pink-500 hover:bg-pink-600 text-white' 
-                      : 'bg-gray-700 text-gray-400 cursor-not-allowed'
-                  }`}
-                  disabled={grant.status !== 'available'}
-                >
-                  {grant.status === 'available' ? 'Apply for Grant' : 'Not Available'}
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </section>
 
         {/* Application Process */}
-        <div className="bg-gradient-to-r from-pink-500/10 to-purple-500/10 border border-pink-500/30 rounded-lg p-8 mb-16">
-          <h3 className="text-2xl font-bold text-center mb-8">Grant Application Process</h3>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-4">
-                1
-              </div>
-              <h4 className="font-semibold mb-2">Submit Proposal</h4>
-              <p className="text-gray-400 text-sm">Submit a detailed proposal with timeline and approach</p>
+        <section className="process-section">
+          <h2>Grant Application Process</h2>
+          <div className="process-steps">
+            <div className="step">
+              <div className="step-number">1</div>
+              <h3>Submit Proposal</h3>
+              <p>Submit detailed proposal with timeline and technical approach</p>
             </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-4">
-                2
-              </div>
-              <h4 className="font-semibold mb-2">Technical Review</h4>
-              <p className="text-gray-400 text-sm">Technical evaluation and team interview</p>
+            <div className="step">
+              <div className="step-number">2</div>
+              <h3>Technical Review</h3>
+              <p>Technical evaluation and team interview process</p>
             </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-4">
-                3
-              </div>
-              <h4 className="font-semibold mb-2">Grant Approval</h4>
-              <p className="text-gray-400 text-sm">Approval and milestone agreement</p>
+            <div className="step">
+              <div className="step-number">3</div>
+              <h3>Grant Approval</h3>
+              <p>Approval and milestone agreement finalization</p>
             </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-4">
-                4
-              </div>
-              <h4 className="font-semibold mb-2">Development</h4>
-              <p className="text-gray-400 text-sm">Build with ongoing support and milestone payments</p>
+            <div className="step">
+              <div className="step-number">4</div>
+              <h3>Development</h3>
+              <p>Build with ongoing support and milestone payments</p>
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* Call to Action */}
-        <div className="text-center">
-          <div className="bg-gradient-to-r from-pink-500/10 to-purple-500/10 border border-pink-500/30 rounded-lg p-8 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4">Ready to Build the Future?</h3>
-            <p className="text-gray-300 mb-6">
-              Apply for a grant and help build the next generation of decentralized video platform.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <button className="flex items-center gap-2 px-6 py-3 bg-pink-500 hover:bg-pink-600 text-white font-semibold rounded-lg transition-colors">
-                <Flower2 className="w-4 h-4" />
-                Apply for Grant
-              </button>
-              <a 
-                href="/contracts"
-                className="flex items-center gap-2 px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors"
-              >
-                <Code className="w-4 h-4" />
-                Browse Smaller Contracts
-              </a>
-              <a 
-                href="https://github.com/bitcoin-apps-suite/bitcoin-video"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 bg-gray-600 hover:bg-gray-500 text-white font-semibold rounded-lg transition-colors"
-              >
-                <Github className="w-4 h-4" />
-                View GitHub
-              </a>
-            </div>
+        {/* CTA Section */}
+        <section className="cta-section">
+          <h2>Ready to Build the Future?</h2>
+          <div className="cta-buttons">
+            <button className="cta-btn primary">
+              <Flower2 className="w-4 h-4" />
+              Apply for Grant
+            </button>
+            <a 
+              href="/commissions"
+              className="cta-btn secondary"
+            >
+              <Code className="w-4 h-4" />
+              Browse Smaller Contracts
+            </a>
+            <a 
+              href="https://github.com/bitcoin-apps-suite/bitcoin-video"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cta-btn secondary"
+            >
+              <Github className="w-4 h-4" />
+              View GitHub
+            </a>
           </div>
-        </div>
+        </section>
+          </div>
+        </ResponsiveLayout>
+        
+        <DevSidebar />
+        <MinimalDock />
       </div>
-    </div>
   )
 }

@@ -90,7 +90,7 @@ export default function StudioPage() {
                 <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
               </button>
               <div className="flex items-center gap-2">
-                <div className="p-1.5 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg">
+                <div className="p-1.5 bg-gradient-to-br from-red-600 to-yellow-500 rounded-lg">
                   <Bitcoin className="w-5 h-5" />
                 </div>
                 <span className="font-bold text-lg">Bitcoin Video Studio</span>
@@ -134,10 +134,10 @@ export default function StudioPage() {
                 <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
               </Link>
               <div className="flex items-center gap-3">
-                <div className="p-1.5 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg">
+                <div className="p-1.5 bg-gradient-to-br from-red-600 to-yellow-500 rounded-xl shadow-lg">
                   <Bitcoin className="w-6 h-6" />
                 </div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-red-400 to-yellow-500 bg-clip-text text-transparent">
                   Bitcoin Video Studio
                 </h1>
               </div>
@@ -153,7 +153,7 @@ export default function StudioPage() {
               />
               <label
                 htmlFor="studio-upload"
-                className="px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg font-medium cursor-pointer hover:from-orange-600 hover:to-orange-700 transition-all duration-300 flex items-center gap-2 shadow-lg"
+                className="px-4 py-2 bg-gradient-to-r from-red-600 to-yellow-500 rounded-lg font-medium cursor-pointer hover:from-red-700 hover:to-yellow-500 transition-all duration-300 flex items-center gap-2 shadow-lg"
               >
                 <Upload className="w-4 h-4" />
                 Import Video
@@ -174,7 +174,7 @@ export default function StudioPage() {
       <div className="max-w-7xl mx-auto p-6 lg:p-8">
         {/* Welcome Section */}
         <div className="mb-8">
-          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-orange-500/20 via-orange-600/10 to-yellow-500/20 p-8 border border-orange-500/20 backdrop-blur-sm shadow-2xl">
+          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-red-600/20 via-yellow-500/10 to-yellow-500/20 p-8 border border-red-600/20 backdrop-blur-sm shadow-2xl">
             <h2 className="text-3xl font-bold mb-3 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               Professional Video Studio
             </h2>
@@ -184,7 +184,7 @@ export default function StudioPage() {
             <div className="flex gap-4">
               <button
                 onClick={createNewProject}
-                className="px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-orange-500/25 transform hover:scale-105"
+                className="px-6 py-3 bg-gradient-to-r from-red-600 to-yellow-500 rounded-xl font-semibold hover:from-red-700 hover:to-yellow-500 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-red-600/25 transform hover:scale-105"
               >
                 <Plus className="w-5 h-5" />
                 Start Creating
@@ -222,7 +222,7 @@ export default function StudioPage() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => openProject(project)}
-                  className="bg-white/5 rounded-xl border border-white/10 overflow-hidden cursor-pointer hover:border-orange-500/30 transition-all duration-300 group"
+                  className="bg-white/5 rounded-xl border border-white/10 overflow-hidden cursor-pointer hover:border-red-600/30 transition-all duration-300 group"
                 >
                   <div className="aspect-video relative">
                     <img 
@@ -248,7 +248,7 @@ export default function StudioPage() {
                   </div>
                   
                   <div className="p-4">
-                    <h4 className="font-semibold mb-2 group-hover:text-orange-400 transition-colors">
+                    <h4 className="font-semibold mb-2 group-hover:text-red-400 transition-colors">
                       {project.name}
                     </h4>
                     <div className="flex items-center gap-2 text-sm text-gray-400">
@@ -268,7 +268,7 @@ export default function StudioPage() {
               </p>
               <button
                 onClick={createNewProject}
-                className="px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg font-medium hover:from-orange-600 hover:to-orange-700 transition-all duration-300 flex items-center gap-2 mx-auto"
+                className="px-6 py-3 bg-gradient-to-r from-red-600 to-yellow-500 rounded-lg font-medium hover:from-red-700 hover:to-yellow-500 transition-all duration-300 flex items-center gap-2 mx-auto"
               >
                 <Plus className="w-5 h-5" />
                 Create First Project

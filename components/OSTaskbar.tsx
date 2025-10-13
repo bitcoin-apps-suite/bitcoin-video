@@ -19,7 +19,7 @@ export default function OSTaskbar({ currentPage }: TaskbarProps) {
     <div className="flex fixed top-12 left-0 right-0 h-8 bg-gray-900/95 backdrop-blur-sm border-b border-gray-700 z-[99996] items-center justify-between px-4">
       <div className="flex items-center space-x-2">
         <button className="p-1 hover:bg-white/10 rounded transition-colors">
-          <Bitcoin className="w-4 h-4 text-orange-500" />
+          <Bitcoin className="w-4 h-4 text-red-600" />
         </button>
         
         <div className="border-l border-gray-600 h-4 mx-2" />
@@ -35,7 +35,7 @@ export default function OSTaskbar({ currentPage }: TaskbarProps) {
                 href={page.href}
                 className={`px-3 py-1 rounded text-xs transition-colors flex items-center gap-1 ${
                   isActive 
-                    ? 'bg-orange-500 text-black' 
+                    ? 'bg-red-600 text-black' 
                     : 'bg-gray-800 hover:bg-gray-700 text-white'
                 }`}
               >

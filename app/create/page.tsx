@@ -32,8 +32,8 @@ import Link from 'next/link'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import TopMenuBar from '@/components/TopMenuBar'
 import DevSidebar from '@/components/DevSidebar'
-import Dock from '@/components/Dock'
-import { DevSidebarProvider } from '@/components/DevSidebarProvider'
+import MinimalDock from '@/components/MinimalDock'
+
 import ResponsiveLayout from '@/components/ResponsiveLayout'
 import BitcoinVideoStudio from '@/components/BitcoinVideoStudio'
 
@@ -65,7 +65,7 @@ export default function CreatePage() {
       title: 'Government Tech Comedy',
       description: 'Politicians who debate tech they don\'t understand',
       icon: <BarChart3 className="w-5 h-5" />,
-      color: 'from-red-500 to-orange-500',
+      color: 'from-red-500 to-red-600',
       estimatedTime: '2 mins',
       apiCost: '$0.04'
     },
@@ -92,7 +92,7 @@ export default function CreatePage() {
       title: 'Format War Generator',
       description: 'Classic tech debates with modern twists',
       icon: <TrendingUp className="w-5 h-5" />,
-      color: 'from-yellow-500 to-orange-500',
+      color: 'from-yellow-500 to-red-600',
       estimatedTime: '1 min',
       apiCost: '$0.03'
     },
@@ -138,7 +138,7 @@ export default function CreatePage() {
   }
 
   return (
-    <DevSidebarProvider>
+    
       <div className="min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white antialiased pb-24">
       <ProofOfConceptBar />
       <TopMenuBar />
@@ -150,10 +150,10 @@ export default function CreatePage() {
               <Link href="/" className="p-2.5 hover:bg-white/10 rounded-xl transition-all duration-200 group">
                 <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
               </Link>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">Create Bitcoin Content</h1>
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-red-400 to-yellow-500 bg-clip-text text-transparent">Create Bitcoin Content</h1>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-500/10 to-yellow-500/10 rounded-xl border border-orange-500/20 shadow-lg">
-              <DollarSign className="w-4 h-4 text-orange-500" />
+            <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-600/10 to-yellow-500/10 rounded-xl border border-red-600/20 shadow-lg">
+              <DollarSign className="w-4 h-4 text-red-600" />
               <span className="text-sm">Credits: 1,245</span>
             </div>
           </div>
@@ -168,7 +168,7 @@ export default function CreatePage() {
             onClick={() => setActiveTab('auto-generate')}
             className={`px-6 py-4 font-semibold transition-all duration-300 relative ${
               activeTab === 'auto-generate' 
-                ? 'text-orange-400' 
+                ? 'text-red-400' 
                 : 'text-gray-500 hover:text-gray-300'
             }`}
           >
@@ -177,14 +177,14 @@ export default function CreatePage() {
               AI Automation
             </span>
             {activeTab === 'auto-generate' && (
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-500" />
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-red-600" />
             )}
           </button>
           <button
             onClick={() => setActiveTab('browser-editor')}
             className={`px-6 py-4 font-semibold transition-all duration-300 relative ${
               activeTab === 'browser-editor' 
-                ? 'text-orange-400' 
+                ? 'text-red-400' 
                 : 'text-gray-500 hover:text-gray-300'
             }`}
           >
@@ -193,14 +193,14 @@ export default function CreatePage() {
               Browser Editor
             </span>
             {activeTab === 'browser-editor' && (
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-500" />
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-red-600" />
             )}
           </button>
           <button
             onClick={() => setActiveTab('manual-upload')}
             className={`px-6 py-3 font-medium transition-all relative ${
               activeTab === 'manual-upload' 
-                ? 'text-orange-500' 
+                ? 'text-red-600' 
                 : 'text-gray-400 hover:text-white'
             }`}
           >
@@ -209,7 +209,7 @@ export default function CreatePage() {
               Manual Upload
             </span>
             {activeTab === 'manual-upload' && (
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-500" />
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-red-600" />
             )}
           </button>
         </div>
@@ -228,7 +228,7 @@ export default function CreatePage() {
                     onClick={() => setSelectedWorkflow(workflow.id)}
                     className={`relative p-6 rounded-2xl border text-left transition-all duration-300 ${
                       selectedWorkflow === workflow.id
-                        ? 'border-orange-500/50 bg-gradient-to-br from-orange-500/15 to-orange-600/10 shadow-xl shadow-orange-500/10'
+                        ? 'border-red-600/50 bg-gradient-to-br from-red-600/15 to-yellow-500/10 shadow-xl shadow-red-600/10'
                         : 'border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10'
                     }`}
                   >
@@ -263,7 +263,7 @@ export default function CreatePage() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium mb-2">Source</label>
-                    <select className="w-full px-4 py-2 bg-black/50 border border-white/20 rounded-lg focus:outline-none focus:border-orange-500">
+                    <select className="w-full px-4 py-2 bg-black/50 border border-white/20 rounded-lg focus:outline-none focus:border-red-600">
                       <option>Latest Bitcoin News</option>
                       <option>Top Reddit Posts</option>
                       <option>Twitter Trending</option>
@@ -272,7 +272,7 @@ export default function CreatePage() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-2">Video Style</label>
-                    <select className="w-full px-4 py-2 bg-black/50 border border-white/20 rounded-lg focus:outline-none focus:border-orange-500">
+                    <select className="w-full px-4 py-2 bg-black/50 border border-white/20 rounded-lg focus:outline-none focus:border-red-600">
                       <option>Educational</option>
                       <option>News Report</option>
                       <option>Technical Analysis</option>
@@ -281,7 +281,7 @@ export default function CreatePage() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-2">Duration</label>
-                    <select className="w-full px-4 py-2 bg-black/50 border border-white/20 rounded-lg focus:outline-none focus:border-orange-500">
+                    <select className="w-full px-4 py-2 bg-black/50 border border-white/20 rounded-lg focus:outline-none focus:border-red-600">
                       <option>Short (30s - 1min)</option>
                       <option>Medium (2-5 mins)</option>
                       <option>Long (5-10 mins)</option>
@@ -290,7 +290,7 @@ export default function CreatePage() {
                   <div>
                     <label className="block text-sm font-medium mb-2">Platforms</label>
                     <div className="flex gap-2">
-                      <button className="px-4 py-2 bg-orange-500/20 border border-orange-500 rounded-lg">YouTube</button>
+                      <button className="px-4 py-2 bg-red-600/20 border border-red-600 rounded-lg">YouTube</button>
                       <button className="px-4 py-2 bg-white/10 border border-white/20 rounded-lg hover:bg-white/20">TikTok</button>
                       <button className="px-4 py-2 bg-white/10 border border-white/20 rounded-lg hover:bg-white/20">Twitter</button>
                     </div>
@@ -303,7 +303,7 @@ export default function CreatePage() {
                     whileTap={{ scale: 0.95 }}
                     onClick={handleGenerateVideo}
                     disabled={generating}
-                    className="px-8 py-3 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-lg font-bold flex items-center gap-2 disabled:opacity-50"
+                    className="px-8 py-3 bg-gradient-to-r from-red-600 to-yellow-500 rounded-lg font-bold flex items-center gap-2 disabled:opacity-50"
                   >
                     {generating ? (
                       <>
@@ -335,7 +335,7 @@ export default function CreatePage() {
                 <div className="grid md:grid-cols-3 gap-4">
                   {generatedVideos.map((video) => (
                     <div key={video.id} className="bg-white/5 rounded-xl border border-white/10 p-4">
-                      <div className="aspect-video bg-gradient-to-br from-orange-500/20 to-yellow-500/20 rounded-lg mb-3 flex items-center justify-center">
+                      <div className="aspect-video bg-gradient-to-br from-red-600/20 to-yellow-500/20 rounded-lg mb-3 flex items-center justify-center">
                         <Play className="w-12 h-12 text-white/50" />
                       </div>
                       <h4 className="font-medium mb-2">{video.title}</h4>
@@ -345,7 +345,7 @@ export default function CreatePage() {
                         <span>{video.quality}</span>
                       </div>
                       <div className="flex gap-2">
-                        <button className="flex-1 px-3 py-2 bg-orange-500 rounded-lg text-sm font-medium hover:bg-orange-600">
+                        <button className="flex-1 px-3 py-2 bg-red-600 rounded-lg text-sm font-medium hover:bg-red-700">
                           Deploy
                         </button>
                         <button className="px-3 py-2 bg-white/10 rounded-lg text-sm hover:bg-white/20">
@@ -411,7 +411,7 @@ export default function CreatePage() {
               />
               <label
                 htmlFor="video-upload"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 rounded-lg font-medium cursor-pointer hover:bg-orange-600 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 rounded-lg font-medium cursor-pointer hover:bg-red-700 transition-colors"
               >
                 <Upload className="w-5 h-5" />
                 Select Video
@@ -426,8 +426,8 @@ export default function CreatePage() {
       </ResponsiveLayout>
       
       <DevSidebar />
-      <Dock />
+      <MinimalDock />
     </div>
-    </DevSidebarProvider>
+    
   )
 }

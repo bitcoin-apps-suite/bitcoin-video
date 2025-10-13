@@ -25,20 +25,13 @@
   text-align: center;
   margin-bottom: 40px;
   background: #000000;
-  /* Full viewport width - properly centered */
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
-  margin-top: -24px;
-  width: 100vw;
-  position: relative;
-  left: 0;
-  right: 0;
+  width: 100%;
 }
 
 .token-badge {
   display: inline-block;
   padding: 8px 20px;
-  background: linear-gradient(90deg, #f97316, #ea580c);
+  background: linear-gradient(90deg, #dc2626, #f59e0b);
   border-radius: 100px;
   font-size: 14px;
   font-weight: 500;
@@ -46,7 +39,7 @@
   text-transform: uppercase;
   margin-top: 20px;
   color: #fff;
-  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
 }
 
 .token-hero h1 {
@@ -107,7 +100,7 @@ section h2 {
 
 .philosophy-content strong {
   font-weight: 500;
-  color: #f97316;
+  color: #dc2626;
 }
 
 .philosophy-points {
@@ -120,7 +113,7 @@ section h2 {
 .point {
   padding: 20px;
   text-align: left;
-  border-left: 2px solid #f97316;
+  border-left: 2px solid #dc2626;
   padding-left: 20px;
 }
 
@@ -132,7 +125,7 @@ section h2 {
   font-size: 16px;
   font-weight: 400;
   margin: 0 0 8px 0;
-  color: #f97316;
+  color: #dc2626;
   letter-spacing: 0;
 }
 
@@ -158,7 +151,7 @@ section h2 {
 }
 
 .model-card.warning {
-  border-left-color: rgba(249, 115, 22, 0.3);
+  border-left-color: rgba(220, 38, 38, 0.3);
 }
 
 .model-card h3 {
@@ -189,7 +182,7 @@ section h2 {
 }
 
 .model-card li strong {
-  color: #f97316;
+  color: #dc2626;
   font-weight: 500;
   margin-right: 8px;
 }
@@ -218,7 +211,7 @@ section h2 {
   font-weight: 300;
   margin-bottom: 24px;
   text-align: center;
-  color: #f97316;
+  color: #dc2626;
   letter-spacing: -0.5px;
 }
 
@@ -240,13 +233,13 @@ section h2 {
 }
 
 .stream:hover {
-  border-color: rgba(249, 115, 22, 0.3);
+  border-color: rgba(220, 38, 38, 0.3);
   background: rgba(255, 255, 255, 0.01);
 }
 
 .stream.featured {
-  border-color: #f97316;
-  background: rgba(249, 115, 22, 0.01);
+  border-color: #dc2626;
+  background: rgba(220, 38, 38, 0.01);
 }
 
 .stream.featured::before {
@@ -255,7 +248,7 @@ section h2 {
   top: -8px;
   left: 50%;
   transform: translateX(-50%);
-  background: #f97316;
+  background: #dc2626;
   color: #fff;
   padding: 2px 8px;
   border-radius: 100px;
@@ -268,7 +261,7 @@ section h2 {
   font-size: 18px;
   font-weight: 400;
   margin: 0 0 10px 0;
-  color: #f97316;
+  color: #dc2626;
 }
 
 .stream p {
@@ -288,7 +281,7 @@ section h2 {
 
 .value-flow {
   background: transparent;
-  border: 1px solid rgba(249, 115, 22, 0.2);
+  border: 1px solid rgba(220, 38, 38, 0.2);
   border-radius: 4px;
   padding: 24px;
 }
@@ -298,7 +291,7 @@ section h2 {
   font-weight: 300;
   margin: 0 0 20px 0;
   text-align: center;
-  color: #f97316;
+  color: #dc2626;
 }
 
 .flow-diagram {
@@ -323,7 +316,7 @@ section h2 {
 }
 
 .flow-item .arrow {
-  color: #f97316;
+  color: #dc2626;
   font-size: 14px;
 }
 
@@ -343,7 +336,7 @@ section h2 {
 .step {
   text-align: left;
   padding: 16px;
-  border-left: 2px solid rgba(249, 115, 22, 0.3);
+  border-left: 2px solid rgba(220, 38, 38, 0.3);
   padding-left: 16px;
 }
 
@@ -351,14 +344,14 @@ section h2 {
   width: 32px;
   height: 32px;
   background: transparent;
-  border: 1px solid #f97316;
+  border: 1px solid #dc2626;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-size: 16px;
   font-weight: 300;
-  color: #f97316;
+  color: #dc2626;
   margin-bottom: 12px;
 }
 
@@ -379,7 +372,7 @@ section h2 {
 
 .contribution-examples {
   background: transparent;
-  border-left: 2px solid rgba(249, 115, 22, 0.3);
+  border-left: 2px solid rgba(220, 38, 38, 0.3);
   padding-left: 24px;
   max-width: 800px;
   margin: 0 auto;
@@ -389,7 +382,7 @@ section h2 {
   font-size: 18px;
   font-weight: 300;
   margin: 0 0 16px 0;
-  color: #f97316;
+  color: #dc2626;
 }
 
 .contribution-examples ul {
@@ -438,7 +431,7 @@ section h2 {
 }
 
 .stat:hover {
-  border-color: rgba(249, 115, 22, 0.3);
+  border-color: rgba(220, 38, 38, 0.3);
   background: rgba(255, 255, 255, 0.01);
 }
 
@@ -454,7 +447,7 @@ section h2 {
 .stat-value {
   font-size: 32px;
   font-weight: 200;
-  color: #f97316;
+  color: #dc2626;
   margin: 0 0 4px 0;
   letter-spacing: -1px;
 }
@@ -473,7 +466,7 @@ section h2 {
 
 .legal-content {
   background: transparent;
-  border-left: 2px solid rgba(249, 115, 22, 0.3);
+  border-left: 2px solid rgba(220, 38, 38, 0.3);
   border-radius: 0;
   padding: 0 0 0 24px;
   max-width: 900px;
@@ -493,7 +486,7 @@ section h2 {
 }
 
 .legal-content strong {
-  color: #f97316;
+  color: #dc2626;
   font-weight: 500;
 }
 
@@ -534,25 +527,25 @@ section h2 {
 }
 
 .cta-btn.primary {
-  background: linear-gradient(90deg, #f97316, #ea580c);
+  background: linear-gradient(90deg, #dc2626, #f59e0b);
   color: #fff;
   border: none;
 }
 
 .cta-btn.primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.3);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.3);
 }
 
 .cta-btn.secondary {
   background: transparent;
-  color: #f97316;
-  border: 1px solid rgba(249, 115, 22, 0.5);
+  color: #dc2626;
+  border: 1px solid rgba(220, 38, 38, 0.5);
 }
 
 .cta-btn.secondary:hover {
-  background: rgba(249, 115, 22, 0.05);
-  border-color: #f97316;
+  background: rgba(220, 38, 38, 0.05);
+  border-color: #dc2626;
 }
 
 .cta-btn svg {

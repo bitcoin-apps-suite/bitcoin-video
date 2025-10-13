@@ -6,9 +6,9 @@
 :root {
   --background: #000000;
   --foreground: #ffffff;
-  --orange-primary: #f97316;
+  --orange-primary: #dc2626;
   --orange-secondary: #fb923c;
-  --orange-glow: rgba(249, 115, 22, 0.4);
+  --orange-glow: rgba(220, 38, 38, 0.4);
 }
 
 * {
@@ -29,6 +29,8 @@ body {
   font-feature-settings: "rlig" 1, "calt" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  padding-bottom: 32px;
 }
 
 /* Main app container responsive padding */
@@ -87,17 +89,17 @@ body {
   
   .btn-primary {
     padding: 0.75rem 1.5rem;
-    background: linear-gradient(to right, #f97316, #ea580c);
+    background: linear-gradient(to right, #dc2626, #f59e0b);
     border-radius: 0.75rem;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 10px 25px -5px rgba(249, 115, 22, 0.25);
+    box-shadow: 0 10px 25px -5px rgba(220, 38, 38, 0.25);
   }
   
   .btn-primary:hover {
-    background: linear-gradient(to right, #ea580c, #dc2626);
+    background: linear-gradient(to right, #f59e0b, #dc2626);
     transform: scale(1.05);
-    box-shadow: 0 20px 25px -5px rgba(249, 115, 22, 0.35);
+    box-shadow: 0 20px 25px -5px rgba(220, 38, 38, 0.35);
   }
   
   .btn-secondary {
@@ -125,7 +127,7 @@ body {
   }
   
   .text-gradient {
-    background: linear-gradient(to right, #fb923c, #f97316);
+    background: linear-gradient(to right, #fb923c, #dc2626);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

@@ -97,8 +97,8 @@
 }
 
 .bapps-menu-item.current {
-  background: rgba(249, 115, 22, 0.1);
-  border-left: 3px solid #f97316;
+  background: rgba(220, 38, 38, 0.1);
+  border-left: 3px solid #dc2626;
 }
 
 .bapps-menu-item.disabled {
@@ -129,8 +129,8 @@
 }
 
 .bapps-menu-item.current .bapps-menu-badge {
-  background: rgba(249, 115, 22, 0.2);
-  color: #f97316;
+  background: rgba(220, 38, 38, 0.2);
+  color: #dc2626;
 }
 
 .bapps-menu-item.disabled .bapps-menu-badge {
@@ -148,7 +148,7 @@
 .bitcoin-symbol {
   font-size: 14px;
   font-weight: 500;
-  color: #f97316;
+  color: #dc2626;
   opacity: 0.9;
 }
 
@@ -346,7 +346,7 @@
     justify-content: center;
     font-size: 14px;
     font-weight: 400;
-    color: #f97316;
+    color: #dc2626;
     cursor: pointer;
     background: transparent;
     border: none;
@@ -415,7 +415,7 @@
   
   .mobile-menu-item:hover,
   .mobile-menu-item:active {
-    background: rgba(249, 115, 22, 0.2);
+    background: rgba(220, 38, 38, 0.2);
   }
   
   .taskbar-status {

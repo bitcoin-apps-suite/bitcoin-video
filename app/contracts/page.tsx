@@ -258,13 +258,13 @@ export default function ContractsPage() {
       <div className="container mx-auto px-6 py-12">
         {/* Hero Section */}
         <div className="text-center mb-12">
-          <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
+          <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-red-400 to-red-500 bg-clip-text text-transparent">
             Developer Contracts
           </h1>
           <p className="text-xl text-gray-300 mb-6">
             Build features, earn $BVIDEO tokens & platform equity
           </p>
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500/20 border border-orange-500/50 rounded-full text-orange-300 text-sm font-semibold">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-600/20 border border-red-600/50 rounded-full text-red-300 text-sm font-semibold">
             <Code className="w-4 h-4" />
             DEVELOPER OPPORTUNITIES
           </div>
@@ -299,25 +299,25 @@ export default function ContractsPage() {
         </div>
 
         {/* Token Allocation Info */}
-        <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/30 rounded-lg p-6 mb-12">
+        <div className="bg-gradient-to-r from-red-600/10 to-red-500/10 border border-red-600/30 rounded-lg p-6 mb-12">
           <div className="flex items-start gap-4">
-            <DollarSign className="w-8 h-8 text-orange-400 mt-1" />
+            <DollarSign className="w-8 h-8 text-red-400 mt-1" />
             <div>
-              <h3 className="text-xl font-bold text-orange-300 mb-2">$BVIDEO Developer Rewards</h3>
+              <h3 className="text-xl font-bold text-red-300 mb-2">$BVIDEO Developer Rewards</h3>
               <p className="text-gray-300 mb-3">
                 We're offering <strong>substantial $BVIDEO token rewards</strong> to developers who help build out the platform.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                 <div>
-                  <strong className="text-orange-300">Total Supply:</strong><br />
+                  <strong className="text-red-300">Total Supply:</strong><br />
                   1,000,000,000 $BVIDEO
                 </div>
                 <div>
-                  <strong className="text-orange-300">Developer Rewards:</strong><br />
+                  <strong className="text-red-300">Developer Rewards:</strong><br />
                   Substantial token allocation
                 </div>
                 <div>
-                  <strong className="text-orange-300">Plus Equity:</strong><br />
+                  <strong className="text-red-300">Plus Equity:</strong><br />
                   Platform ownership shares
                 </div>
               </div>
@@ -327,7 +327,7 @@ export default function ContractsPage() {
 
         {loading ? (
           <div className="text-center py-12">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-red-600"></div>
             <p className="mt-4 text-gray-400">Loading developer contracts...</p>
           </div>
         ) : (
@@ -335,7 +335,7 @@ export default function ContractsPage() {
             {contracts.map(contract => (
               <div 
                 key={contract.id} 
-                className={`bg-gray-800/50 backdrop-blur border border-gray-700 rounded-lg p-6 hover:border-orange-500/50 transition-all cursor-pointer ${
+                className={`bg-gray-800/50 backdrop-blur border border-gray-700 rounded-lg p-6 hover:border-red-600/50 transition-all cursor-pointer ${
                   contract.status !== 'available' ? 'opacity-75' : ''
                 }`}
                 onClick={() => contract.status === 'available' && setSelectedContract(contract)}
@@ -363,7 +363,7 @@ export default function ContractsPage() {
                   >
                     {contract.priority}
                   </span>
-                  <span className="text-orange-400 font-bold">{contract.reward}</span>
+                  <span className="text-red-400 font-bold">{contract.reward}</span>
                   <span className="text-gray-400 flex items-center gap-1">
                     <Clock className="w-3 h-3" />
                     {contract.estimatedHours}h
@@ -429,7 +429,7 @@ export default function ContractsPage() {
                 >
                   {selectedContract.priority} Priority
                 </span>
-                <span className="px-3 py-1 bg-orange-500 text-white font-bold rounded">
+                <span className="px-3 py-1 bg-red-600 text-white font-bold rounded">
                   {selectedContract.reward}
                 </span>
                 <span className="px-3 py-1 bg-gray-700 text-gray-300 rounded flex items-center gap-1">
@@ -460,7 +460,7 @@ export default function ContractsPage() {
                   <ul className="text-gray-300 space-y-1">
                     {selectedContract.deliverables.map((deliverable, index) => (
                       <li key={index} className="flex items-start gap-2">
-                        <span className="text-orange-400 mt-1">•</span>
+                        <span className="text-red-400 mt-1">•</span>
                         {deliverable}
                       </li>
                     ))}
@@ -479,7 +479,7 @@ export default function ContractsPage() {
                   View on GitHub
                 </a>
                 <button 
-                  className="px-6 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded font-semibold transition-colors"
+                  className="px-6 py-2 bg-red-600 hover:bg-red-700 text-white rounded font-semibold transition-colors"
                   onClick={() => setShowClaimModal(true)}
                 >
                   Claim Contract
@@ -511,7 +511,7 @@ export default function ContractsPage() {
                     value={claimForm.githubUsername}
                     onChange={(e) => setClaimForm({...claimForm, githubUsername: e.target.value})}
                     placeholder="your-github-username"
-                    className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white placeholder-gray-400 focus:border-orange-500 focus:outline-none"
+                    className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white placeholder-gray-400 focus:border-red-600 focus:outline-none"
                   />
                 </div>
                 
@@ -522,7 +522,7 @@ export default function ContractsPage() {
                     value={claimForm.handcashHandle}
                     onChange={(e) => setClaimForm({...claimForm, handcashHandle: e.target.value})}
                     placeholder="$yourhandle"
-                    className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white placeholder-gray-400 focus:border-orange-500 focus:outline-none"
+                    className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white placeholder-gray-400 focus:border-red-600 focus:outline-none"
                   />
                 </div>
                 
@@ -534,7 +534,7 @@ export default function ContractsPage() {
                     onChange={(e) => setClaimForm({...claimForm, estimatedDays: parseInt(e.target.value) || 7})}
                     min="1"
                     max="30"
-                    className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white focus:border-orange-500 focus:outline-none"
+                    className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-white focus:border-red-600 focus:outline-none"
                   />
                 </div>
                 
@@ -546,7 +546,7 @@ export default function ContractsPage() {
                     Cancel
                   </button>
                   <button 
-                    className="flex-1 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded font-semibold transition-colors disabled:opacity-50"
+                    className="flex-1 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded font-semibold transition-colors disabled:opacity-50"
                     onClick={handleClaimContract}
                     disabled={!claimForm.githubUsername}
                   >
