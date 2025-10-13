@@ -7,6 +7,7 @@ import ResponsiveLayout from '@/components/ResponsiveLayout'
 import MinimalDock from '@/components/MinimalDock'
 import TopMenuBar from '@/components/TopMenuBar'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
+import TickerSidebar from '@/components/TickerSidebar'
 import './token.css'
 
 export default function TokenPage() {
@@ -309,6 +310,7 @@ export default function TokenPage() {
         </ResponsiveLayout>
         
         <DevSidebar />
+        <TickerSidebar userHandle="bvideo" />
         <MinimalDock />
       </div>
   );

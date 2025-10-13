@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Store, FileText, Clock, Wifi, Battery, Wallet, Mail, Music, HardDrive, Calendar, Search, Table, Share2, Briefcase, TrendingUp, Building2, Shield, Video, Code2, Camera, MapPin, MessageCircle, Users, Gamepad2, BookOpen, Globe, Box } from 'lucide-react';
+import { Store, FileText, Clock, Wifi, Battery, Wallet, Mail, Music, HardDrive, Calendar, Search, Table, Share2, Briefcase, TrendingUp, Building2, Shield, Video, Code2, Camera, MapPin, MessageCircle, Users, Gamepad2, BookOpen, Globe, Box, Monitor } from 'lucide-react';
 import './MinimalDock.css';
 
 interface DockApp {
@@ -52,6 +52,7 @@ const MinimalDock: React.FC = () => {
   };
 
   const dockApps: DockApp[] = [
+    { id: 'bitcoin-os', name: 'Bitcoin OS', icon: Monitor, color: 'rainbow', url: 'https://bitcoin-os.vercel.app/' },
     { id: 'bapps-store', name: 'Bitcoin Apps Store', icon: Store, color: 'rainbow', url: 'https://www.bitcoinapps.store/', isImage: true },
     { name: 'Bitcoin Wallet', icon: Wallet, color: 'rainbow', url: 'https://bitcoin-wallet-sable.vercel.app' },
     { name: 'Bitcoin Email', icon: Mail, color: 'rainbow', url: 'https://bitcoin-email.vercel.app' },

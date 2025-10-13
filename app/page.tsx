@@ -35,6 +35,7 @@ import MinimalDock from '@/components/MinimalDock'
 import ResponsiveLayout from '@/components/ResponsiveLayout'
 import BitcoinVideoStudio from '@/components/BitcoinVideoStudio'
 import VideoProjectSidebar from '@/components/VideoProjectSidebar'
+import TickerSidebar from '@/components/TickerSidebar'
 
 interface Video {
   id: string
@@ -686,6 +687,7 @@ export default function BitcoinVideo() {
         </ResponsiveLayout>
         
         <DevSidebar />
+        <TickerSidebar userHandle="creator" />
         <MinimalDock />
       </div>
   )

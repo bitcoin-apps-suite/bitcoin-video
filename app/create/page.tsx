@@ -33,6 +33,7 @@ import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import TopMenuBar from '@/components/TopMenuBar'
 import DevSidebar from '@/components/DevSidebar'
 import MinimalDock from '@/components/MinimalDock'
+import TickerSidebar from '@/components/TickerSidebar'
 
 import ResponsiveLayout from '@/components/ResponsiveLayout'
 import BitcoinVideoStudio from '@/components/BitcoinVideoStudio'
@@ -426,6 +427,7 @@ export default function CreatePage() {
       </ResponsiveLayout>
       
       <DevSidebar />
+      <TickerSidebar userHandle="creator" />
       <MinimalDock />
     </div>
     
