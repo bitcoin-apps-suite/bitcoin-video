@@ -62,7 +62,7 @@ interface CreatorListing {
 }
 
 interface DocumentExchangeViewProps {
-  onSelectDocument?: (document: WritingListing) => void;
+  onSelectDocument?: (document: any) => void;
   userDocuments?: any[]; // Documents from the sidebar that can be published
   onClose?: () => void; // Optional close handler to return to editor
 }
@@ -78,10 +78,10 @@ const DocumentExchangeView: React.FC<DocumentExchangeViewProps> = ({
   const [authorCategory, setAuthorCategory] = useState<'all' | 'humans' | 'ais' | 'scientists' | 'mathematicians' | 'mothers' | 'lesbians' | 'journalists' | 'developers' | 'artists'>('all');
   const [sortBy, setSortBy] = useState<'rank' | 'revenue' | 'volume' | 'price' | 'views'>('rank');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedWriting, setSelectedWriting] = useState<WritingListing | null>(null);
-  const [selectedWriter, setSelectedWriter] = useState<WriterListing | null>(null);
-  const [writings, setWritings] = useState<WritingListing[]>([]);
-  const [writers, setWriters] = useState<WriterListing[]>([]);
+  const [selectedWriting, setSelectedWriting] = useState<any | null>(null);
+  const [selectedWriter, setSelectedWriter] = useState<any | null>(null);
+  const [writings, setWritings] = useState<any[]>([]);
+  const [writers, setWriters] = useState<any[]>([]);
   const [nftDocuments, setNftDocuments] = useState<any[]>([]);
   const [nftReaderOpen, setNftReaderOpen] = useState(false);
   const [selectedNftDocument, setSelectedNftDocument] = useState<any>(null);
@@ -149,8 +149,8 @@ const DocumentExchangeView: React.FC<DocumentExchangeViewProps> = ({
 
   // Combine user documents with mock marketplace data
   useEffect(() => {
-    // Convert user documents to WritingListing format
-    const userListings: WritingListing[] = userDocuments.map((doc, index) => ({
+    // Convert user documents to any format
+    const userListings: any[] = userDocuments.map((doc, index) => ({
       rank: index + 1,
       title: doc.title || "Untitled",
       description: doc.preview || "No description available",
@@ -175,7 +175,7 @@ const DocumentExchangeView: React.FC<DocumentExchangeViewProps> = ({
       txId: doc.id
     }));
 
-    const mockBooks: WritingListing[] = [
+    const mockBooks: any[] = [
       // Fiction Books
       {
         rank: userListings.length + 1,
@@ -634,7 +634,7 @@ const DocumentExchangeView: React.FC<DocumentExchangeViewProps> = ({
     ];
 
     // Articles data
-    const mockArticles: WritingListing[] = [
+    const mockArticles: any[] = [
       // Tech Articles
       {
         rank: 1,
@@ -1017,7 +1017,7 @@ const DocumentExchangeView: React.FC<DocumentExchangeViewProps> = ({
     ];
 
     // Blogs data
-    const mockBlogs: WritingListing[] = [
+    const mockBlogs: any[] = [
       // Personal Blogs
       {
         rank: 1,
@@ -1400,7 +1400,7 @@ const DocumentExchangeView: React.FC<DocumentExchangeViewProps> = ({
       }
     ];
 
-    const mockWriters: WriterListing[] = [
+    const mockWriters: any[] = [
       {
         rank: 1,
         name: "Dr. Raj Patel",
@@ -1787,7 +1787,7 @@ const DocumentExchangeView: React.FC<DocumentExchangeViewProps> = ({
       setWriters(filteredWriters);
     } else {
       // Get the appropriate content based on active view
-      let contentData: WritingListing[] = [];
+      let contentData: any[] = [];
       
       switch (activeView) {
         case 'books':

@@ -116,8 +116,8 @@ const TokenizeModal: React.FC<TokenizeModalProps> = ({
       royaltyPercentage,
       price: tokenPrice,
       metadata: {
-        author,
-        category,
+        creator: author,
+        genre: category,
         tags: tags.split(',').map(tag => tag.trim()).filter(tag => tag)
       }
     };
