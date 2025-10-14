@@ -102,6 +102,17 @@ export default function BitcoinVideoStudio({
     }
   }, [initialVideoFile])
 
+  // Cleanup video on unmount to prevent AbortError
+  useEffect(() => {
+    return () => {
+      if (videoRef.current) {
+        videoRef.current.pause()
+        videoRef.current.src = ''
+        videoRef.current.load()
+      }
+    }
+  }, [])
+
   // Handle tokenization
   const handleTokenize = (protocol: string, options: TokenizationOptions) => {
     console.log('Tokenizing video with protocol:', protocol, options)
@@ -111,14 +122,21 @@ export default function BitcoinVideoStudio({
     setShowTokenizeModal(false)
   }
 
-  const handlePlayPause = () => {
+  const handlePlayPause = async () => {
     if (videoRef.current) {
       if (isPlaying) {
         videoRef.current.pause()
+        setIsPlaying(false)
       } else {
-        videoRef.current.play()
+        try {
+          await videoRef.current.play()
+          setIsPlaying(true)
+        } catch (error) {
+          // Handle AbortError and other play() errors gracefully
+          console.warn('Video play interrupted:', error)
+          setIsPlaying(false)
+        }
       }
-      setIsPlaying(!isPlaying)
     }
   }
 
