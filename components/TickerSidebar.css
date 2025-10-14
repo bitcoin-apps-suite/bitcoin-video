@@ -5,9 +5,9 @@
   border-left: 1px solid #222;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 104px); /* Account for top bar (72px) and MinimalDock (32px) */
+  height: calc(100vh - 72px - 32px); /* Account for top bars and MinimalDock */
   position: fixed;
-  top: 72px; /* Below taskbar */
+  top: 40px; /* Below ProofOfConceptBar only */
   right: 0;
   bottom: 32px; /* Above MinimalDock */
   z-index: 100;
