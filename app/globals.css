@@ -38,6 +38,25 @@ body {
   padding-top: 72px; /* Desktop: POC banner (40px) + TopMenuBar (32px) */
 }
 
+/* Ticker sidebar responsive margins */
+.ticker-sidebar-expanded {
+  margin-right: 0;
+}
+
+.ticker-sidebar-collapsed {
+  margin-right: 0;
+}
+
+@media (min-width: 1200px) {
+  .ticker-sidebar-expanded {
+    margin-right: 280px; /* Full ticker sidebar width */
+  }
+  
+  .ticker-sidebar-collapsed {
+    margin-right: 60px; /* Collapsed ticker sidebar width */
+  }
+}
+
 @media (max-width: 768px) {
   .main-app-container {
     padding-top: 104px; /* Mobile: POC banner (72px) + TopMenuBar (32px) */

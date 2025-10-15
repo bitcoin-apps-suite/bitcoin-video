@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PriceService, TokenPrice as ServiceTokenPrice } from '../services/PriceService';
+import { useTickerSidebar } from './TickerSidebarProvider';
 import './TickerSidebar.css';
 
 interface TokenPrice extends ServiceTokenPrice {
@@ -28,7 +29,7 @@ const TickerSidebar: React.FC<TickerSidebarProps> = ({
   const [prices, setPrices] = useState<TokenPrice[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [lastUpdate, setLastUpdate] = useState<Date>(new Date());
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const { isCollapsed, setIsCollapsed, isVisible } = useTickerSidebar();
 
   useEffect(() => {
     // Generate trending video tokens with contract IDs
@@ -195,6 +196,11 @@ const TickerSidebar: React.FC<TickerSidebarProps> = ({
       second: '2-digit' 
     });
   };
+
+  // Don't render if not visible
+  if (!isVisible) {
+    return null;
+  }
 
   return (
     <div className={`ticker-sidebar ${isCollapsed ? 'collapsed' : ''}`}>
