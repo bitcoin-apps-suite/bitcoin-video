@@ -5,7 +5,7 @@ import { Shield, FileText, Users, CheckCircle, AlertTriangle, Scale, Lock, Eye }
 import DevSidebar from '@/components/DevSidebar'
 
 import ResponsiveLayout from '@/components/ResponsiveLayout'
-import MinimalDock from '@/components/MinimalDock'
+import DockManager from '@/components/DockManager'
 import CleanTaskbar from '@/components/CleanTaskbar'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import './compliance.css'
@@ -256,7 +256,7 @@ export default function CompliancePage() {
         </ResponsiveLayout>
         
         <DevSidebar />
-        <MinimalDock />
+        <DockManager currentApp="bitcoin-video" />
       </div>
     
   );

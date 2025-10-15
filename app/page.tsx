@@ -31,7 +31,7 @@ import MobileNav from '@/components/MobileNav'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import CleanTaskbar from '@/components/CleanTaskbar'
 import DevSidebar from '@/components/DevSidebar'
-import MinimalDock from '@/components/MinimalDock'
+import DockManager from '@/components/DockManager'
 import ResponsiveLayout from '@/components/ResponsiveLayout'
 import BitcoinVideoStudio from '@/components/BitcoinVideoStudio'
 import VideoProjectSidebar from '@/components/VideoProjectSidebar'
@@ -688,7 +688,7 @@ export default function BitcoinVideo() {
         
         <DevSidebar />
         <TickerSidebar userHandle="creator" />
-        <MinimalDock />
+        <DockManager currentApp="bitcoin-video" />
       </div>
   )
 }
