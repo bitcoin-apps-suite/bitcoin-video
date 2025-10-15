@@ -4,7 +4,7 @@ import React from 'react'
 import { Video, User, Star, Trophy, Clock, DollarSign, Play, Eye, ThumbsUp, MessageCircle, Zap, Award } from 'lucide-react'
 import DevSidebar from '@/components/DevSidebar'
 import ResponsiveLayout from '@/components/ResponsiveLayout'
-import MinimalDock from '@/components/MinimalDock'
+import Dock from '@/components/Dock'
 import CleanTaskbar from '@/components/CleanTaskbar'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import './offers.css'
@@ -370,7 +370,7 @@ export default function CreatorOffersPage() {
         </ResponsiveLayout>
         
         <DevSidebar />
-        <MinimalDock />
+        <Dock />
       </div>
   );
 }

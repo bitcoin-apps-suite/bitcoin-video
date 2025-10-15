@@ -13,19 +13,24 @@
 }
 
 .minimal-dock-container {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  padding: 0;
-  width: 100%;
+  padding: 0 0 0 0;
 }
 
 .minimal-dock-apps {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding-left: 12px;
+  gap: 2px;
+  overflow-x: auto;
+  flex: 0 1 auto;
+  padding-left: 2px;
+  padding-right: 12px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .minimal-dock-apps::-webkit-scrollbar {
@@ -93,13 +98,60 @@
   border-radius: 50%;
 }
 
+.minimal-dock-expand-toggle {
+  position: absolute;
+  right: 160px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.minimal-dock-right-apps {
+  position: absolute;
+  right: 200px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.minimal-dock-app-mini {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.minimal-dock-app-mini:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.minimal-dock-icon-mini {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
 .minimal-dock-status {
   display: flex;
   align-items: center;
   gap: 12px;
   font-size: 11px;
   color: rgba(255, 255, 255, 0.8);
-  padding-right: 12px;
 }
 
 .minimal-status-item {

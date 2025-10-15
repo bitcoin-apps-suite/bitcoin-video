@@ -4,7 +4,7 @@ import React from 'react'
 import { Briefcase, FileText, Calendar, DollarSign, Clock, CheckCircle, AlertCircle, Users, TrendingUp, Star, Badge, Zap } from 'lucide-react'
 import DevSidebar from '@/components/DevSidebar'
 import ResponsiveLayout from '@/components/ResponsiveLayout'
-import MinimalDock from '@/components/MinimalDock'
+import Dock from '@/components/Dock'
 import CleanTaskbar from '@/components/CleanTaskbar'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import './requests.css'
@@ -270,7 +270,7 @@ export default function PublisherRequestsPage() {
         </ResponsiveLayout>
         
         <DevSidebar />
-        <MinimalDock />
+        <Dock />
       </div>
   );
 }

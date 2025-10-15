@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Flower2, DollarSign, Users, Code, Video, Zap, CheckCircle, Clock, TrendingUp, Github } from 'lucide-react'
 import DevSidebar from '@/components/DevSidebar'
 import ResponsiveLayout from '@/components/ResponsiveLayout'
-import MinimalDock from '@/components/MinimalDock'
+import Dock from '@/components/Dock'
 import CleanTaskbar from '@/components/CleanTaskbar'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import './grants.css'
@@ -311,7 +311,7 @@ export default function GrantsPage() {
         </ResponsiveLayout>
         
         <DevSidebar />
-        <MinimalDock />
+        <Dock />
       </div>
   )
 }
