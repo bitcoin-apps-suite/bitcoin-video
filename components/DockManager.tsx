@@ -5,15 +5,15 @@ import Dock from './Dock';
 import MinimalDock from './MinimalDock';
 
 interface DockManagerProps {
-  currentApp?: string; // ID of the current app (e.g., 'bitcoin-video', 'bitcoin-writer')
+  currentApp?: string; // ID of the current app (e.g., 'bitcoin-identity', 'bitcoin-writer')
 }
 
 const DockManager: React.FC<DockManagerProps> = ({ currentApp = 'bitcoin-video' }) => {
-  const [dockStyle, setDockStyle] = useState<string>('minimal');
+  const [dockStyle, setDockStyle] = useState<string>('large');
 
   useEffect(() => {
-    // Get initial dock style from localStorage, default to minimal
-    const savedStyle = localStorage.getItem('dockStyle') || 'minimal';
+    // Get initial dock style from localStorage, default to large
+    const savedStyle = localStorage.getItem('dockStyle') || 'large';
     setDockStyle(savedStyle);
 
     // Listen for dock style changes

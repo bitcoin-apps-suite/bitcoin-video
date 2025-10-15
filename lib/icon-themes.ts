@@ -1,5 +1,4 @@
 // Lucide Icons (existing)
-import React from 'react'
 import { 
   Wallet, 
   Mail, 
@@ -71,8 +70,8 @@ import {
 } from 'react-icons/md'
 
 export interface IconMapping {
-  lucide: React.ComponentType<React.SVGProps<SVGSVGElement>>
-  'react-icons': React.ComponentType<React.SVGProps<SVGSVGElement>>
+  lucide: any
+  'react-icons': any
 }
 
 export const iconMappings: { [key: string]: IconMapping } = {

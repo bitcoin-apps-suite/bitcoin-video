@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Wallet, Mail, Music, FileText, HardDrive, Calendar, Search, Table, Briefcase, Store, Wifi, Volume2, Battery, Clock, TrendingUp, Building2, Shield, Video, Code2, Camera, MapPin, MessageCircle, Users, Gamepad2, BookOpen, Globe, Box, FolderOpen, Minimize2, Monitor, Home, GraduationCap, Paintbrush, UserCheck, Sparkles } from 'lucide-react';
+import { getThemedIcon, getCurrentTheme } from '../lib/icon-themes';
 import './Dock.css';
 
 interface DockApp {
@@ -14,15 +15,27 @@ interface DockApp {
 }
 
 interface DockProps {
-  currentApp?: string; // ID of the current app (e.g., 'bitcoin-video', 'bitcoin-writer')
+  currentApp?: string; // ID of the current app (e.g., 'bitcoin-identity', 'bitcoin-writer')
 }
 
 const Dock: React.FC<DockProps> = ({ currentApp = 'bitcoin-video' }) => {
   const [mounted, setMounted] = useState(false);
+  const [iconTheme, setIconTheme] = useState<string>('lucide');
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [minimizeTimeout, setMinimizeTimeout] = useState<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     setMounted(true);
+    
+    // Set initial theme
+    setIconTheme(getCurrentTheme());
+    
+    // Listen for theme changes
+    const handleThemeChange = (event: any) => {
+      setIconTheme(event.detail);
+    };
+    
+    window.addEventListener('iconThemeChanged', handleThemeChange);
     
     // Timer for clock
     const timer = setInterval(() => {
@@ -30,9 +43,13 @@ const Dock: React.FC<DockProps> = ({ currentApp = 'bitcoin-video' }) => {
     }, 1000);
     
     return () => {
+      window.removeEventListener('iconThemeChanged', handleThemeChange);
       clearInterval(timer);
+      if (minimizeTimeout) {
+        clearTimeout(minimizeTimeout);
+      }
     };
-  }, []);
+  }, [minimizeTimeout]);
 
   const getRainbowColor = (index: number): string => {
     const rainbowColors = [
@@ -117,13 +134,38 @@ const Dock: React.FC<DockProps> = ({ currentApp = 'bitcoin-video' }) => {
     window.dispatchEvent(new CustomEvent('dockStyleChanged', { detail: newDockStyle }));
   };
 
+  const handleMouseEnter = () => {
+    if (minimizeTimeout) {
+      clearTimeout(minimizeTimeout);
+      setMinimizeTimeout(null);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    // Minimize after 300ms of not hovering
+    const timeout = setTimeout(() => {
+      toggleDockSize();
+    }, 300);
+    setMinimizeTimeout(timeout);
+  };
+
   return (
-    <div className="bitcoin-dock">
+    <div className="bitcoin-dock" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <div className="dock-container">
         {/* App icons on the left */}
         <div className="dock-apps">
           {dockApps.map((app, index) => {
-          const Icon = app.icon;
+          // Get themed icon, but force Monitor for bitcoin-os and Shield for bitcoin-identity
+          let Icon;
+          if (app.id === 'bapps-store') {
+            Icon = app.icon;
+          } else if (app.id === 'bitcoin-os') {
+            Icon = Monitor; // Force Monitor icon for bitcoin-os
+          } else if (app.id === 'bitcoin-identity') {
+            Icon = Shield; // Force Shield icon for bitcoin-identity
+          } else {
+            Icon = getThemedIcon(app.id || app.name.toLowerCase().replace('bitcoin ', ''), iconTheme);
+          }
           return (
             <button
               key={app.name}
