@@ -5,7 +5,7 @@ import { Video, Upload, Edit, Share2, Coins, Users, Zap, TrendingUp, Shield, Pal
 import DevSidebar from '@/components/DevSidebar'
 import ResponsiveLayout from '@/components/ResponsiveLayout'
 import MinimalDock from '@/components/MinimalDock'
-import TopMenuBar from '@/components/TopMenuBar'
+import CleanTaskbar from '@/components/CleanTaskbar'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import './features.css'
 
@@ -13,9 +13,9 @@ export default function FeaturesPage() {
   return (
     <div className="features-page">
         <ProofOfConceptBar />
-        <TopMenuBar 
-          onNewProject={() => console.log('New project')}
-          onSaveProject={() => console.log('Save project')}
+        <CleanTaskbar 
+          onNewVideo={() => console.log('New project')}
+          onSaveVideo={() => console.log('Save project')}
         />
         
         <ResponsiveLayout>

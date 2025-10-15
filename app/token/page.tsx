@@ -5,7 +5,7 @@ import { Coins, Code, Video, Users, TrendingUp, Zap, ChevronRight, Github, Exter
 import DevSidebar from '@/components/DevSidebar'
 import ResponsiveLayout from '@/components/ResponsiveLayout'
 import MinimalDock from '@/components/MinimalDock'
-import TopMenuBar from '@/components/TopMenuBar'
+import CleanTaskbar from '@/components/CleanTaskbar'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import TickerSidebar from '@/components/TickerSidebar'
 import './token.css'
@@ -14,9 +14,9 @@ export default function TokenPage() {
   return (
     <div className="token-page">
         <ProofOfConceptBar />
-        <TopMenuBar 
-          onNewProject={() => console.log('New project')}
-          onSaveProject={() => console.log('Save project')}
+        <CleanTaskbar 
+          onNewVideo={() => console.log('New project')}
+          onSaveVideo={() => console.log('Save project')}
         />
         
         <ResponsiveLayout>

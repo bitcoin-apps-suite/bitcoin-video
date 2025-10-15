@@ -24,7 +24,7 @@ import VideoCard from '@/components/VideoCard'
 import VideoSkeleton from '@/components/VideoSkeleton'
 import MobileNav from '@/components/MobileNav'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
-import TopMenuBar from '@/components/TopMenuBar'
+import CleanTaskbar from '@/components/CleanTaskbar'
 import DevSidebar from '@/components/DevSidebar'
 import MinimalDock from '@/components/MinimalDock'
 
@@ -177,7 +177,7 @@ export default function BitcoinVideo() {
     
       <div className="min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white antialiased pb-24 main-app-container">
         <ProofOfConceptBar />
-        <TopMenuBar />
+        <CleanTaskbar />
         
         <ResponsiveLayout>
           {/* Header */}

@@ -5,7 +5,7 @@ import { Flower2, DollarSign, Users, Code, Video, Zap, CheckCircle, Clock, Trend
 import DevSidebar from '@/components/DevSidebar'
 import ResponsiveLayout from '@/components/ResponsiveLayout'
 import MinimalDock from '@/components/MinimalDock'
-import TopMenuBar from '@/components/TopMenuBar'
+import CleanTaskbar from '@/components/CleanTaskbar'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import './grants.css'
 
@@ -108,9 +108,9 @@ export default function GrantsPage() {
   return (
     <div className="grants-page">
         <ProofOfConceptBar />
-        <TopMenuBar 
-          onNewProject={() => console.log('New project')}
-          onSaveProject={() => console.log('Save project')}
+        <CleanTaskbar 
+          onNewVideo={() => console.log('New project')}
+          onSaveVideo={() => console.log('Save project')}
         />
         
         <ResponsiveLayout>

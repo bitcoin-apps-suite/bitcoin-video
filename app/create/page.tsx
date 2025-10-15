@@ -30,7 +30,7 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
-import TopMenuBar from '@/components/TopMenuBar'
+import CleanTaskbar from '@/components/CleanTaskbar'
 import DevSidebar from '@/components/DevSidebar'
 import MinimalDock from '@/components/MinimalDock'
 import TickerSidebar from '@/components/TickerSidebar'
@@ -142,7 +142,7 @@ export default function CreatePage() {
     
       <div className="min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white antialiased pb-24">
       <ProofOfConceptBar />
-      <TopMenuBar />
+      <CleanTaskbar />
       {/* Header */}
       <header className="border-b border-white/10 bg-black/80 backdrop-blur-xl shadow-2xl mt-8">
         <div className="px-4 py-4">

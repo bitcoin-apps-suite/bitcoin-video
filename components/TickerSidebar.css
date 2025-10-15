@@ -7,7 +7,7 @@
   flex-direction: column;
   height: calc(100vh - 72px - 32px); /* Account for top bars and MinimalDock */
   position: fixed;
-  top: 40px; /* Below ProofOfConceptBar only */
+  top: 72px; /* Below ProofOfConceptBar (40px) and CleanTaskbar (32px) */
   right: 0;
   bottom: 32px; /* Above MinimalDock */
   z-index: 100;

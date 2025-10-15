@@ -6,7 +6,7 @@ import DevSidebar from '@/components/DevSidebar'
 
 import ResponsiveLayout from '@/components/ResponsiveLayout'
 import MinimalDock from '@/components/MinimalDock'
-import TopMenuBar from '@/components/TopMenuBar'
+import CleanTaskbar from '@/components/CleanTaskbar'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import './compliance.css'
 
@@ -15,9 +15,9 @@ export default function CompliancePage() {
     
       <div className="compliance-page">
         <ProofOfConceptBar />
-        <TopMenuBar 
-          onNewProject={() => console.log('New project')}
-          onSaveProject={() => console.log('Save project')}
+        <CleanTaskbar 
+          onNewVideo={() => console.log('New project')}
+          onSaveVideo={() => console.log('Save project')}
         />
         
         <ResponsiveLayout>

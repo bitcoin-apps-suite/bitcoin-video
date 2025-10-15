@@ -2,7 +2,7 @@
 
 
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
-import TopMenuBar from '@/components/TopMenuBar'
+import CleanTaskbar from '@/components/CleanTaskbar'
 import VideoExchangeView from '@/components/VideoExchangeView'
 import ResponsiveLayout from '@/components/ResponsiveLayout'
 
@@ -11,9 +11,9 @@ export default function VideoExchange() {
     
       <div className="min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white antialiased">
         <ProofOfConceptBar />
-        <TopMenuBar 
-          onNewProject={() => window.location.href = '/'}
-          onSaveProject={() => console.log('Save project')}
+        <CleanTaskbar 
+          onNewVideo={() => window.location.href = '/'}
+          onSaveVideo={() => console.log('Save project')}
         />
         
         <ResponsiveLayout>

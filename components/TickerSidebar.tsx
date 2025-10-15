@@ -129,7 +129,7 @@ const TickerSidebar: React.FC<TickerSidebarProps> = ({
           source: 'HandCash',
           isSpecial: true,
           isVideo: false,
-          category: 'Creator'
+          category: '$bVideo'
         });
       }
 
