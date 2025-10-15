@@ -72,15 +72,15 @@ export default function ContractsPage() {
       const pullRequests = prsResponse.ok ? await prsResponse.json() : []
       
       // Map issues to contracts - ONLY DEVELOPER CONTRACTS
-      const mappedContracts = issues.map((issue: any): Contract | null => {
+      const mappedContracts = issues.map((issue: {number: number, title: string, body?: string, labels: {name: string}[], html_url: string, state: string, assignee?: {login: string}, assigned_at?: string}): Contract | null => {
         const body = issue.body || ''
         
-        let priorityMatch = body.match(/\*\*Priority:\*\*\s*(Critical|High|Medium|Low)/i)
-        let hoursMatch = body.match(/\*\*Estimated Hours:\*\*\s*([\d,]+)/i)
+        const priorityMatch = body.match(/\*\*Priority:\*\*\s*(Critical|High|Medium|Low)/i)
+        const hoursMatch = body.match(/\*\*Estimated Hours:\*\*\s*([\d,]+)/i)
         let rewardMatch = body.match(/\*\*Token Reward:\*\*\s*([\d,]+)\s*BVIDEO/i)
         
         // Find matching PR if exists
-        const matchingPR = pullRequests.find((pr: any) => 
+        const matchingPR = pullRequests.find((pr: {body?: string}) => 
           pr.body && pr.body.includes(`#${issue.number}`)
         )
         
@@ -94,7 +94,7 @@ export default function ContractsPage() {
         }
         
         // Parse tasks section for skills
-        let skills: string[] = ['TypeScript', 'React', 'Next.js']
+        const skills: string[] = ['TypeScript', 'React', 'Next.js']
         const tasksMatch = body.match(/##\s*(?:🎯\s*)?Tasks\s*\n([\s\S]*?)(?=##|$)/i)
         if (tasksMatch) {
           const tasks = tasksMatch[1]
@@ -305,7 +305,7 @@ export default function ContractsPage() {
             <div>
               <h3 className="text-xl font-bold text-red-300 mb-2">$BVIDEO Developer Rewards</h3>
               <p className="text-gray-300 mb-3">
-                We're offering <strong>substantial $BVIDEO token rewards</strong> to developers who help build out the platform.
+                We&apos;re offering <strong>substantial $BVIDEO token rewards</strong> to developers who help build out the platform.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                 <div>
