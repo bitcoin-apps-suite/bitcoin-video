@@ -13,22 +13,22 @@
 }
 
 .minimal-dock-container {
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  padding: 0 0 0 0;
+  padding: 0 4px; /* Minimal padding at edges */
+  width: 100%; /* Use full width */
 }
 
 .minimal-dock-apps {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 6px;
   overflow-x: auto;
-  flex: 0 1 auto;
-  padding-left: 2px;
-  padding-right: 12px;
+  flex: 1;
+  padding-left: 2px; /* Small left padding to not touch edge */
+  padding-right: 8px; /* Reduced right padding */
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -98,60 +98,13 @@
   border-radius: 50%;
 }
 
-.minimal-dock-expand-toggle {
-  position: absolute;
-  right: 160px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 4px;
-  padding: 4px;
-}
-
-.minimal-dock-right-apps {
-  position: absolute;
-  right: 200px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.minimal-dock-app-mini {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  background: transparent;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.minimal-dock-app-mini:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-1px);
-}
-
-.minimal-dock-icon-mini {
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-}
-
 .minimal-dock-status {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   font-size: 11px;
   color: rgba(255, 255, 255, 0.8);
+  padding-right: 2px; /* Small right padding to not touch edge */
 }
 
 .minimal-status-item {
@@ -189,6 +142,50 @@
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
   font-weight: 400;
   font-size: 11px;
+}
+
+/* Right side mini apps - now inside status */
+.minimal-dock-right-apps {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Expand toggle - now inside status */
+.minimal-dock-expand-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.minimal-dock-app-mini {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  background: transparent;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.minimal-dock-app-mini:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+}
+
+.minimal-dock-icon-mini {
+  width: 12px;
+  height: 12px;
+  transition: filter 0.2s ease;
+}
+
+.minimal-dock-app-mini:hover .minimal-dock-icon-mini {
+  filter: brightness(1.2);
 }
 
 /* Responsive adjustments */

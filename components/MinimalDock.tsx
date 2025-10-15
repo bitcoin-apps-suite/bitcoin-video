@@ -70,7 +70,7 @@ const MinimalDock: React.FC = () => {
   };
 
   const dockApps: DockApp[] = [
-    { id: 'bitcoin-os', name: 'Bitcoin OS', icon: Monitor, color: 'rainbow', current: true },
+    { id: 'bitcoin-os', name: 'Bitcoin OS', icon: Monitor, color: 'rainbow', url: 'https://bitcoin-os.vercel.app/' },
     { id: 'bapps-store', name: 'Bitcoin Apps Store', icon: Store, color: 'rainbow', url: 'https://www.bitcoinapps.store/', isImage: true },
     { name: 'Bitcoin Wallet', icon: Wallet, color: 'rainbow', url: 'https://bitcoin-wallet-sable.vercel.app' },
     { name: 'Bitcoin Email', icon: Mail, color: 'rainbow', url: 'https://bitcoin-email.vercel.app' },
@@ -157,50 +157,51 @@ const MinimalDock: React.FC = () => {
           })}
         </div>
         
-        {/* Expand toggle */}
-        <div className="minimal-dock-expand-toggle">
-          <button 
-            className="minimal-dock-app-mini" 
-            title="Switch to Large Dock" 
-            onClick={toggleDockSize}
-          >
-            <Maximize2 className="minimal-dock-icon-mini" style={{ color: '#6b7280' }} />
-          </button>
-        </div>
-        
-        {/* Special mini icons on the right */}
-        <div className="minimal-dock-right-apps">
-          {rightSideApps.map((app, index) => {
-            const Icon = app.icon;
-            return (
-              <button
-                key={app.name}
-                className="minimal-dock-app-mini"
-                onClick={() => handleAppClick(app)}
-                title={app.name}
-              >
-                {app.id === 'cashboard' ? (
-                  <svg className="minimal-dock-icon-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} style={{ color: getIconColor(app.color, index) }}>
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M15.5 9.5C14.815 8.574 13.743 8 12.5 8c-2.21 0-4 1.79-4 4s1.79 4 4 4c1.243 0 2.315-.574 3-1.5" />
-                  </svg>
-                ) : app.id === 'senseii' ? (
-                  <svg className="minimal-dock-icon-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} style={{ color: getIconColor(app.color, index) }}>
-                    <path d="M3 5h18" />
-                    <path d="M6 5v14" />
-                    <path d="M18 5v14" />
-                    <path d="M3 9h18" />
-                  </svg>
-                ) : (
-                  <Icon className="minimal-dock-icon-mini" style={{ color: getIconColor(app.color, index) }} />
-                )}
-              </button>
-            );
-          })}
-        </div>
-        
         {/* Status on the right */}
         <div className="minimal-dock-status">
+          {/* Special mini icons */}
+          <div className="minimal-dock-right-apps">
+            {rightSideApps.map((app, index) => {
+              const Icon = app.icon;
+              return (
+                <button
+                  key={app.name}
+                  className="minimal-dock-app-mini"
+                  onClick={() => handleAppClick(app)}
+                  title={app.name}
+                >
+                  {app.id === 'cashboard' ? (
+                    <svg className="minimal-dock-icon-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} style={{ color: getIconColor(app.color, index) }}>
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M15.5 9.5C14.815 8.574 13.743 8 12.5 8c-2.21 0-4 1.79-4 4s1.79 4 4 4c1.243 0 2.315-.574 3-1.5" />
+                    </svg>
+                  ) : app.id === 'senseii' ? (
+                    <svg className="minimal-dock-icon-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} style={{ color: getIconColor(app.color, index) }}>
+                      <path d="M3 5h18" />
+                      <path d="M6 5v14" />
+                      <path d="M18 5v14" />
+                      <path d="M3 9h18" />
+                    </svg>
+                  ) : (
+                    <Icon className="minimal-dock-icon-mini" style={{ color: getIconColor(app.color, index) }} />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+          
+          {/* Expand toggle */}
+          <div className="minimal-dock-expand-toggle">
+            <button 
+              className="minimal-dock-app-mini" 
+              title="Switch to Large Dock" 
+              onClick={toggleDockSize}
+            >
+              <Maximize2 className="minimal-dock-icon-mini" style={{ color: '#6b7280' }} />
+            </button>
+          </div>
+          
+          {/* System status */}
           <div className="minimal-status-item" title="Connected">
             <Wifi className="minimal-status-icon connected" />
           </div>
