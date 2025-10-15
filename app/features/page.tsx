@@ -4,7 +4,7 @@ import React from 'react'
 import { Video, Upload, Edit, Share2, Coins, Users, Zap, TrendingUp, Shield, Palette, Code, Smartphone } from 'lucide-react'
 import DevSidebar from '@/components/DevSidebar'
 import ResponsiveLayout from '@/components/ResponsiveLayout'
-import Dock from '@/components/Dock'
+import MinimalDock from '@/components/MinimalDock'
 import CleanTaskbar from '@/components/CleanTaskbar'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import './features.css'
@@ -355,7 +355,7 @@ export default function FeaturesPage() {
         </ResponsiveLayout>
         
         <DevSidebar />
-        <Dock />
+        <MinimalDock />
       </div>
   );
 }

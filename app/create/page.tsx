@@ -32,7 +32,7 @@ import Link from 'next/link'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import CleanTaskbar from '@/components/CleanTaskbar'
 import DevSidebar from '@/components/DevSidebar'
-import Dock from '@/components/Dock'
+import MinimalDock from '@/components/MinimalDock'
 import TickerSidebar from '@/components/TickerSidebar'
 
 import ResponsiveLayout from '@/components/ResponsiveLayout'
@@ -428,7 +428,7 @@ export default function CreatePage() {
       
       <DevSidebar />
       <TickerSidebar userHandle="creator" />
-      <Dock />
+      <MinimalDock />
     </div>
     
   )

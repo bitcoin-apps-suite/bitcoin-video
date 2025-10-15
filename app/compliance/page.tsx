@@ -5,7 +5,7 @@ import { Shield, FileText, Users, CheckCircle, AlertTriangle, Scale, Lock, Eye }
 import DevSidebar from '@/components/DevSidebar'
 
 import ResponsiveLayout from '@/components/ResponsiveLayout'
-import Dock from '@/components/Dock'
+import MinimalDock from '@/components/MinimalDock'
 import CleanTaskbar from '@/components/CleanTaskbar'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import './compliance.css'
@@ -256,7 +256,7 @@ export default function CompliancePage() {
         </ResponsiveLayout>
         
         <DevSidebar />
-        <Dock />
+        <MinimalDock />
       </div>
     
   );

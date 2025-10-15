@@ -5,7 +5,7 @@ import { Video, Users, Zap, ChevronRight, ExternalLink, DollarSign, Calendar, Fi
 import DevSidebar from '@/components/DevSidebar'
 
 import ResponsiveLayout from '@/components/ResponsiveLayout'
-import Dock from '@/components/Dock'
+import MinimalDock from '@/components/MinimalDock'
 import CleanTaskbar from '@/components/CleanTaskbar'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import './commissions.css'
@@ -227,7 +227,7 @@ export default function CommissionsPage() {
         </ResponsiveLayout>
         
         <DevSidebar />
-        <Dock />
+        <MinimalDock />
       </div>
     
   );

@@ -4,7 +4,7 @@ import React from 'react'
 import { Coins, Code, Video, Users, TrendingUp, Zap, ChevronRight, Github, ExternalLink, PieChart, BarChart3 } from 'lucide-react'
 import DevSidebar from '@/components/DevSidebar'
 import ResponsiveLayout from '@/components/ResponsiveLayout'
-import Dock from '@/components/Dock'
+import MinimalDock from '@/components/MinimalDock'
 import CleanTaskbar from '@/components/CleanTaskbar'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import TickerSidebar from '@/components/TickerSidebar'
@@ -311,7 +311,7 @@ export default function TokenPage() {
         
         <DevSidebar />
         <TickerSidebar userHandle="bvideo" />
-        <Dock />
+        <MinimalDock />
       </div>
   );
 }
