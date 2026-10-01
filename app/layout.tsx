@@ -4,6 +4,9 @@ import "./globals.css";
 import { DevSidebarProvider } from '@/components/DevSidebarProvider';
 import { TickerSidebarProvider } from '@/components/TickerSidebarProvider';
 
+import '../components/mobile/mobile-bwallet.css';
+import MobileShellInit from '../components/mobile/MobileShellInit';
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -72,6 +75,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <MobileShellInit />
         <DevSidebarProvider>
           <TickerSidebarProvider>
             {children}
