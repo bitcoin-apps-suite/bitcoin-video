@@ -179,7 +179,7 @@ const DocumentTokenomicsModal: React.FC<Props> = ({
                     name="model"
                     value="shares"
                     checked={config.accessModel === 'shares'}
-                    onChange={(e) => setConfig({...config, accessModel: 'shares' as any})}
+                    onChange={() => setConfig({...config, accessModel: 'shares'})}
                   />
                   <div className="option-content">
                     <h4>🎫 Share-Based Access</h4>
@@ -198,7 +198,7 @@ const DocumentTokenomicsModal: React.FC<Props> = ({
                     name="model"
                     value="paywall"
                     checked={config.accessModel === 'paywall'}
-                    onChange={(e) => setConfig({...config, accessModel: 'paywall' as any})}
+                    onChange={() => setConfig({...config, accessModel: 'paywall'})}
                   />
                   <div className="option-content">
                     <h4>💰 Traditional Paywall</h4>
@@ -217,7 +217,7 @@ const DocumentTokenomicsModal: React.FC<Props> = ({
                     name="model"
                     value="free"
                     checked={config.accessModel === 'free'}
-                    onChange={(e) => setConfig({...config, accessModel: 'free' as any})}
+                    onChange={() => setConfig({...config, accessModel: 'free'})}
                   />
                   <div className="option-content">
                     <h4>🎁 Free Access</h4>

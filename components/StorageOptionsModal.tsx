@@ -1,11 +1,12 @@
 import React from 'react';
+import type { StorageOption, PricingBreakdown } from '../utils/pricingCalculator';
 
 interface StorageOptionsModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSelect: (option: any) => void;
-  selectedOption: any;
-  pricing: any;
+  onSelect: (option: StorageOption) => void;
+  selectedOption: StorageOption;
+  pricing: PricingBreakdown | null;
 }
 
 const StorageOptionsModal: React.FC<StorageOptionsModalProps> = ({

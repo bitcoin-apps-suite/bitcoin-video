@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { createContext, useCallback, useContext, useSyncExternalStore } from 'react'
 
 interface DevSidebarContextType {
   isCollapsed: boolean
@@ -9,27 +9,30 @@ interface DevSidebarContextType {
 
 const DevSidebarContext = createContext<DevSidebarContextType | undefined>(undefined)
 
+const STORAGE_KEY = 'devSidebarCollapsed'
+const CHANGE_EVENT = 'devSidebarCollapsedChanged'
+
+const subscribe = (onChange: () => void) => {
+  window.addEventListener(CHANGE_EVENT, onChange)
+  window.addEventListener('storage', onChange)
+  return () => {
+    window.removeEventListener(CHANGE_EVENT, onChange)
+    window.removeEventListener('storage', onChange)
+  }
+}
+
+// Default to collapsed when nothing is stored (and on the server) so the
+// first client render matches the server render.
+const getSnapshot = () => localStorage.getItem(STORAGE_KEY) !== 'false'
+const getServerSnapshot = () => true
+
 export function DevSidebarProvider({ children }: { children: React.ReactNode }) {
-  const [isCollapsed, setIsCollapsed] = useState(true) // Always start collapsed to match server
-  const [isHydrated, setIsHydrated] = useState(false)
+  const isCollapsed = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
 
-  useEffect(() => {
-    // After hydration, check localStorage and update state if needed
-    setIsHydrated(true)
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('devSidebarCollapsed')
-      if (saved !== null) {
-        setIsCollapsed(saved === 'true')
-      }
-    }
+  const setIsCollapsed = useCallback((collapsed: boolean) => {
+    localStorage.setItem(STORAGE_KEY, collapsed.toString())
+    window.dispatchEvent(new Event(CHANGE_EVENT))
   }, [])
-
-  useEffect(() => {
-    // Save to localStorage whenever state changes (but only after hydration)
-    if (isHydrated && typeof window !== 'undefined') {
-      localStorage.setItem('devSidebarCollapsed', isCollapsed.toString())
-    }
-  }, [isCollapsed, isHydrated])
 
   return (
     <DevSidebarContext.Provider value={{ isCollapsed, setIsCollapsed }}>

@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useRef, useEffect } from 'react';
+import type { HandCashUser } from '../services/HandCashAuthService';
 
 interface MenuItem {
   label?: string;
@@ -17,7 +18,7 @@ interface MenuData {
 
 interface TaskbarProps {
   isAuthenticated?: boolean;
-  currentUser?: any;
+  currentUser?: HandCashUser | null;
   onLogout?: () => void;
   onNewVideo?: () => void;
   onSaveVideo?: () => void;
@@ -130,9 +131,9 @@ const CleanTaskbar: React.FC<TaskbarProps> = ({
         { divider: true },
         { label: 'Search Videos', shortcut: '⌘F', action: () => document.getElementById('search-input')?.focus() },
         { divider: true },
-        { label: 'Actual Size', shortcut: '⌘0', action: () => (document.body.style as any).zoom = '100%' },
-        { label: 'Zoom In', shortcut: '⌘+', action: () => (document.body.style as any).zoom = '110%' },
-        { label: 'Zoom Out', shortcut: '⌘-', action: () => (document.body.style as any).zoom = '90%' }
+        { label: 'Actual Size', shortcut: '⌘0', action: () => { document.body.style.setProperty('zoom', '100%') } },
+        { label: 'Zoom In', shortcut: '⌘+', action: () => { document.body.style.setProperty('zoom', '110%') } },
+        { label: 'Zoom Out', shortcut: '⌘-', action: () => { document.body.style.setProperty('zoom', '90%') } }
       ]
     },
     {

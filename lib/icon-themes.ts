@@ -70,8 +70,8 @@ import {
 } from 'react-icons/md'
 
 export interface IconMapping {
-  lucide: any
-  'react-icons': any
+  lucide: IconComponent
+  'react-icons': IconComponent
 }
 
 export const iconMappings: { [key: string]: IconMapping } = {
@@ -133,9 +133,11 @@ export const iconMappings: { [key: string]: IconMapping } = {
 }
 
 // Import the complete mappings
-import { getCompleteThemedIcon, completeIconMappings } from './icon-mappings-complete'
+import { getCompleteThemedIcon, type IconComponent } from './icon-mappings-complete'
 
-export const getThemedIcon = (iconId: string, theme: string = 'lucide') => {
+export type { IconComponent }
+
+export const getThemedIcon = (iconId: string, theme: string = 'lucide'): IconComponent => {
   // Use the complete icon mappings for all themes
   return getCompleteThemedIcon(iconId, theme)
 }

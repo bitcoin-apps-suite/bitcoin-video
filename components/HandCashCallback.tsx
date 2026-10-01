@@ -91,9 +91,9 @@ const HandCashCallback: React.FC = () => {
             setTimeout(() => window.location.href = '/', 3000);
           }
         }
-      } catch (err: any) {
+      } catch (err) {
         console.error('Callback error:', err);
-        setError(err.message || 'Failed to complete authentication');
+        setError((err instanceof Error && err.message) || 'Failed to complete authentication');
         setTimeout(() => window.location.href = '/', 3000);
       }
     };

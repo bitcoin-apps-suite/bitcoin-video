@@ -24,6 +24,20 @@ export interface DocumentNFTData extends NFTMetadata {
   };
 }
 
+export interface HandCashItemAttribute {
+  name: string;
+  value: string | number | boolean;
+  displayType?: string;
+}
+
+/** Result of a HandCash Items transfer, as relayed by /api/handcash-items. */
+export interface HandCashItemTransfer {
+  transactionId?: string;
+  itemId?: string;
+  destination?: string;
+  [key: string]: unknown;
+}
+
 export interface HandCashItem {
   id: string;
   origin: string;
@@ -32,8 +46,8 @@ export interface HandCashItem {
   imageUrl?: string;
   quantity: number;
   rarity: string;
-  attributes: any[];
-  customParameters?: any;
+  attributes: HandCashItemAttribute[];
+  customParameters?: Record<string, unknown>;
 }
 
 export interface MarketListing {
@@ -97,12 +111,12 @@ export class HandCashItemsService {
 
       console.log('NFT minted successfully:', data);
       return data;
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error minting NFT:', error);
       return {
         success: false,
         message: 'Failed to mint NFT',
-        error: error.message
+        error: error instanceof Error ? error.message : String(error)
       };
     }
   }
@@ -152,12 +166,12 @@ export class HandCashItemsService {
       }
 
       return data;
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error listing item:', error);
       return {
         success: false,
         message: 'Failed to list item for sale',
-        error: error.message
+        error: error instanceof Error ? error.message : String(error)
       };
     }
   }
@@ -198,12 +212,12 @@ export class HandCashItemsService {
       }
 
       return data;
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error getting items:', error);
       return {
         success: false,
         message: 'Failed to retrieve NFT inventory',
-        error: error.message,
+        error: error instanceof Error ? error.message : String(error),
         items: [],
         totalItems: 0
       };
@@ -220,7 +234,7 @@ export class HandCashItemsService {
     destinationHandle: string
   ): Promise<{
     success: boolean;
-    transfer?: any;
+    transfer?: HandCashItemTransfer;
     message: string;
     error?: string;
   }> {
@@ -252,12 +266,12 @@ export class HandCashItemsService {
       }
 
       return data;
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error transferring item:', error);
       return {
         success: false,
         message: 'Failed to transfer NFT',
-        error: error.message
+        error: error instanceof Error ? error.message : String(error)
       };
     }
   }

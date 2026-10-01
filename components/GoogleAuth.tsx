@@ -1,14 +1,15 @@
 import React from 'react';
+import type { GoogleUser } from '../types/auth';
 
 interface GoogleAuthButtonProps {
-  onAuthSuccess?: (user: any) => void;
+  onAuthSuccess?: (user: GoogleUser) => void;
   onAuthFailure?: () => void;
 }
 
 const GoogleAuthButton: React.FC<GoogleAuthButtonProps> = ({ onAuthSuccess, onAuthFailure }) => {
   const handleClick = () => {
     // Simulate auth success for now
-    const mockUser = { name: 'Test User', email: 'test@example.com' };
+    const mockUser: GoogleUser = { name: 'Test User', email: 'test@example.com' };
     onAuthSuccess?.(mockUser);
   };
 

@@ -61,9 +61,86 @@ interface CreatorListing {
   trending?: boolean;
 }
 
+// Written-content listing shown in the exchange table (books, articles, blogs, NFTs)
+interface WritingListing {
+  rank: number;
+  title: string;
+  description: string;
+  author: string;
+  authorHandle: string;
+  authorTwitter?: string;
+  authorType: 'human' | 'ai';
+  publishDate: string;
+  wordCount: number;
+  views: number;
+  purchases: number;
+  sharesAvailable: number;
+  totalShares: number;
+  revenue: number;
+  dividendPerShare: number;
+  volume24h: number;
+  currentPrice: number;
+  priceChange24h: number;
+  marketCap: number;
+  contentType: string;
+  category: string;
+  tags: string[];
+  txId: string;
+  trending?: boolean;
+  isNft?: boolean;
+  nftId?: string;
+  nftOrigin?: string;
+  marketUrl?: string;
+  royaltyPercentage?: number;
+}
+
+// Author listing shown in the "authors" view
+interface WriterListing {
+  rank: number;
+  name: string;
+  handle: string;
+  twitter?: string;
+  authorType: 'human' | 'ai';
+  category: string;
+  joinDate: string;
+  totalWorks: number;
+  totalReaders: number;
+  totalRevenue: number;
+  avgRating: number;
+  sharesAvailable: number;
+  totalShares: number;
+  currentPrice: number;
+  priceChange24h: number;
+  marketCap: number;
+  verified: boolean;
+  trending?: boolean;
+}
+
+// NFT document as returned by /api/marketplace (getNftDocuments)
+type NftDocument = Partial<Omit<WritingListing, 'rank' | 'isNft' | 'txId'>> & {
+  title: string;
+  description: string;
+  author: string;
+  authorHandle: string;
+  publishDate: string;
+  nftId: string;
+};
+
+// Document from the sidebar that can be published to the exchange
+interface UserDocument {
+  id: string;
+  title?: string;
+  preview?: string;
+  author?: string;
+  created_at: string;
+  word_count?: number;
+}
+
+type SortBy = 'rank' | 'revenue' | 'volume' | 'price' | 'views';
+
 interface DocumentExchangeViewProps {
-  onSelectDocument?: (document: any) => void;
-  userDocuments?: any[]; // Documents from the sidebar that can be published
+  onSelectDocument?: (document: WritingListing) => void;
+  userDocuments?: UserDocument[]; // Documents from the sidebar that can be published
   onClose?: () => void; // Optional close handler to return to editor
 }
 
@@ -76,15 +153,15 @@ const DocumentExchangeView: React.FC<DocumentExchangeViewProps> = ({
   const [activeView, setActiveView] = useState<'books' | 'articles' | 'blogs' | 'authors'>('books');
   const [activeMarket, setActiveMarket] = useState<string>('All');
   const [authorCategory, setAuthorCategory] = useState<'all' | 'humans' | 'ais' | 'scientists' | 'mathematicians' | 'mothers' | 'lesbians' | 'journalists' | 'developers' | 'artists'>('all');
-  const [sortBy, setSortBy] = useState<'rank' | 'revenue' | 'volume' | 'price' | 'views'>('rank');
+  const [sortBy, setSortBy] = useState<SortBy>('rank');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedWriting, setSelectedWriting] = useState<any | null>(null);
-  const [selectedWriter, setSelectedWriter] = useState<any | null>(null);
-  const [writings, setWritings] = useState<any[]>([]);
-  const [writers, setWriters] = useState<any[]>([]);
-  const [nftDocuments, setNftDocuments] = useState<any[]>([]);
+  const [selectedWriting, setSelectedWriting] = useState<WritingListing | null>(null);
+  const [selectedWriter, setSelectedWriter] = useState<WriterListing | null>(null);
+  const [writings, setWritings] = useState<WritingListing[]>([]);
+  const [writers, setWriters] = useState<WriterListing[]>([]);
+  const [nftDocuments, setNftDocuments] = useState<NftDocument[]>([]);
   const [nftReaderOpen, setNftReaderOpen] = useState(false);
-  const [selectedNftDocument, setSelectedNftDocument] = useState<any>(null);
+  const [selectedNftDocument, setSelectedNftDocument] = useState<WritingListing | null>(null);
   const [isLoadingNfts, setIsLoadingNfts] = useState(false);
 
   const bookCategories = ['All', 'Fiction', 'Non-Fiction', 'Business', 'Tech', 'Health', 'Self-Help', 'History', 'Science'];
@@ -130,13 +207,13 @@ const DocumentExchangeView: React.FC<DocumentExchangeViewProps> = ({
   };
 
   // Handle NFT document click
-  const handleNftDocumentClick = (nftDoc: any) => {
+  const handleNftDocumentClick = (nftDoc: WritingListing) => {
     setSelectedNftDocument(nftDoc);
     setNftReaderOpen(true);
   };
 
   // Handle NFT purchase
-  const handleNftPurchase = (nftDoc: any) => {
+  const handleNftPurchase = (nftDoc: WritingListing) => {
     if (nftDoc.marketUrl) {
       window.open(nftDoc.marketUrl, '_blank');
     }
@@ -150,7 +227,7 @@ const DocumentExchangeView: React.FC<DocumentExchangeViewProps> = ({
   // Combine user documents with mock marketplace data
   useEffect(() => {
     // Convert user documents to any format
-    const userListings: any[] = userDocuments.map((doc, index) => ({
+    const userListings: WritingListing[] = userDocuments.map((doc, index) => ({
       rank: index + 1,
       title: doc.title || "Untitled",
       description: doc.preview || "No description available",
@@ -175,7 +252,7 @@ const DocumentExchangeView: React.FC<DocumentExchangeViewProps> = ({
       txId: doc.id
     }));
 
-    const mockBooks: any[] = [
+    const mockBooks: WritingListing[] = [
       // Fiction Books
       {
         rank: userListings.length + 1,
@@ -634,7 +711,7 @@ const DocumentExchangeView: React.FC<DocumentExchangeViewProps> = ({
     ];
 
     // Articles data
-    const mockArticles: any[] = [
+    const mockArticles: WritingListing[] = [
       // Tech Articles
       {
         rank: 1,
@@ -1017,7 +1094,7 @@ const DocumentExchangeView: React.FC<DocumentExchangeViewProps> = ({
     ];
 
     // Blogs data
-    const mockBlogs: any[] = [
+    const mockBlogs: WritingListing[] = [
       // Personal Blogs
       {
         rank: 1,
@@ -1400,7 +1477,7 @@ const DocumentExchangeView: React.FC<DocumentExchangeViewProps> = ({
       }
     ];
 
-    const mockWriters: any[] = [
+    const mockWriters: WriterListing[] = [
       {
         rank: 1,
         name: "Dr. Raj Patel",
@@ -1787,7 +1864,7 @@ const DocumentExchangeView: React.FC<DocumentExchangeViewProps> = ({
       setWriters(filteredWriters);
     } else {
       // Get the appropriate content based on active view
-      let contentData: any[] = [];
+      let contentData: WritingListing[] = [];
       
       switch (activeView) {
         case 'books':
@@ -1809,7 +1886,7 @@ const DocumentExchangeView: React.FC<DocumentExchangeViewProps> = ({
       }
       
       // Combine user listings with mock data and NFT documents
-      const nftListings = nftDocuments.map((nft, index) => ({
+      const nftListings = nftDocuments.map((nft, index): WritingListing => ({
         rank: index + 1000, // High rank numbers for NFTs
         title: nft.title,
         description: nft.description,
@@ -1976,7 +2053,7 @@ const DocumentExchangeView: React.FC<DocumentExchangeViewProps> = ({
         {activeView !== 'authors' && (
           <select 
             value={sortBy} 
-            onChange={(e) => setSortBy(e.target.value as any)}
+            onChange={(e) => setSortBy(e.target.value as SortBy)}
             className="exchange-sort"
           >
             <option value="rank">Rank</option>
