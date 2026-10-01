@@ -1,6 +1,13 @@
 // HandCash Authentication Service - REST API Implementation
 // This service handles OAuth2 flow with HandCash without SDK dependencies
 
+declare global {
+  interface Window {
+    /** Set once the HandCash config debug banner has been logged. */
+    handcashConfigLogged?: boolean;
+  }
+}
+
 export interface HandCashConfig {
   appId: string;
   appSecret?: string;
@@ -44,14 +51,14 @@ export class HandCashAuthService {
     };
 
     // Debug log to verify environment variables are loaded (only once)
-    if (!(window as any).handcashConfigLogged) {
+    if (!window.handcashConfigLogged) {
       console.log('=== HandCash Configuration ===');
       console.log('App ID configured:', this.config.appId ? 'Yes' : 'No');
       console.log('App ID length:', this.config.appId?.length || 0);
       console.log('Redirect URL:', this.config.redirectUrl);
       console.log('Environment:', this.config.environment);
       console.log('==============================');
-      (window as any).handcashConfigLogged = true;
+      window.handcashConfigLogged = true;
     }
 
     // Load existing session if available
@@ -364,7 +371,7 @@ export class HandCashAuthService {
   }
 
   // Make authenticated API request
-  public async makeAuthenticatedRequest(endpoint: string, options: RequestInit = {}): Promise<any> {
+  public async makeAuthenticatedRequest<T = unknown>(endpoint: string, options: RequestInit = {}): Promise<T> {
     if (!this.tokens?.accessToken) {
       throw new Error('Not authenticated');
     }
@@ -451,11 +458,11 @@ export class HandCashAuthService {
         success: true,
         message: result.message || 'Magic link sent to your email'
       };
-    } catch (error: any) {
+    } catch (error) {
       console.error('Magic link request failed:', error);
       return {
         success: false,
-        message: error.message || 'Failed to send magic link'
+        message: (error instanceof Error && error.message) || 'Failed to send magic link'
       };
     }
   }

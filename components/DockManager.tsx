@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useSyncExternalStore } from 'react';
 import Dock from './Dock';
 import MinimalDock from './MinimalDock';
 
@@ -8,25 +8,22 @@ interface DockManagerProps {
   currentApp?: string; // ID of the current app (e.g., 'bitcoin-identity', 'bitcoin-writer')
 }
 
+// Dock style lives in localStorage and changes are broadcast via a
+// 'dockStyleChanged' window event (see Dock / MinimalDock).
+const subscribeToDockStyle = (onChange: () => void) => {
+  window.addEventListener('dockStyleChanged', onChange);
+  window.addEventListener('storage', onChange);
+  return () => {
+    window.removeEventListener('dockStyleChanged', onChange);
+    window.removeEventListener('storage', onChange);
+  };
+};
+
+const getDockStyle = () => localStorage.getItem('dockStyle') || 'large';
+const getServerDockStyle = () => 'large';
+
 const DockManager: React.FC<DockManagerProps> = ({ currentApp = 'bitcoin-video' }) => {
-  const [dockStyle, setDockStyle] = useState<string>('large');
-
-  useEffect(() => {
-    // Get initial dock style from localStorage, default to large
-    const savedStyle = localStorage.getItem('dockStyle') || 'large';
-    setDockStyle(savedStyle);
-
-    // Listen for dock style changes
-    const handleDockStyleChange = (event: CustomEvent) => {
-      setDockStyle(event.detail);
-    };
-
-    window.addEventListener('dockStyleChanged', handleDockStyleChange as EventListener);
-
-    return () => {
-      window.removeEventListener('dockStyleChanged', handleDockStyleChange as EventListener);
-    };
-  }, []);
+  const dockStyle = useSyncExternalStore(subscribeToDockStyle, getDockStyle, getServerDockStyle);
 
   return (
     <>

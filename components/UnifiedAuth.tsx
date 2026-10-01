@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import GoogleAuthButton from './GoogleAuth';
 import { HandCashService } from '../services/HandCashService';
+import type { HandCashUser } from '../services/HandCashAuthService';
+import type { GoogleUser, TwitterUser } from '../types/auth';
 import AuthModal from './AuthModal';
 import './UnifiedAuth.css';
 
 interface UnifiedAuthProps {
-  googleUser: any;
-  setGoogleUser: (user: any) => void;
+  googleUser: GoogleUser | null;
+  setGoogleUser: (user: GoogleUser | null) => void;
   isHandCashAuthenticated: boolean;
-  currentHandCashUser: any;
+  currentHandCashUser: HandCashUser | null;
   handcashService: HandCashService;
   onHandCashLogin: () => void;
   onHandCashLogout: () => void;
@@ -26,16 +28,14 @@ const UnifiedAuth: React.FC<UnifiedAuthProps> = ({
 }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
-  const [twitterUser, setTwitterUser] = useState<any>(null);
+  // Restore any stored Twitter user on first render (client-only component)
+  const [twitterUser, setTwitterUser] = useState<TwitterUser | null>(() => {
+    if (typeof window === 'undefined') return null;
+    const stored = localStorage.getItem('twitterUser');
+    return stored ? (JSON.parse(stored) as TwitterUser) : null;
+  });
   const [showSubstackModal, setShowSubstackModal] = useState(false);
 
-  useEffect(() => {
-    // Check for stored Twitter user
-    const storedTwitterUser = localStorage.getItem('twitterUser');
-    if (storedTwitterUser) {
-      setTwitterUser(JSON.parse(storedTwitterUser));
-    }
-  }, []);
 
   // Determine auth state
   const hasGoogle = !!googleUser;
@@ -105,7 +105,7 @@ const UnifiedAuth: React.FC<UnifiedAuthProps> = ({
       
       // Simulate a delay as if OAuth is happening
       setTimeout(() => {
-        const mockTwitterUser = {
+        const mockTwitterUser: TwitterUser = {
           username: 'bitcoin_writer',
           name: 'Bitcoin Writer',
           profile_image_url: 'https://pbs.twimg.com/profile_images/1844449428127928320/C0dTi8M4_400x400.jpg'
@@ -261,9 +261,9 @@ const UnifiedAuth: React.FC<UnifiedAuthProps> = ({
               </div>
               <div className="substack-modal-content">
                 <div className="substack-message">
-                  <h3>Substack doesn't do OAuth, sucker!</h3>
+                  <h3>Substack doesn&apos;t do OAuth, sucker!</h3>
                   <p>They keep their API locked up tighter than Fort Knox. 🔒</p>
-                  <p>But hey, you can still copy/paste your articles manually like it's 1999! 📋</p>
+                  <p>But hey, you can still copy/paste your articles manually like it&apos;s 1999! 📋</p>
                   <button 
                     className="substack-ok-btn"
                     onClick={() => setShowSubstackModal(false)}
@@ -493,9 +493,9 @@ const UnifiedAuth: React.FC<UnifiedAuthProps> = ({
             </div>
             <div className="substack-modal-content">
               <div className="substack-message">
-                <h3>Substack doesn't do OAuth, sucker!</h3>
+                <h3>Substack doesn&apos;t do OAuth, sucker!</h3>
                 <p>They keep their API locked up tighter than Fort Knox. 🔒</p>
-                <p>But hey, you can still copy/paste your articles manually like it's 1999! 📋</p>
+                <p>But hey, you can still copy/paste your articles manually like it&apos;s 1999! 📋</p>
                 <button 
                   className="substack-ok-btn"
                   onClick={() => setShowSubstackModal(false)}

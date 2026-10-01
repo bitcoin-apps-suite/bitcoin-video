@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useSyncExternalStore } from 'react';
+import { useClock } from '../hooks/useClock';
 import { Wallet, Mail, Music, FileText, HardDrive, Calendar, Search, Table, Briefcase, Store, Wifi, Volume2, Battery, Clock, TrendingUp, Building2, Shield, Video, Code2, Camera, MapPin, MessageCircle, Users, Gamepad2, BookOpen, Globe, Box, FolderOpen, Minimize2, Monitor, Home, GraduationCap, Paintbrush, UserCheck, Sparkles } from 'lucide-react';
-import { getThemedIcon, getCurrentTheme } from '../lib/icon-themes';
+import { getThemedIcon, getCurrentTheme, type IconComponent } from '../lib/icon-themes';
 import './Dock.css';
 
 interface DockApp {
   id?: string;
   name: string;
-  icon: any;
+  icon: IconComponent;
   color: string;
   url?: string;
   disabled?: boolean;
@@ -18,33 +19,25 @@ interface DockProps {
   currentApp?: string; // ID of the current app (e.g., 'bitcoin-identity', 'bitcoin-writer')
 }
 
+// Icon theme lives in localStorage; changes are broadcast via 'iconThemeChanged'.
+const subscribeToIconTheme = (onChange: () => void) => {
+  window.addEventListener('iconThemeChanged', onChange);
+  window.addEventListener('storage', onChange);
+  return () => {
+    window.removeEventListener('iconThemeChanged', onChange);
+    window.removeEventListener('storage', onChange);
+  };
+};
+const getServerIconTheme = () => 'lucide';
+
 const Dock: React.FC<DockProps> = ({ currentApp = 'bitcoin-video' }) => {
-  const [mounted, setMounted] = useState(false);
-  const [iconTheme, setIconTheme] = useState<string>('lucide');
-  const [currentTime, setCurrentTime] = useState(new Date());
+  const iconTheme = useSyncExternalStore(subscribeToIconTheme, getCurrentTheme, getServerIconTheme);
+  const now = useClock();
   const [minimizeTimeout, setMinimizeTimeout] = useState<NodeJS.Timeout | null>(null);
 
+  // Clear any pending minimize timer on change/unmount
   useEffect(() => {
-    setMounted(true);
-    
-    // Set initial theme
-    setIconTheme(getCurrentTheme());
-    
-    // Listen for theme changes
-    const handleThemeChange = (event: any) => {
-      setIconTheme(event.detail);
-    };
-    
-    window.addEventListener('iconThemeChanged', handleThemeChange);
-    
-    // Timer for clock
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-    
     return () => {
-      window.removeEventListener('iconThemeChanged', handleThemeChange);
-      clearInterval(timer);
       if (minimizeTimeout) {
         clearTimeout(minimizeTimeout);
       }
@@ -124,7 +117,7 @@ const Dock: React.FC<DockProps> = ({ currentApp = 'bitcoin-video' }) => {
 
   const handleAppClick = (app: DockApp) => {
     if (!app.disabled && app.url && !app.current) {
-      window.location.href = app.url;
+      window.location.assign(app.url);
     }
   };
 
@@ -156,7 +149,7 @@ const Dock: React.FC<DockProps> = ({ currentApp = 'bitcoin-video' }) => {
         <div className="dock-apps">
           {dockApps.map((app, index) => {
           // Get themed icon, but force Monitor for bitcoin-os and Shield for bitcoin-identity
-          let Icon;
+          let Icon: IconComponent;
           if (app.id === 'bapps-store') {
             Icon = app.icon;
           } else if (app.id === 'bitcoin-os') {
@@ -200,14 +193,14 @@ const Dock: React.FC<DockProps> = ({ currentApp = 'bitcoin-video' }) => {
           <button 
             className="status-button" 
             title="Bitcoin Corporation"
-            onClick={() => window.location.href = 'https://bitcoin-corp.vercel.app/'}
+            onClick={() => window.location.assign('https://bitcoin-corp.vercel.app/')}
           >
             <Building2 className="status-icon" style={{ color: '#f7931a' }} />
           </button>
           <button 
             className="status-button" 
             title="Trust"
-            onClick={() => window.location.href = 'https://bitcoin-corp.vercel.app/trust'}
+            onClick={() => window.location.assign('https://bitcoin-corp.vercel.app/trust')}
           >
             <Shield className="status-icon" style={{ color: '#3b82f6' }} />
           </button>
@@ -243,7 +236,7 @@ const Dock: React.FC<DockProps> = ({ currentApp = 'bitcoin-video' }) => {
           <button 
             className="status-button" 
             title="NPG"
-            onClick={() => window.location.href = 'https://www.ninjapunkgirls.website'}
+            onClick={() => window.location.assign('https://www.ninjapunkgirls.website')}
           >
             <Sparkles className="status-icon" style={{ color: '#ec4899' }} />
           </button>
@@ -259,9 +252,9 @@ const Dock: React.FC<DockProps> = ({ currentApp = 'bitcoin-video' }) => {
           >
             <Battery className="status-icon" style={{ color: '#22c55e' }} />
           </button>
-          <div className="status-button" title={mounted ? currentTime.toLocaleDateString() : ''} style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#ffffff', fontSize: '12px' }}>
+          <div className="status-button" title={now !== null ? new Date(now).toLocaleDateString() : ''} style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#ffffff', fontSize: '12px' }}>
             <Clock className="status-icon" style={{ color: '#ffffff' }} />
-            <span>{mounted ? currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '12:00'}</span>
+            <span>{now !== null ? new Date(now).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '12:00'}</span>
           </div>
         </div>
       </div>

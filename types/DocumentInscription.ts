@@ -86,7 +86,7 @@ export interface DocumentVersionChain {
 export interface InscriptionError {
   code: 'INSUFFICIENT_FUNDS' | 'INVALID_CONTENT' | 'NETWORK_ERROR' | 'SIGNATURE_FAILED';
   message: string;
-  details?: any;
+  details?: unknown;
 }
 
 export interface InscriptionProgress {

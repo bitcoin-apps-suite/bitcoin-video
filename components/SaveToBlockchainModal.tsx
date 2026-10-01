@@ -40,6 +40,10 @@ export interface BlockchainSaveOptions {
   };
 }
 
+type StorageMethod = 'direct' | 'ipfs' | 'hybrid' | 'cloud';
+type CloudProvider = 'googledrive' | 'aws-s3' | 'supabase' | 'cloudflare-r2' | 'azure-blob';
+type UnlockMethod = 'immediate' | 'timed' | 'priced' | 'timedAndPriced';
+
 interface SaveToBlockchainModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -67,8 +71,8 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   
   // Storage options
-  const [storageMethod, setStorageMethod] = useState<'direct' | 'ipfs' | 'hybrid' | 'cloud'>('direct');
-  const [cloudProvider, setCloudProvider] = useState<'googledrive' | 'aws-s3' | 'supabase' | 'cloudflare-r2' | 'azure-blob'>('googledrive');
+  const [storageMethod, setStorageMethod] = useState<StorageMethod>('direct');
+  const [cloudProvider, setCloudProvider] = useState<CloudProvider>('googledrive');
   const [cloudApiKey, setCloudApiKey] = useState('');
   const [cloudBucket, setCloudBucket] = useState('');
   const [cloudRegion, setCloudRegion] = useState('');
@@ -77,7 +81,7 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
   const [encryptionPassword, setEncryptionPassword] = useState('');
   
   // Access control
-  const [unlockMethod, setUnlockMethod] = useState<'immediate' | 'timed' | 'priced' | 'timedAndPriced'>('immediate');
+  const [unlockMethod, setUnlockMethod] = useState<UnlockMethod>('immediate');
   const [unlockTime, setUnlockTime] = useState<string>('');
   const [unlockPrice, setUnlockPrice] = useState<number>(0);
   const [enablePreview, setEnablePreview] = useState(false);
@@ -309,7 +313,7 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
                     name="storage"
                     value="direct"
                     checked={storageMethod === 'direct'}
-                    onChange={(e) => setStorageMethod(e.target.value as any)}
+                    onChange={(e) => setStorageMethod(e.target.value as StorageMethod)}
                     disabled={isLoading}
                   />
                   <div className="option-content">
@@ -324,7 +328,7 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
                     name="storage"
                     value="ipfs"
                     checked={storageMethod === 'ipfs'}
-                    onChange={(e) => setStorageMethod(e.target.value as any)}
+                    onChange={(e) => setStorageMethod(e.target.value as StorageMethod)}
                     disabled={isLoading}
                   />
                   <div className="option-content">
@@ -339,7 +343,7 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
                     name="storage"
                     value="hybrid"
                     checked={storageMethod === 'hybrid'}
-                    onChange={(e) => setStorageMethod(e.target.value as any)}
+                    onChange={(e) => setStorageMethod(e.target.value as StorageMethod)}
                     disabled={isLoading}
                   />
                   <div className="option-content">
@@ -354,7 +358,7 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
                     name="storage"
                     value="cloud"
                     checked={storageMethod === 'cloud'}
-                    onChange={(e) => setStorageMethod(e.target.value as any)}
+                    onChange={(e) => setStorageMethod(e.target.value as StorageMethod)}
                     disabled={isLoading}
                   />
                   <div className="option-content">
@@ -369,7 +373,7 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
                   <h4>Select Cloud Provider</h4>
                   <select 
                     value={cloudProvider} 
-                    onChange={(e) => setCloudProvider(e.target.value as any)}
+                    onChange={(e) => setCloudProvider(e.target.value as CloudProvider)}
                     disabled={isLoading}
                   >
                     <option value="googledrive">Google Drive</option>
@@ -479,7 +483,7 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
                         />
                       </label>
                       <div style={{ marginTop: '12px', padding: '10px', backgroundColor: 'rgba(34, 197, 94, 0.1)', border: '1px solid rgba(34, 197, 94, 0.3)', borderRadius: '6px' }}>
-                        <strong>💰 CDN Ready:</strong> Your content will be served globally via Cloudflare's CDN. 
+                        <strong>💰 CDN Ready:</strong> Your content will be served globally via Cloudflare&apos;s CDN. 
                         Readers pay micropayments directly to your HandCash wallet to access.
                       </div>
                     </div>
@@ -700,7 +704,7 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
                     name="unlock"
                     value="immediate"
                     checked={unlockMethod === 'immediate'}
-                    onChange={(e) => setUnlockMethod(e.target.value as any)}
+                    onChange={(e) => setUnlockMethod(e.target.value as UnlockMethod)}
                     disabled={isLoading}
                   />
                   <div className="option-content">
@@ -715,7 +719,7 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
                     name="unlock"
                     value="timed"
                     checked={unlockMethod === 'timed'}
-                    onChange={(e) => setUnlockMethod(e.target.value as any)}
+                    onChange={(e) => setUnlockMethod(e.target.value as UnlockMethod)}
                     disabled={isLoading}
                   />
                   <div className="option-content">
@@ -730,7 +734,7 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
                     name="unlock"
                     value="priced"
                     checked={unlockMethod === 'priced'}
-                    onChange={(e) => setUnlockMethod(e.target.value as any)}
+                    onChange={(e) => setUnlockMethod(e.target.value as UnlockMethod)}
                     disabled={isLoading}
                   />
                   <div className="option-content">
@@ -745,7 +749,7 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
                     name="unlock"
                     value="timedAndPriced"
                     checked={unlockMethod === 'timedAndPriced'}
-                    onChange={(e) => setUnlockMethod(e.target.value as any)}
+                    onChange={(e) => setUnlockMethod(e.target.value as UnlockMethod)}
                     disabled={isLoading}
                   />
                   <div className="option-content">
@@ -808,7 +812,7 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
                     <p style={{ margin: '0', fontSize: '13px', lineHeight: '1.6', color: '#ccc' }}>
                       When readers access your content:
                       <br />1. They see your preview/teaser
-                      <br />2. Click "Pay to Read" button
+                      <br />2. Click &quot;Pay to Read&quot; button
                       <br />3. HandCash processes micropayment
                       <br />4. Payment goes directly to your wallet
                       <br />5. Content unlocks instantly
@@ -1062,7 +1066,7 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
                     <ul style={{ margin: '5px 0 0 20px', padding: 0 }}>
                       <li>HandCash Market (in-app marketplace)</li>
                       <li>Your HandCash profile</li>
-                      <li>Buyer's asset collection</li>
+                      <li>Buyer&apos;s asset collection</li>
                     </ul>
                   </div>
                 </div>
@@ -1162,7 +1166,7 @@ const SaveToBlockchainModal: React.FC<SaveToBlockchainModalProps> = ({
           <div style={{ flex: 1, fontSize: '12px', color: '#888', marginRight: '20px' }}>
             {(unlockMethod === 'priced' || unlockMethod === 'timedAndPriced') && (
               <>
-                <strong>After publishing:</strong> You'll get a shareable link like<br />
+                <strong>After publishing:</strong> You&apos;ll get a shareable link like<br />
                 <code style={{ color: '#f7931a' }}>bitcoinwriter.io/read/{documentTitle.toLowerCase().replace(/\s+/g, '-')}</code>
               </>
             )}

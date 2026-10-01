@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useClock } from '../hooks/useClock';
 import { Wallet, Mail, Music, FileText, HardDrive, Calendar, Search, Table, Share2, Briefcase, Store, Wifi, Battery, Clock, TrendingUp, Building2, Shield, Video, Code2, Camera, MapPin, MessageCircle, Users, Gamepad2, BookOpen, Globe, Box, Monitor, GraduationCap, Paintbrush, UserCheck, Maximize2, Home, Sparkles } from 'lucide-react';
+import type { IconComponent } from '../lib/icon-themes';
 import './MinimalDock.css';
 
 interface DockApp {
   id?: string;
   name: string;
-  icon: any;
+  icon: IconComponent | 'custom'; // 'custom' icons are drawn inline by id
   color: string;
   url?: string;
   disabled?: boolean;
@@ -18,16 +20,7 @@ interface MinimalDockProps {
 }
 
 const MinimalDock: React.FC<MinimalDockProps> = ({ currentApp = 'bitcoin-video' }) => {
-  const [currentTime, setCurrentTime] = useState(new Date());
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
+  const now = useClock();
 
   const getRainbowColor = (index: number): string => {
     const rainbowColors = [
@@ -113,7 +106,7 @@ const MinimalDock: React.FC<MinimalDockProps> = ({ currentApp = 'bitcoin-video' 
 
   const handleAppClick = (app: DockApp) => {
     if (!app.disabled && app.url && !app.current) {
-      window.location.href = app.url;
+      window.location.assign(app.url);
     }
   };
 
@@ -153,7 +146,7 @@ const MinimalDock: React.FC<MinimalDockProps> = ({ currentApp = 'bitcoin-video' 
                     <path d="M3 9h18" />
                   </svg>
                 ) : (
-                  <Icon className="minimal-dock-icon" style={{ color: getIconColor(app.color, index) }} />
+                  Icon !== 'custom' && <Icon className="minimal-dock-icon" style={{ color: getIconColor(app.color, index) }} />
                 )}
                 {app.current && <span className="minimal-dock-indicator" />}
               </button>
@@ -187,7 +180,7 @@ const MinimalDock: React.FC<MinimalDockProps> = ({ currentApp = 'bitcoin-video' 
                       <path d="M3 9h18" />
                     </svg>
                   ) : (
-                    <Icon className="minimal-dock-icon-mini" style={{ color: getIconColor(app.color, index) }} />
+                    Icon !== 'custom' && <Icon className="minimal-dock-icon-mini" style={{ color: getIconColor(app.color, index) }} />
                   )}
                 </button>
               );
@@ -212,9 +205,9 @@ const MinimalDock: React.FC<MinimalDockProps> = ({ currentApp = 'bitcoin-video' 
           <div className="minimal-status-item" title="Battery: 100%">
             <Battery className="minimal-status-icon connected" />
           </div>
-          <div className="minimal-status-time" title={mounted ? currentTime.toLocaleDateString() : ''}>
+          <div className="minimal-status-time" title={now !== null ? new Date(now).toLocaleDateString() : ''}>
             <Clock className="minimal-status-icon" />
-            <span>{mounted ? currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '12:00'}</span>
+            <span>{now !== null ? new Date(now).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '12:00'}</span>
           </div>
         </div>
       </div>

@@ -1,5 +1,10 @@
 // Complete Icon Mappings for All Icon Libraries
 
+import type { ComponentType, CSSProperties } from 'react'
+
+/** Any icon component from the supported libraries (lucide, react-icons, tabler, ...). */
+export type IconComponent = ComponentType<{ className?: string; style?: CSSProperties }>
+
 // Lucide Icons (existing)
 import { 
   Wallet as LucideWallet, 
@@ -274,14 +279,14 @@ import {
 } from 'react-icons/bs'
 
 export interface CompleteIconMapping {
-  lucide: any
-  'react-icons': any
-  tabler: any
-  heroicons: any
-  feather: any
-  phosphor: any
-  remix: any
-  bootstrap: any
+  lucide: IconComponent
+  'react-icons': IconComponent
+  tabler: IconComponent
+  heroicons: IconComponent
+  feather: IconComponent
+  phosphor: IconComponent
+  remix: IconComponent
+  bootstrap: IconComponent
 }
 
 export const completeIconMappings: { [key: string]: CompleteIconMapping } = {
@@ -800,7 +805,7 @@ export const completeIconMappings: { [key: string]: CompleteIconMapping } = {
   }
 }
 
-export const getCompleteThemedIcon = (iconId: string, theme: string = 'lucide') => {
+export const getCompleteThemedIcon = (iconId: string, theme: string = 'lucide'): IconComponent => {
   const mapping = completeIconMappings[iconId]
   if (!mapping) {
     // Fallback to default settings icon
