@@ -372,34 +372,6 @@ export default function BitcoinVideo() {
                   </div>
                   <div className="h-full bg-gradient-to-b from-gray-950 via-black to-gray-950 rounded-xl overflow-hidden border border-blue-500/30 p-4">
                     <div className="h-full overflow-y-auto">
-                      {/* Featured Section */}
-                      {selectedCategory === 'all' && (
-                        <section className="mb-6">
-                          <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-red-600/20 via-yellow-500/10 to-yellow-500/20 p-6 border border-red-600/20 backdrop-blur-sm shadow-xl">
-                            <div className="absolute top-3 right-3">
-                              <span className="px-2 py-1 bg-red-600 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg animate-pulse">
-                                <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
-                                LIVE
-                              </span>
-                            </div>
-                            <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Bitcoin Halving Countdown</h3>
-                            <p className="text-gray-300 mb-4 text-sm">Next halving in 142 days - Watch live analysis</p>
-                            <div className="flex gap-3">
-                              <button 
-                                onClick={() => handleVideoClick({ id: 'live', title: 'Bitcoin Halving Countdown', thumbnail: '', channel: 'Live', views: '', timestamp: '', duration: '', verified: true, live: true, category: 'news' })}
-                                className="px-4 py-2 bg-gradient-to-r from-red-600 to-yellow-500 rounded-lg font-semibold hover:from-red-700 hover:to-yellow-500 transition-all duration-300 flex items-center gap-2 shadow-lg text-sm"
-                              >
-                                <Play className="w-4 h-4" />
-                                Watch Live
-                              </button>
-                              <button className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-lg font-medium hover:bg-white/20 transition-all duration-300 border border-white/10 text-sm">
-                                Set Reminder
-                              </button>
-                            </div>
-                          </div>
-                        </section>
-                      )}
-
                       {/* Video Grid */}
                       <AnimatePresence mode="wait">
                         {isLoading ? (
@@ -507,34 +479,6 @@ export default function BitcoinVideo() {
             ) : (
               /* Full Watch Mode */
               <div className="h-[calc(100vh-200px)]">
-                {/* Featured Section */}
-                {selectedCategory === 'all' && (
-                  <section className="mb-8">
-                    <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-red-600/20 via-yellow-500/10 to-yellow-500/20 p-10 border border-red-600/20 backdrop-blur-sm shadow-2xl">
-                      <div className="absolute top-4 right-4">
-                        <span className="px-3 py-1.5 bg-red-600 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-lg animate-pulse">
-                          <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-                          LIVE
-                        </span>
-                      </div>
-                      <h2 className="text-4xl font-bold mb-3 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Bitcoin Halving Countdown</h2>
-                      <p className="text-gray-300 mb-6 text-lg">Next halving in 142 days - Watch live analysis and predictions</p>
-                      <div className="flex gap-4">
-                        <button 
-                          onClick={() => handleVideoClick({ id: 'live', title: 'Bitcoin Halving Countdown', thumbnail: '', channel: 'Live', views: '', timestamp: '', duration: '', verified: true, live: true, category: 'news' })}
-                          className="px-8 py-3.5 bg-gradient-to-r from-red-600 to-yellow-500 rounded-xl font-semibold hover:from-red-700 hover:to-yellow-500 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-red-600/25 transform hover:scale-105"
-                        >
-                          <Play className="w-5 h-5" />
-                          Watch Live
-                        </button>
-                        <button className="px-8 py-3.5 bg-white/10 backdrop-blur-sm rounded-xl font-medium hover:bg-white/20 transition-all duration-300 border border-white/10 hover:border-white/20">
-                          Set Reminder
-                        </button>
-                      </div>
-                    </div>
-                  </section>
-                )}
-
                 {/* Video Grid */}
                 <AnimatePresence mode="wait">
                   {isLoading ? (
