@@ -115,10 +115,10 @@ export default function BitcoinVideoStudio({
 
   // Handle tokenization
   const handleTokenize = (protocol: string, options: TokenizationOptions) => {
-    console.log('Tokenizing video with protocol:', protocol, options)
-    // Here we would integrate with the blockchain tokenization service
-    // For now, we'll just show a success message
-    alert(`Video "${videoMetadata.title}" will be tokenized using ${protocol} protocol!`)
+    void protocol
+    void options
+    // Tokenising is not built yet: say so plainly rather than pretend it worked.
+    alert('Tokenising is not live yet. Nothing was created or charged. To keep a short clip on-chain, use Save on-chain on the Create page.')
     setShowTokenizeModal(false)
   }
 
