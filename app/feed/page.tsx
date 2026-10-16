@@ -47,9 +47,7 @@ interface Video {
 export default function BitcoinVideo() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('all')
-  const [btcPrice, setBtcPrice] = useState('67,432')
-  const [priceChange, setPriceChange] = useState('+2.4%')
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading] = useState(false)
 
   const categories = [
     { id: 'all', name: 'All', icon: <Home className="w-4 h-4" /> },
@@ -60,118 +58,11 @@ export default function BitcoinVideo() {
     { id: 'automated', name: 'AI Generated', icon: <Sparkles className="w-4 h-4" /> },
   ]
 
-  const videos: Video[] = [
-    {
-      id: '1',
-      title: 'Craig Wright Finally Admits: He\'s Actually the Guy Who Invented Excel 📊',
-      thumbnail: 'https://picsum.photos/320/180?random=1',
-      channel: 'The Crypto Onion',
-      views: '42.3M',
-      timestamp: '2 hours ago',
-      duration: '0:47',
-      verified: true,
-      live: true,
-      category: 'news'
-    },
-    {
-      id: '2',
-      title: 'Cookie Monster Reveals Addiction: It Was Blocksize All Along 🍪',
-      thumbnail: 'https://picsum.photos/320/180?random=2',
-      channel: 'SesameStreetCrypto',
-      views: '38.9M',
-      timestamp: '5 hours ago',
-      duration: '0:23',
-      verified: true,
-      category: 'education'
-    },
-    {
-      id: '3',
-      title: 'BSV Surpasses 7 Daily Users: Network in Crisis from Overload 💥',
-      thumbnail: 'https://picsum.photos/320/180?random=3',
-      channel: 'Blockchain News Network',
-      views: '15.7M',
-      timestamp: '1 hour ago',
-      duration: '2:34',
-      verified: true,
-      automated: true,
-      category: 'automated'
-    },
-    {
-      id: '4',
-      title: 'Miners Demand Bigger Blocks, Core Suggests Smaller Brains 🧠',
-      thumbnail: 'https://picsum.photos/320/180?random=4',
-      channel: 'Bitcoin Satirical Times',
-      views: '22.1M',
-      timestamp: '1 day ago',
-      duration: '1:12',
-      verified: true,
-      category: 'news'
-    },
-    {
-      id: '5',
-      title: 'Lightning Devs Introduce New Feature: Pay $5 to Wait Faster ⚡',
-      thumbnail: 'https://picsum.photos/320/180?random=5',
-      channel: 'TechSatire Today',
-      views: '29.4M',
-      timestamp: '3 days ago',
-      duration: '0:31',
-      verified: true,
-      category: 'tutorials'
-    },
-    {
-      id: '6',
-      title: 'Vitalik Explains ETH Merge in 47 Hours, Audience Still Waiting for Block Confirmation',
-      thumbnail: 'https://picsum.photos/320/180?random=6',
-      channel: 'Ethereum Comedy Central',
-      views: '19.2M',
-      timestamp: '30 minutes ago',
-      duration: '47:03',
-      verified: false,
-      automated: true,
-      category: 'automated'
-    },
-    {
-      id: '7',
-      title: 'Wall Street Firm Buys Bitcoin, Accidentally Purchases Dogecoin Instead 🐕',
-      thumbnail: 'https://picsum.photos/320/180?random=7',
-      channel: 'Financial Comedy Hour',
-      views: '34.8M',
-      timestamp: '6 hours ago',
-      duration: '0:29',
-      verified: false,
-      category: 'analysis'
-    },
-    {
-      id: '8',
-      title: 'Influencer Loses Keys, Blames Mercury Retrograde 🔮',
-      thumbnail: 'https://picsum.photos/320/180?random=8',
-      channel: 'CryptoAstrology',
-      views: '28.7M',
-      timestamp: '2 days ago',
-      duration: '0:15',
-      verified: false,
-      category: 'education'
-    }
-  ]
+  const videos: Video[] = []
 
   const filteredVideos = selectedCategory === 'all' 
     ? videos 
     : videos.filter(v => v.category === selectedCategory)
-
-  useEffect(() => {
-    // Simulate loading
-    setTimeout(() => setIsLoading(false), 1500)
-    
-    const interval = setInterval(() => {
-      const change = (Math.random() - 0.5) * 5
-      setBtcPrice((prev) => {
-        const newPrice = parseFloat(prev.replace(',', '')) + change
-        return newPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })
-      })
-      setPriceChange(change > 0 ? `+${change.toFixed(1)}%` : `${change.toFixed(1)}%`)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
 
   return (
     
@@ -227,15 +118,6 @@ export default function BitcoinVideo() {
 
             {/* Right Side Actions */}
             <div className="flex items-center gap-2 sm:gap-4">
-              {/* BTC Price Ticker */}
-              <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-600/10 to-yellow-500/10 rounded-xl border border-red-600/20 shadow-lg">
-                <Bitcoin className="w-4 h-4 text-red-600" />
-                <span className="font-mono font-bold">${btcPrice}</span>
-                <span className={`text-sm ${priceChange.startsWith('+') ? 'text-green-400' : 'text-red-400'}`}>
-                  {priceChange}
-                </span>
-              </div>
-
               <div className="flex items-center gap-2">
                 <Link
                   href="/create"
@@ -289,31 +171,6 @@ export default function BitcoinVideo() {
 
           {/* Main Content */}
           <main className="p-6 lg:p-8">
-          {/* Featured Section */}
-          {selectedCategory === 'all' && (
-            <section className="mb-8">
-              <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-red-600/20 via-yellow-500/10 to-yellow-500/20 p-10 border border-red-600/20 backdrop-blur-sm shadow-2xl">
-                <div className="absolute top-4 right-4">
-                  <span className="px-3 py-1.5 bg-red-600 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-lg animate-pulse">
-                    <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-                    LIVE
-                  </span>
-                </div>
-                <h2 className="text-4xl font-bold mb-3 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Bitcoin Halving Countdown</h2>
-                <p className="text-gray-300 mb-6 text-lg">Next halving in 142 days - Watch live analysis and predictions</p>
-                <div className="flex gap-4">
-                  <button className="px-8 py-3.5 bg-gradient-to-r from-red-600 to-yellow-500 rounded-xl font-semibold hover:from-red-700 hover:to-yellow-500 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-red-600/25 transform hover:scale-105">
-                    <Play className="w-5 h-5" />
-                    Watch Live
-                  </button>
-                  <button className="px-8 py-3.5 bg-white/10 backdrop-blur-sm rounded-xl font-medium hover:bg-white/20 transition-all duration-300 border border-white/10 hover:border-white/20">
-                    Set Reminder
-                  </button>
-                </div>
-              </div>
-            </section>
-          )}
-
           {/* Video Grid */}
           <AnimatePresence mode="wait">
             {isLoading ? (
@@ -329,6 +186,7 @@ export default function BitcoinVideo() {
                 transition={{ duration: 0.5 }}
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
               >
+                {filteredVideos.length === 0 && <p className="col-span-full py-12 text-center text-gray-400">No videos yet. Creators can save videos on-chain from the Create page.</p>}
                 {filteredVideos.map((video, index) => (
                   <motion.div
                     key={video.id}

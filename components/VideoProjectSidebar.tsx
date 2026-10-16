@@ -49,39 +49,8 @@ const VideoProjectSidebar: React.FC<VideoProjectSidebarProps> = ({
   const [sidebarWidth, setSidebarWidth] = useState(280)
   const [isResizing, setIsResizing] = useState(false)
 
-  // Sample projects data - in real app this would come from localStorage/database
-  const sampleProjects: VideoProject[] = [
-    {
-      id: '1',
-      name: 'Bitcoin Halving Analysis',
-      thumbnail: 'https://picsum.photos/320/180?random=10',
-      duration: '3:24',
-      lastModified: '2 hours ago',
-      status: 'draft',
-      created_at: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
-      updated_at: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString()
-    },
-    {
-      id: '2', 
-      name: 'Lightning Network Tutorial',
-      thumbnail: 'https://picsum.photos/320/180?random=11',
-      duration: '8:45',
-      lastModified: '1 day ago',
-      status: 'published',
-      created_at: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
-      updated_at: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
-    },
-    {
-      id: '3',
-      name: 'Market Analysis Oct 2024',
-      thumbnail: 'https://picsum.photos/320/180?random=12',
-      duration: '5:12',
-      lastModified: '3 days ago',
-      status: 'processing',
-      created_at: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
-      updated_at: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString()
-    }
-  ]
+  // Projects are kept in this browser only; start empty.
+  const sampleProjects: VideoProject[] = []
 
   const loadProjects = useCallback(async () => {
     setIsLoading(true)

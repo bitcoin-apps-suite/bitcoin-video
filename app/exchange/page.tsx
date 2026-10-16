@@ -1,36 +1,25 @@
 'use client'
 
-
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import CleanTaskbar from '@/components/CleanTaskbar'
-import VideoExchangeView from '@/components/VideoExchangeView'
 import ResponsiveLayout from '@/components/ResponsiveLayout'
 
 export default function VideoExchange() {
   return (
-    
-      <div className="min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white antialiased">
-        <ProofOfConceptBar />
-        <CleanTaskbar 
-          onNewVideo={() => window.location.href = '/'}
-          onSaveVideo={() => console.log('Save project')}
-        />
-        
-        <ResponsiveLayout>
-          <div className="container mx-auto px-4 py-8 mt-20">
-            <div className="mb-8">
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-red-400 to-yellow-400 bg-clip-text text-transparent mb-4">
-                🎬 Video Exchange
-              </h1>
-              <p className="text-gray-400 text-lg">
-                Trade tokenized videos, invest in creator shares, and earn from video performance
-              </p>
-            </div>
-            
-            <VideoExchangeView />
-          </div>
-        </ResponsiveLayout>
-      </div>
-    
+    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white antialiased">
+      <ProofOfConceptBar />
+      <CleanTaskbar onNewVideo={() => (window.location.href = '/')} />
+      <ResponsiveLayout>
+        <div className="container mx-auto px-4 py-8 mt-20">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-red-400 to-yellow-400 bg-clip-text text-transparent mb-4">
+            Video Exchange
+          </h1>
+          <p className="text-gray-400 text-lg">
+            No video tokens are listed yet. When creators tokenise videos they will appear here, and trades will
+            settle from your own wallet.
+          </p>
+        </div>
+      </ResponsiveLayout>
+    </div>
   )
 }

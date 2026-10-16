@@ -30,32 +30,7 @@ export default function StudioPage() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [uploadedFile, setUploadedFile] = useState<File | null>(null)
 
-  const projects: Project[] = [
-    {
-      id: '1',
-      name: 'Bitcoin Halving Analysis',
-      thumbnail: 'https://picsum.photos/320/180?random=10',
-      duration: '3:24',
-      lastModified: '2 hours ago',
-      status: 'draft'
-    },
-    {
-      id: '2', 
-      name: 'Lightning Network Tutorial',
-      thumbnail: 'https://picsum.photos/320/180?random=11',
-      duration: '8:45',
-      lastModified: '1 day ago', 
-      status: 'published'
-    },
-    {
-      id: '3',
-      name: 'Market Analysis Oct 2024',
-      thumbnail: 'https://picsum.photos/320/180?random=12',
-      duration: '5:12',
-      lastModified: '3 days ago',
-      status: 'processing'
-    }
-  ]
+  const projects: Project[] = []
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]

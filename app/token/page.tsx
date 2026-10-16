@@ -7,7 +7,6 @@ import ResponsiveLayout from '@/components/ResponsiveLayout'
 import DockManager from '@/components/DockManager'
 import CleanTaskbar from '@/components/CleanTaskbar'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
-import TickerSidebar from '@/components/TickerSidebar'
 import './token.css'
 
 export default function TokenPage() {
@@ -310,7 +309,6 @@ export default function TokenPage() {
         </ResponsiveLayout>
         
         <DevSidebar />
-        <TickerSidebar userHandle="bvideo" />
         <DockManager currentApp="bitcoin-video" />
       </div>
   );

@@ -31,7 +31,6 @@ import Footer from '@/components/Footer'
 import CleanTaskbar from '@/components/CleanTaskbar'
 import DockManager from '@/components/DockManager'
 import ResponsiveLayout from '@/components/ResponsiveLayout'
-import TickerSidebar from '@/components/TickerSidebar'
 
 export default function CreatorGuide() {
   const [activeSection, setActiveSection] = useState('getting-started')
@@ -433,8 +432,6 @@ export default function CreatorGuide() {
           </div>
         </div>
       </ResponsiveLayout>
-
-      <TickerSidebar userHandle="creator" />
       <Footer />
         <DockManager currentApp="bitcoin-video" />
     </div>
