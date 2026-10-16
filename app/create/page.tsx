@@ -29,11 +29,11 @@ import {
   Scissors
 } from 'lucide-react'
 import Link from 'next/link'
+import SaveOnChain from '@/components/SaveOnChain'
 import ProofOfConceptBar from '@/components/ProofOfConceptBar'
 import CleanTaskbar from '@/components/CleanTaskbar'
 import DevSidebar from '@/components/DevSidebar'
 import DockManager from '@/components/DockManager'
-import TickerSidebar from '@/components/TickerSidebar'
 
 import ResponsiveLayout from '@/components/ResponsiveLayout'
 import BitcoinVideoStudio from '@/components/BitcoinVideoStudio'
@@ -108,34 +108,10 @@ export default function CreatePage() {
     }
   ]
 
+  const [genNotice, setGenNotice] = useState('')
+  // AI generation needs a model provider and API keys that are not set up yet: say so, never fake results.
   const handleGenerateVideo = () => {
-    setGenerating(true)
-    setTimeout(() => {
-      setGeneratedVideos([
-        {
-          id: '1',
-          title: 'Crypto influencer uploads hate video seamlessly while complaining about fees',
-          duration: '0:34',
-          quality: 'HD',
-          platforms: ['tiktok', 'youtube', 'twitter']
-        },
-        {
-          id: '2',
-          title: 'Government tech committee livestream goes surprisingly smooth',
-          duration: '1:12',
-          quality: '4K',
-          platforms: ['youtube', 'twitter', 'facebook']
-        },
-        {
-          id: '3',
-          title: 'Tech debate gets heated while everyone argues over text messages',
-          duration: '0:47',
-          quality: 'HD',
-          platforms: ['tiktok', 'youtube', 'instagram']
-        }
-      ])
-      setGenerating(false)
-    }, 3000)
+    setGenNotice('AI video generation is not live yet. Nothing was generated or charged.')
   }
 
   return (
@@ -319,7 +295,7 @@ export default function CreatePage() {
                     )}
                   </motion.button>
                   <span className="text-sm text-gray-400">
-                    Will generate 3-5 video variations
+                    {genNotice || 'Will generate 3-5 video variations'}
                   </span>
                 </div>
               </motion.div>
@@ -418,8 +394,11 @@ export default function CreatePage() {
                 Select Video
               </label>
               <p className="text-sm text-gray-500 mt-4">
-                Supported formats: MP4, MOV, AVI, WebM (max 2GB)
+                Opens in the browser editor. To keep a short clip on-chain, use Save on-chain below (up to 5 MB).
               </p>
+            </div>
+            <div className="mt-8">
+              <SaveOnChain accept="video/*" noun="video" />
             </div>
           </div>
         )}
@@ -427,7 +406,6 @@ export default function CreatePage() {
       </ResponsiveLayout>
       
       <DevSidebar />
-      <TickerSidebar userHandle="creator" />
       <DockManager currentApp="bitcoin-video" />
     </div>
     

@@ -12,9 +12,9 @@
     "kill:all": "for port in {3000..3010}; do lsof -ti:$port | xargs kill -9 2>/dev/null || true; done"
   },
   "dependencies": {
+    "@bsv/sdk": "^2.8.11",
     "@ffmpeg/ffmpeg": "^0.12.15",
     "@ffmpeg/util": "^0.12.2",
-    "@handcash/handcash-connect": "^0.8.11",
     "@heroicons/react": "^2.2.0",
     "@phosphor-icons/react": "^2.1.10",
     "@tabler/icons-react": "^3.35.0",

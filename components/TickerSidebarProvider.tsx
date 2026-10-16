@@ -13,7 +13,8 @@ const TickerSidebarContext = createContext<TickerSidebarContextType | undefined>
 
 export function TickerSidebarProvider({ children }: { children: React.ReactNode }) {
   const [isCollapsed, setIsCollapsed] = useState(false)
-  const [isVisible, setIsVisible] = useState(true)
+  // The price ticker was removed (it showed made-up prices); keep the layout context hidden.
+  const [isVisible, setIsVisible] = useState(false)
 
   // Handle responsive visibility
   useEffect(() => {
@@ -22,7 +23,7 @@ export function TickerSidebarProvider({ children }: { children: React.ReactNode 
       if (window.innerWidth < 1200) {
         setIsVisible(false)
       } else {
-        setIsVisible(true)
+        setIsVisible(false)
       }
     }
 

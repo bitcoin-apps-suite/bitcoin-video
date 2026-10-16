@@ -516,7 +516,7 @@ export default function ContractsPage() {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-semibold text-white mb-2">HandCash Handle (optional)</label>
+                  <label className="block text-sm font-semibold text-white mb-2">Paymail (optional)</label>
                   <input 
                     type="text"
                     value={claimForm.handcashHandle}

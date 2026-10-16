@@ -1,7 +1,8 @@
 'use client'
 
 import React, { useState, useRef, useEffect } from 'react';
-import type { HandCashUser } from '../services/HandCashAuthService';
+import WalletButton from './WalletButton';
+import { useWallet } from '@/lib/bwallet';
 
 interface MenuItem {
   label?: string;
@@ -17,20 +18,16 @@ interface MenuData {
 }
 
 interface TaskbarProps {
-  isAuthenticated?: boolean;
-  currentUser?: HandCashUser | null;
-  onLogout?: () => void;
   onNewVideo?: () => void;
   onSaveVideo?: () => void;
 }
 
 const CleanTaskbar: React.FC<TaskbarProps> = ({ 
-  isAuthenticated = false, 
-  currentUser = null, 
-  onLogout,
   onNewVideo,
   onSaveVideo
 }) => {
+  const { user, disconnect } = useWallet();
+  const isAuthenticated = !!user;
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [showBitcoinSuite, setShowBitcoinSuite] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -73,7 +70,7 @@ const CleanTaskbar: React.FC<TaskbarProps> = ({
         { label: 'Hide Bitcoin Video', shortcut: '⌘H', action: () => console.log('Hide') },
         { label: 'Hide Others', shortcut: '⌥⌘H', action: () => console.log('Hide Others') },
         { divider: true },
-        { label: isAuthenticated ? 'Sign Out' : 'Sign In', shortcut: '⌘Q', action: isAuthenticated ? onLogout : () => console.log('Sign in') }
+        { label: isAuthenticated ? 'Sign Out' : 'Sign In', shortcut: '⌘Q', action: isAuthenticated ? disconnect : () => document.querySelector<HTMLButtonElement>('[data-signin]')?.click() }
       ]
     },
     {
@@ -465,6 +462,7 @@ const CleanTaskbar: React.FC<TaskbarProps> = ({
             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
           </svg>
         </a>
+        <WalletButton className="!py-0.5 !text-xs" />
       </div>
     </div>
     </>

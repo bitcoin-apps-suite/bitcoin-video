@@ -35,7 +35,7 @@ import DockManager from '@/components/DockManager'
 import ResponsiveLayout from '@/components/ResponsiveLayout'
 import BitcoinVideoStudio from '@/components/BitcoinVideoStudio'
 import VideoProjectSidebar from '@/components/VideoProjectSidebar'
-import TickerSidebar from '@/components/TickerSidebar'
+import SaveOnChain from '@/components/SaveOnChain'
 
 interface Video {
   id: string
@@ -65,9 +65,7 @@ interface VideoProject {
 export default function BitcoinVideo() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('all')
-  const [btcPrice, setBtcPrice] = useState('67,432')
-  const [priceChange, setPriceChange] = useState('+2.4%')
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading] = useState(false)
   const [viewMode, setViewMode] = useState<'split' | 'studio' | 'watch'>('split')
   const [studioView, setStudioView] = useState<'projects' | 'editor'>('projects')
   const [uploadedFile, setUploadedFile] = useState<File | null>(null)
@@ -83,99 +81,8 @@ export default function BitcoinVideo() {
     { id: 'automated', name: 'AI Generated', icon: <Sparkles className="w-4 h-4" /> },
   ]
 
-  const videos: Video[] = [
-    {
-      id: '1',
-      title: 'Craig Wright Finally Admits: He\'s Actually the Guy Who Invented Excel 📊',
-      thumbnail: 'https://picsum.photos/320/180?random=1',
-      channel: 'The Crypto Onion',
-      views: '42.3M',
-      timestamp: '2 hours ago',
-      duration: '0:47',
-      verified: true,
-      live: true,
-      category: 'news'
-    },
-    {
-      id: '2',
-      title: 'Cookie Monster Reveals Addiction: It Was Blocksize All Along 🍪',
-      thumbnail: 'https://picsum.photos/320/180?random=2',
-      channel: 'SesameStreetCrypto',
-      views: '38.9M',
-      timestamp: '5 hours ago',
-      duration: '0:23',
-      verified: true,
-      category: 'education'
-    },
-    {
-      id: '3',
-      title: 'BSV Surpasses 7 Daily Users: Network in Crisis from Overload 💥',
-      thumbnail: 'https://picsum.photos/320/180?random=3',
-      channel: 'Blockchain News Network',
-      views: '15.7M',
-      timestamp: '1 hour ago',
-      duration: '2:34',
-      verified: true,
-      automated: true,
-      category: 'automated'
-    },
-    {
-      id: '4',
-      title: 'Miners Demand Bigger Blocks, Core Suggests Smaller Brains 🧠',
-      thumbnail: 'https://picsum.photos/320/180?random=4',
-      channel: 'Bitcoin Satirical Times',
-      views: '22.1M',
-      timestamp: '1 day ago',
-      duration: '1:12',
-      verified: true,
-      category: 'news'
-    },
-    {
-      id: '5',
-      title: 'Lightning Devs Introduce New Feature: Pay $5 to Wait Faster ⚡',
-      thumbnail: 'https://picsum.photos/320/180?random=5',
-      channel: 'TechSatire Today',
-      views: '29.4M',
-      timestamp: '3 days ago',
-      duration: '0:31',
-      verified: true,
-      category: 'tutorials'
-    },
-    {
-      id: '6',
-      title: 'Vitalik Explains ETH Merge in 47 Hours, Audience Still Waiting for Block Confirmation',
-      thumbnail: 'https://picsum.photos/320/180?random=6',
-      channel: 'Ethereum Comedy Central',
-      views: '19.2M',
-      timestamp: '30 minutes ago',
-      duration: '47:03',
-      verified: false,
-      automated: true,
-      category: 'automated'
-    },
-    {
-      id: '7',
-      title: 'Wall Street Firm Buys Bitcoin, Accidentally Purchases Dogecoin Instead 🐕',
-      thumbnail: 'https://picsum.photos/320/180?random=7',
-      channel: 'Financial Comedy Hour',
-      views: '34.8M',
-      timestamp: '6 hours ago',
-      duration: '0:29',
-      verified: false,
-      category: 'analysis'
-    },
-    {
-      id: '8',
-      title: 'Influencer Loses Keys, Blames Mercury Retrograde 🔮',
-      thumbnail: 'https://picsum.photos/320/180?random=8',
-      channel: 'CryptoAstrology',
-      views: '28.7M',
-      timestamp: '2 days ago',
-      duration: '0:15',
-      verified: false,
-      category: 'education'
-    }
-  ]
+  // Videos come from creators saving them on-chain; no made-up listings.
+  const videos: Video[] = []
 
   const filteredVideos = selectedCategory === 'all' 
     ? videos 
@@ -245,21 +152,6 @@ export default function BitcoinVideo() {
   const openProject = (project: VideoProject) => {
     setStudioView('editor')
   }
-
-  useEffect(() => {
-    // Simulate loading
-    setTimeout(() => setIsLoading(false), 1500)
-    
-    const interval = setInterval(() => {
-      const change = (Math.random() - 0.5) * 5
-      setBtcPrice((prev) => {
-        const newPrice = parseFloat(prev.replace(',', '')) + change
-        return newPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })
-      })
-      setPriceChange(change > 0 ? `+${change.toFixed(1)}%` : `${change.toFixed(1)}%`)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-950 via-black to-gray-950 text-white antialiased pb-24 main-app-container">
@@ -343,15 +235,6 @@ export default function BitcoinVideo() {
 
             {/* Right Side Actions */}
             <div className="flex items-center gap-2 sm:gap-4">
-              {/* BTC Price Ticker */}
-              <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-600/10 to-yellow-500/10 rounded-xl border border-red-600/20 shadow-lg">
-                <Bitcoin className="w-4 h-4 text-red-600" />
-                <span className="font-mono font-bold">${btcPrice}</span>
-                <span className={`text-sm ${priceChange.startsWith('+') ? 'text-green-400' : 'text-red-400'}`}>
-                  {priceChange}
-                </span>
-              </div>
-
               <div className="flex items-center gap-2">
                 <Link
                   href="/create"
@@ -532,6 +415,7 @@ export default function BitcoinVideo() {
                             transition={{ duration: 0.5 }}
                             className="grid grid-cols-1 lg:grid-cols-2 gap-4"
                           >
+                            {filteredVideos.length === 0 && <p className="col-span-full py-8 text-center text-gray-400">No videos yet.</p>}
                             {filteredVideos.slice(0, 6).map((video, index) => (
                               <motion.div
                                 key={video.id}
@@ -666,6 +550,7 @@ export default function BitcoinVideo() {
                       transition={{ duration: 0.5 }}
                       className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
                     >
+                      {filteredVideos.length === 0 && <div className="col-span-full py-8"><p className="mb-6 text-center text-gray-400">No videos yet. Save a short clip on-chain to be the first.</p><SaveOnChain accept="video/*" noun="video" /></div>}
                       {filteredVideos.map((video, index) => (
                         <motion.div
                           key={video.id}
@@ -687,7 +572,6 @@ export default function BitcoinVideo() {
         </ResponsiveLayout>
         
         <DevSidebar />
-        <TickerSidebar userHandle="creator" />
         <DockManager currentApp="bitcoin-video" />
       </div>
   )
